@@ -1,0 +1,565 @@
+﻿{
+  "api_name": "PopLinks AI API",
+  "version": "1.0",
+  "base_url": "https://api.poplinks.io/api/ai",
+  "auth": {
+    "type": "bearer",
+    "header_name": "Authorization",
+    "format_example": "Bearer YOUR_API_KEY_HERE"
+  },
+  "pagination": {
+    "default_per_page": 20,
+    "param": "page",
+    "response_fields": ["current_page", "last_page", "per_page", "total"]
+  },
+  "endpoints": [
+    {
+      "name": "get_system_domains",
+      "method": "GET",
+      "path": "/system-domains",
+      "purpose": "List all system domains available for links",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_personal_domains",
+      "method": "GET",
+      "path": "/domains",
+      "purpose": "List user's personal domains",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_groups",
+      "method": "GET",
+      "path": "/groups",
+      "purpose": "List all link groups",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_vendors",
+      "method": "GET",
+      "path": "/vendors",
+      "purpose": "List all vendors",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_templates",
+      "method": "GET",
+      "path": "/templates",
+      "purpose": "List all page templates",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "list_poplinks",
+      "method": "GET",
+      "path": "/poplinks",
+      "purpose": "List all poplinks (short links)",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_poplink",
+      "method": "GET",
+      "path": "/poplinks/:id",
+      "purpose": "Get single poplink details",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "get_poplink_clicks",
+      "method": "GET",
+      "path": "/poplinks/:id/clicks",
+      "purpose": "Get click data for a poplink (paginated)",
+      "required_params": ["id"],
+      "optional_params": ["page"]
+    },
+    {
+      "name": "create_poplink",
+      "method": "POST",
+      "path": "/poplinks",
+      "purpose": "Create a new poplink",
+      "required_params": ["name", "destination_url", "visible_url"],
+      "optional_params": ["domain_type", "domain_id", "group_id", "vendor_id", "status"],
+      "request_body_schema": {
+        "name": "string",
+        "destination_url": "string",
+        "domain_type": "personal|system",
+        "domain_id": "integer",
+        "visible_url": "string",
+        "group_id": "integer|null",
+        "vendor_id": "integer|null",
+        "status": "integer (1=active)"
+      }
+    },
+    {
+      "name": "list_lead_pages",
+      "method": "GET",
+      "path": "/lead-pages",
+      "purpose": "List all lead pages",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_lead_page",
+      "method": "GET",
+      "path": "/lead-pages/:id",
+      "purpose": "Get single lead page with full settings",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "create_lead_page",
+      "method": "POST",
+      "path": "/lead-pages",
+      "purpose": "Create a new lead page",
+      "required_params": ["name"],
+      "optional_params": ["template_id", "category_id"],
+      "request_body_schema": {
+        "name": "string (max 255)",
+        "template_id": "integer|null",
+        "category_id": "integer|null"
+      }
+    },
+    {
+      "name": "clone_lead_page",
+      "method": "POST",
+      "path": "/lead-pages/:id/clone",
+      "purpose": "Clone a lead page with all settings",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "rename_lead_page",
+      "method": "PUT",
+      "path": "/lead-pages/:id/rename",
+      "purpose": "Rename a lead page",
+      "required_params": ["id", "name"],
+      "optional_params": [],
+      "request_body_schema": {"name": "string"}
+    },
+    {
+      "name": "update_lead_page_url",
+      "method": "PUT",
+      "path": "/lead-pages/:id/url",
+      "purpose": "Update URL slug and domain settings",
+      "required_params": ["id", "leadpage_keyword"],
+      "optional_params": ["conf_keyword", "domain_id", "domain_type", "redirect_type"],
+      "request_body_schema": {
+        "leadpage_keyword": "string",
+        "conf_keyword": "string",
+        "domain_id": "integer",
+        "domain_type": "personal|system",
+        "redirect_type": "url|conf_page"
+      }
+    },
+    {
+      "name": "update_lead_page_category",
+      "method": "PUT",
+      "path": "/lead-pages/:id/category",
+      "purpose": "Update category assignment",
+      "required_params": ["id", "category_id"],
+      "optional_params": [],
+      "request_body_schema": {"category_id": "integer"}
+    },
+    {
+      "name": "update_lead_page_seo",
+      "method": "PUT",
+      "path": "/lead-pages/:id/seo",
+      "purpose": "Update SEO metadata",
+      "required_params": ["id"],
+      "optional_params": ["title", "description", "keywords", "author", "image"],
+      "request_body_schema": {
+        "title": "string",
+        "description": "string",
+        "keywords": "string",
+        "author": "string",
+        "image": "file (multipart)"
+      }
+    },
+    {
+      "name": "update_lead_page_pre_headline",
+      "method": "PUT",
+      "path": "/lead-pages/:id/pre-headline",
+      "purpose": "Update pre-headline (sub headline)",
+      "required_params": ["id", "sub_headline"],
+      "optional_params": [],
+      "request_body_schema": {"sub_headline": "string"}
+    },
+    {
+      "name": "update_lead_page_headline",
+      "method": "PUT",
+      "path": "/lead-pages/:id/headline",
+      "purpose": "Update main headline",
+      "required_params": ["id", "main_headline"],
+      "optional_params": [],
+      "request_body_schema": {"main_headline": "string"}
+    },
+    {
+      "name": "update_lead_page_post_headline",
+      "method": "PUT",
+      "path": "/lead-pages/:id/post-headline",
+      "purpose": "Update post-headline (CTA statement)",
+      "required_params": ["id", "cta_statement"],
+      "optional_params": [],
+      "request_body_schema": {"cta_statement": "string"}
+    },
+    {
+      "name": "update_lead_page_video",
+      "method": "PUT",
+      "path": "/lead-pages/:id/video",
+      "purpose": "Update video settings",
+      "required_params": ["id", "is_video_enabled"],
+      "optional_params": ["video_type", "video_url"],
+      "request_body_schema": {
+        "is_video_enabled": "boolean",
+        "video_type": "vimeo|youtube",
+        "video_url": "string"
+      }
+    },
+    {
+      "name": "update_lead_page_description",
+      "method": "PUT",
+      "path": "/lead-pages/:id/description",
+      "purpose": "Update description text block",
+      "required_params": ["id", "is_textblock_enabled"],
+      "optional_params": ["textblock_content"],
+      "request_body_schema": {
+        "is_textblock_enabled": "boolean",
+        "textblock_content": "string (HTML)"
+      }
+    },
+    {
+      "name": "update_lead_page_bullets",
+      "method": "PUT",
+      "path": "/lead-pages/:id/bullets",
+      "purpose": "Bulk update bullets (replaces all)",
+      "required_params": ["id", "bullets"],
+      "optional_params": ["bullet_title"],
+      "request_body_schema": {
+        "bullet_title": "string",
+        "bullets": [{"name": "string", "rotation_number": "integer (optional)"}]
+      }
+    },
+    {
+      "name": "update_lead_page_template",
+      "method": "PUT",
+      "path": "/lead-pages/:id/template",
+      "purpose": "Change page template (regenerates CSS)",
+      "required_params": ["id", "template_id"],
+      "optional_params": [],
+      "request_body_schema": {"template_id": "integer"}
+    },
+    {
+      "name": "list_bridge_pages",
+      "method": "GET",
+      "path": "/bridge-pages",
+      "purpose": "List all bridge pages",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_bridge_page",
+      "method": "GET",
+      "path": "/bridge-pages/:id",
+      "purpose": "Get single bridge page with full settings",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "create_bridge_page",
+      "method": "POST",
+      "path": "/bridge-pages",
+      "purpose": "Create a new bridge page",
+      "required_params": ["name"],
+      "optional_params": ["template_id", "category_id"],
+      "request_body_schema": {
+        "name": "string (max 255)",
+        "template_id": "integer|null",
+        "category_id": "integer|null"
+      }
+    },
+    {
+      "name": "clone_bridge_page",
+      "method": "POST",
+      "path": "/bridge-pages/:id/clone",
+      "purpose": "Clone a bridge page with all settings",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "rename_bridge_page",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/rename",
+      "purpose": "Rename a bridge page",
+      "required_params": ["id", "name"],
+      "optional_params": [],
+      "request_body_schema": {"name": "string"}
+    },
+    {
+      "name": "update_bridge_page_url",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/url",
+      "purpose": "Update URL slug and domain settings",
+      "required_params": ["id", "leadpage_keyword"],
+      "optional_params": ["redirect_url", "domain_id", "domain_type", "redirect_type"],
+      "request_body_schema": {
+        "leadpage_keyword": "string",
+        "redirect_url": "string",
+        "domain_id": "integer",
+        "domain_type": "personal|system",
+        "redirect_type": "url"
+      }
+    },
+    {
+      "name": "update_bridge_page_category",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/category",
+      "purpose": "Update category assignment",
+      "required_params": ["id", "category_id"],
+      "optional_params": [],
+      "request_body_schema": {"category_id": "integer"}
+    },
+    {
+      "name": "update_bridge_page_seo",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/seo",
+      "purpose": "Update SEO metadata",
+      "required_params": ["id"],
+      "optional_params": ["title", "description", "keywords", "author", "image"],
+      "request_body_schema": {
+        "title": "string",
+        "description": "string",
+        "keywords": "string",
+        "author": "string",
+        "image": "file (multipart)"
+      }
+    },
+    {
+      "name": "update_bridge_page_pre_headline",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/pre-headline",
+      "purpose": "Update pre-headline (sub headline)",
+      "required_params": ["id", "sub_headline"],
+      "optional_params": [],
+      "request_body_schema": {"sub_headline": "string"}
+    },
+    {
+      "name": "update_bridge_page_headline",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/headline",
+      "purpose": "Update main headline",
+      "required_params": ["id", "main_headline"],
+      "optional_params": [],
+      "request_body_schema": {"main_headline": "string"}
+    },
+    {
+      "name": "update_bridge_page_post_headline",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/post-headline",
+      "purpose": "Update post-headline (CTA statement)",
+      "required_params": ["id", "cta_statement"],
+      "optional_params": [],
+      "request_body_schema": {"cta_statement": "string"}
+    },
+    {
+      "name": "update_bridge_page_video",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/video",
+      "purpose": "Update video settings",
+      "required_params": ["id", "is_video_enabled"],
+      "optional_params": ["video_type", "video_url"],
+      "request_body_schema": {
+        "is_video_enabled": "boolean",
+        "video_type": "vimeo|youtube",
+        "video_url": "string"
+      }
+    },
+    {
+      "name": "update_bridge_page_description",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/description",
+      "purpose": "Update description text block",
+      "required_params": ["id", "is_textblock_enabled"],
+      "optional_params": ["textblock_content"],
+      "request_body_schema": {
+        "is_textblock_enabled": "boolean",
+        "textblock_content": "string (HTML)"
+      }
+    },
+    {
+      "name": "update_bridge_page_bullets",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/bullets",
+      "purpose": "Bulk update bullets (replaces all)",
+      "required_params": ["id", "bullets"],
+      "optional_params": ["bullet_title"],
+      "request_body_schema": {
+        "bullet_title": "string",
+        "bullets": [{"name": "string", "rotation_number": "integer (optional)"}]
+      }
+    },
+    {
+      "name": "update_bridge_page_template",
+      "method": "PUT",
+      "path": "/bridge-pages/:id/template",
+      "purpose": "Change page template (regenerates CSS)",
+      "required_params": ["id", "template_id"],
+      "optional_params": [],
+      "request_body_schema": {"template_id": "integer"}
+    },
+    {
+      "name": "list_leads",
+      "method": "GET",
+      "path": "/leads",
+      "purpose": "List all captured leads (paginated, 20/page)",
+      "required_params": [],
+      "optional_params": ["page"]
+    },
+    {
+      "name": "get_leads_by_funnel",
+      "method": "GET",
+      "path": "/leads/funnel/:funnel_id",
+      "purpose": "Get leads for a specific funnel",
+      "required_params": ["funnel_id"],
+      "optional_params": ["page"]
+    },
+    {
+      "name": "list_categories",
+      "method": "GET",
+      "path": "/categories",
+      "purpose": "List all funnel categories",
+      "required_params": [],
+      "optional_params": ["type"]
+    },
+    {
+      "name": "create_category",
+      "method": "POST",
+      "path": "/categories",
+      "purpose": "Create a new category",
+      "required_params": ["name", "type"],
+      "optional_params": ["domain_id"],
+      "request_body_schema": {
+        "name": "string",
+        "type": "1 (lead) | 2 (bridge)",
+        "domain_id": "integer|null"
+      }
+    },
+    {
+      "name": "update_category",
+      "method": "PUT",
+      "path": "/categories/:id",
+      "purpose": "Update a category",
+      "required_params": ["id", "name"],
+      "optional_params": ["domain_id"],
+      "request_body_schema": {
+        "name": "string",
+        "domain_id": "integer|null"
+      }
+    },
+    {
+      "name": "delete_category",
+      "method": "DELETE",
+      "path": "/categories/:id",
+      "purpose": "Delete a category (must be empty)",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "get_stats_overview",
+      "method": "GET",
+      "path": "/stats/overview",
+      "purpose": "Get overall stats summary",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_poplink_stats",
+      "method": "GET",
+      "path": "/stats/poplinks",
+      "purpose": "Get stats for all poplinks",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_funnel_stats",
+      "method": "GET",
+      "path": "/stats/funnels",
+      "purpose": "Get stats for all funnels",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_stats_date_range",
+      "method": "POST",
+      "path": "/stats/date-range",
+      "purpose": "Get aggregated stats for date range",
+      "required_params": ["start_date", "end_date"],
+      "optional_params": [],
+      "request_body_schema": {
+        "start_date": "YYYY-MM-DD",
+        "end_date": "YYYY-MM-DD"
+      }
+    },
+    {
+      "name": "get_products",
+      "method": "GET",
+      "path": "/products",
+      "purpose": "Get all products",
+      "required_params": [],
+      "optional_params": ["type"]
+    },
+    {
+      "name": "get_orders",
+      "method": "POST",
+      "path": "/orders",
+      "purpose": "Get orders for specific products (paginated, 10/page)",
+      "required_params": ["product_ids"],
+      "optional_params": ["page"],
+      "request_body_schema": {
+        "product_ids": [1, 2, 3]
+      }
+    },
+    {
+      "name": "list_ad_campaigns",
+      "method": "GET",
+      "path": "/ad-stats/campaigns",
+      "purpose": "List all active ad campaigns",
+      "required_params": [],
+      "optional_params": []
+    },
+    {
+      "name": "get_ad_campaign",
+      "method": "GET",
+      "path": "/ad-stats/campaigns/:id",
+      "purpose": "Get single campaign with setups",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "get_ad_campaign_plans",
+      "method": "GET",
+      "path": "/ad-stats/campaigns/:id/plans",
+      "purpose": "Get campaign plans/metrics",
+      "required_params": ["id"],
+      "optional_params": []
+    },
+    {
+      "name": "get_ad_campaign_insights",
+      "method": "GET",
+      "path": "/ad-stats/campaigns/:id/insights",
+      "purpose": "Get live Meta/Facebook ad insights",
+      "required_params": ["id"],
+      "optional_params": ["date_range", "status", "date_start", "date_stop"],
+      "query_params": {
+        "date_range": "today|yesterday|week|month|year|all|custom",
+        "status": "ALL|ACTIVE|PAUSED",
+        "date_start": "YYYY-MM-DD (required for custom)",
+        "date_stop": "YYYY-MM-DD (required for custom)"
+      }
+    }
+  ]
+}

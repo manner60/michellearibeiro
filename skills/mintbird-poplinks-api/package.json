@@ -1,0 +1,21 @@
+{
+  "name": "mintbird-poplinks-api-skill",
+  "version": "1.0.0",
+  "description": "Create and manage Poplinks, lead pages, funnels, sales pages, and AI-generated pages through the MintBird API",
+  "main": "scripts/mintbird-api.js",
+  "author": "Michelle Ribeiro / Open Claw",
+  "license": "MIT",
+  "keywords": [
+    "mintbird",
+    "poplinks",
+    "api",
+    "lead-pages",
+    "funnels",
+    "sales-pages",
+    "automation"
+  ],
+  "dependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  }
+}

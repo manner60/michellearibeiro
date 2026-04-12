@@ -1,0 +1,1352 @@
+{
+  "meta": {
+    "source_url": "https://api.globalcontrol.io/ai-api-docs",
+    "fetched_at_iso": "2026-02-16T19:40:00Z",
+    "api_name": "Global Control API",
+    "doc_version": null,
+    "notes": [
+      "Source is Postman Collection v2.1.0 export, not live OpenAPI spec",
+      "Doc says response envelope is {success,data,message} but ACTUAL is {type:'response',data:{}}",
+      "Doc mentions versioning /v{n}/endpoint but NO endpoints use versioned paths",
+      "baseUrl variable set to 'farming-simulator.pstmn.io' (Postman placeholder - IGNORE)",
+      "Several endpoint descriptions copy-pasted from Postman docs about 'collections'",
+      "Some response examples show wrong entity data (tag data in domain responses)",
+      "/me endpoint returns apiToken and current_password in response - SENSITIVE"
+    ]
+  },
+
+  "transport": {
+    "protocol": "https",
+    "base_urls": [
+      {
+        "url": "https://api.globalcontrol.io/api",
+        "confidence": 1.0,
+        "notes": "Documented in collection description, confirmed working"
+      },
+      {
+        "url": "https://farming-simulator.pstmn.io",
+        "confidence": 0.0,
+        "notes": "DOC ARTIFACT - Postman placeholder variable, IGNORE"
+      }
+    ],
+    "canonical_base_url": "https://api.globalcontrol.io/api",
+    "join_rule": "baseUrl + '/' + path (paths do NOT start with /, no double slashes)"
+  },
+
+  "auth": {
+    "options": [
+      {
+        "type": "api_key",
+        "in": "header",
+        "header_name": "X-API-KEY",
+        "format": "X-API-KEY: <token>",
+        "token_name_hint": "apiToken",
+        "confidence": 1.0,
+        "notes": "Primary auth - configured in collection auth block, all examples use this"
+      },
+      {
+        "type": "bearer",
+        "in": "header",
+        "header_name": "Authorization",
+        "format": "Authorization: Bearer <token>",
+        "token_name_hint": "api_key",
+        "confidence": 0.2,
+        "notes": "NOT seen in any actual requests - may be mentioned in docs but collection uses X-API-KEY exclusively"
+      }
+    ],
+    "recommended_default": "api_key",
+    "recommended_reasoning": "Collection auth block explicitly configures X-API-KEY. All 51 endpoints inherit this. No Bearer examples exist in the collection. Use X-API-KEY unless API returns 401, then test Bearer as fallback.",
+    "verification_method": {
+      "endpoint": "GET /me",
+      "success_signature": "HTTP 200 + type='response' + data._id present",
+      "failure_signature": "HTTP 401 OR type='error' with error.message='Unauthorized'"
+    }
+  },
+
+  "conventions": {
+    "rate_limits": {
+      "headers": {
+        "limit": "X-RateLimit-Limit",
+        "remaining": "X-RateLimit-Remaining",
+        "reset": "X-RateLimit-Reset"
+      },
+      "policies": [
+        "100 req/min (standard tier)",
+        "500 req/min (premium tier)",
+        "Custom (enterprise tier)"
+      ],
+      "backoff_strategy": "On 429: read X-RateLimit-Reset (Unix timestamp), wait until reset + 1s jitter. If header missing, exponential backoff starting 1s, max 60s."
+    },
+    "response_envelope": {
+      "success_field": "type",
+      "success_value": "response",
+      "data_field": "data",
+      "message_field": null,
+      "error_field": "type",
+      "error_value": "error",
+      "error_object_path": "error",
+      "error_fields": ["name", "message", "time", "status", "code", "details", "description", "errorData", "logoutUser"],
+      "doc_vs_reality": "MISMATCH - Doc claims {success:true/false} but actual is {type:'response'|'error'}"
+    },
+    "status_codes": {
+      "200": "OK - Success (used for GET, POST creates, PUT updates, DELETE)",
+      "201": "Created - Documented but 200 used in practice",
+      "400": "Bad Request - Returned in error.status field",
+      "401": "Unauthorized - Invalid/missing API key",
+      "403": "Forbidden - Insufficient permissions",
+      "404": "Not Found - Resource doesn't exist",
+      "429": "Too Many Requests - Rate limited",
+      "500": "Internal Server Error"
+    },
+    "pagination": {
+      "type": "page_limit",
+      "fields": {
+        "page": {"type": "number", "default": 1, "description": "1-indexed page number"},
+        "limit": {"type": "number", "default": 10, "description": "Results per page"}
+      },
+      "response_fields": {
+        "total": "Total record count",
+        "page": "Current page",
+        "contacts_specific": ["total_new", "total_inactive", "total_passive", "total_active", "total_active_open", "total_active_click", "total_dead", "total_undeliverable"]
+      },
+      "supported_on": ["/contacts"]
+    }
+  },
+
+  "endpoints": [
+    {
+      "id": "user_me",
+      "category": "User",
+      "title": "Get Authenticated User",
+      "method": "GET",
+      "path": "/me",
+      "full_url_template": "{{baseUrl}}/me",
+      "description": "Gets information about the authenticated user. Use to verify API key validity.",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": "Primary auth method"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {
+          "status": 200,
+          "schema": {
+            "type": "response",
+            "data": {
+              "_id": "string",
+              "firstName": "string",
+              "lastName": "string",
+              "fullName": "string",
+              "email": "string",
+              "accessLevel": "string (PRO, etc.)",
+              "platformIds": "string[]",
+              "status": "boolean",
+              "createdAt": "ISO date",
+              "updatedAt": "ISO date",
+              "enterpriseSettings": "object",
+              "availableDaysTimes": "array",
+              "apiToken": "string [SENSITIVE-DO_NOT_LOG]",
+              "current_password": "string [SENSITIVE-DO_NOT_LOG]"
+            }
+          }
+        },
+        {
+          "status": 401,
+          "schema": {"type": "error", "error": {"message": "Unauthorized"}}
+        }
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": ["Response contains apiToken and current_password - MUST redact from logs"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "integrations_list",
+      "category": "Integrations",
+      "title": "Get all Integrations",
+      "method": "GET",
+      "path": "/integrations",
+      "full_url_template": "{{baseUrl}}/integrations",
+      "description": "Gets all available integrations",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Integration[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "integrations_connected",
+      "category": "Integrations",
+      "title": "Get Connected Integrations",
+      "method": "GET",
+      "path": "/platform/connected-integrations",
+      "full_url_template": "{{baseUrl}}/platform/connected-integrations",
+      "description": "Gets integrations connected to the platform",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Integration[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "integrations_categories",
+      "category": "Integrations",
+      "title": "Get Connected Categories",
+      "method": "GET",
+      "path": "/integrations/connected-categories",
+      "full_url_template": "{{baseUrl}}/integrations/connected-categories",
+      "description": "Gets connected integration categories",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Category[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "broadcast_send",
+      "category": "Broadcast Emails",
+      "title": "Send Broadcast Email",
+      "method": "POST",
+      "path": "/broadcast-emails/process-emails-beta",
+      "full_url_template": "{{baseUrl}}/broadcast-emails/process-emails-beta",
+      "description": "Send a broadcast email to contacts",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "domainId": "string (required)",
+            "integrationId": "string (required)",
+            "accountId": "string (required)",
+            "fromName": "string (required)",
+            "fromEmail": "string (required)",
+            "replyTo": "string (required)",
+            "to": "string (required) - testEmail or tagId",
+            "toEmail": "string (for test sends)",
+            "tagId": "string (for tag-based sends)",
+            "excludeTags": "string[] (optional)",
+            "subject": "string (required)",
+            "previewText": "string (optional)",
+            "html": "string (required) - email body HTML",
+            "remarks": "string (optional)",
+            "emailTypeId": "string (optional)",
+            "emailProductId": "string (optional)",
+            "active": "object (activity level filtering)"
+          },
+          "required": ["domainId", "integrationId", "accountId", "fromName", "fromEmail", "replyTo", "to", "subject", "html"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "SendResult"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - Sends live emails. Require explicit confirmation."],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "broadcast_create_field",
+      "category": "Broadcast Emails",
+      "title": "Create Field",
+      "method": "POST",
+      "path": "/broadcast-emails/create-field",
+      "full_url_template": "{{baseUrl}}/broadcast-emails/create-field",
+      "description": "Create a broadcast email field (type or product)",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "label": {"type": "string", "required": true},
+            "type": {"type": "string", "required": true, "enum": ["TYPE", "PRODUCT"]}
+          },
+          "required": ["label", "type"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": {"_id": "string", "userId": "string", "type": "string", "label": "string"}}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "broadcast_activity_counts",
+      "category": "Broadcast Emails",
+      "title": "Get Activity Levels",
+      "method": "POST",
+      "path": "/broadcast-emails/q-active-contact-counts-n",
+      "full_url_template": "{{baseUrl}}/broadcast-emails/q-active-contact-counts-n",
+      "description": "Get contact counts by activity level for email targeting",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "tagId": {"type": "string|null", "description": "Filter by tag, null for all"},
+            "excludeTags": {"type": "string[]", "default": []},
+            "active": {
+              "type": "object",
+              "properties": {
+                "activityLevel": {"type": "boolean"},
+                "sentToAll": {"type": "boolean"},
+                "partialCount": {"type": "number"},
+                "count": {"type": "number|null"}
+              }
+            }
+          }
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": {"count": "number"}}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "broadcast_get_fields",
+      "category": "Broadcast Emails",
+      "title": "Get Fields",
+      "method": "GET",
+      "path": "/broadcast-emails/get-fields",
+      "full_url_template": "{{baseUrl}}/broadcast-emails/get-fields",
+      "description": "Get broadcast email fields (types and products)",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [
+        {"name": "type", "required": false, "type": "string", "default": null, "description": "TYPE or PRODUCT"},
+        {"name": "search", "required": false, "type": "string", "default": null, "description": "Search term"}
+      ],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Field[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "contacts_get",
+      "category": "Contacts",
+      "title": "Get a Contact",
+      "method": "GET",
+      "path": "/contacts/{contactId}",
+      "full_url_template": "{{baseUrl}}/contacts/{{contactId}}",
+      "description": "Get a single contact by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "contactId", "type": "string", "required": true, "description": "MongoDB ObjectId"}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": "Contact"}},
+        {"status": 404, "schema": {"type": "error", "error": {"message": "Contact not found"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": ["Contains PII (email, phone) - redact in logs"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "contacts_list",
+      "category": "Contacts",
+      "title": "Get all Contacts",
+      "method": "GET",
+      "path": "/contacts",
+      "full_url_template": "{{baseUrl}}/contacts",
+      "description": "Get all contacts with pagination and filtering",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [
+        {"name": "page", "required": false, "type": "number", "default": "1", "description": "Page number (1-indexed)"},
+        {"name": "limit", "required": false, "type": "number", "default": "10", "description": "Results per page"},
+        {"name": "tags", "required": false, "type": "string", "default": null, "description": "Tag ID filter"},
+        {"name": "activity", "required": false, "type": "string", "default": null, "description": "Activity level filter"},
+        {"name": "search", "required": false, "type": "string", "default": null, "description": "Search term"},
+        {"name": "phone", "required": false, "type": "string", "default": null, "description": "Phone filter"},
+        {"name": "sort", "required": false, "type": "string", "default": null, "description": "Sort field"}
+      ],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": {"contacts": "Contact[]", "total": "number", "page": "number"}}}],
+      "pagination": {"type": "page_limit", "fields": ["page", "limit"], "notes": "Response includes total count for calculating pages"},
+      "edge_cases": ["Contains PII - redact emails/phones in logs"],
+      "doc_artifacts": ["Description mentions 'collections' (Postman copy-paste)"]
+    },
+
+    {
+      "id": "contacts_create",
+      "category": "Contacts",
+      "title": "Create a Contact",
+      "method": "POST",
+      "path": "/contacts",
+      "full_url_template": "{{baseUrl}}/contacts",
+      "description": "Create a new contact",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "required": false},
+            "firstName": {"type": "string", "required": false},
+            "lastName": {"type": "string", "required": false},
+            "email": {"type": "string", "required": true},
+            "phone": {"type": "string", "required": false},
+            "country": {"type": "string", "required": false},
+            "ip": {"type": "string", "required": false},
+            "address": {"type": "string", "required": false},
+            "meta": {"type": "array", "required": false},
+            "activitytype": {"type": "string", "required": false},
+            "activitydescription": {"type": "string", "required": false},
+            "activityurl": {"type": "string", "required": false},
+            "activitydata": {"type": "string", "required": false}
+          },
+          "required": ["email"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Contact"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["email is required and should be validated"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "contacts_update",
+      "category": "Contacts",
+      "title": "Update a Contact",
+      "method": "PUT",
+      "path": "/contacts/{contactId}",
+      "full_url_template": "{{baseUrl}}/contacts/{{contactId}}",
+      "description": "Update an existing contact",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "contactId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "firstName": {"type": "string"},
+            "lastName": {"type": "string"},
+            "email": {"type": "string"},
+            "phone": {"type": "string"},
+            "country": {"type": "string"},
+            "ip": {"type": "string"},
+            "address": {"type": "string"},
+            "meta": {"type": "array"}
+          },
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Contact"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "contacts_delete",
+      "category": "Contacts",
+      "title": "Delete a Contact",
+      "method": "DELETE",
+      "path": "/contacts/{contactId}",
+      "full_url_template": "{{baseUrl}}/contacts/{{contactId}}",
+      "description": "Delete a contact",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "contactId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "DeletedContact"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - Require explicit confirmation before calling"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "subusers_get",
+      "category": "Sub Users",
+      "title": "Get a User",
+      "method": "GET",
+      "path": "/sub-users/{userId}",
+      "full_url_template": "{{baseUrl}}/sub-users/{{userId}}",
+      "description": "Get a single sub-user by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "userId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": "SubUser"}},
+        {"status": 404, "schema": {"type": "error", "error": {"message": "User Not Found"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "subusers_list",
+      "category": "Sub Users",
+      "title": "Get all Users",
+      "method": "GET",
+      "path": "/sub-users",
+      "full_url_template": "{{baseUrl}}/sub-users",
+      "description": "Get all sub-users",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "SubUser[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "subusers_create",
+      "category": "Sub Users",
+      "title": "Create a User",
+      "method": "POST",
+      "path": "/sub-users",
+      "full_url_template": "{{baseUrl}}/sub-users",
+      "description": "Create a new sub-user",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstName": {"type": "string", "required": true},
+            "lastName": {"type": "string", "required": true},
+            "email": {"type": "string", "required": true},
+            "password": {"type": "string", "required": true}
+          },
+          "required": ["firstName", "lastName", "email", "password"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "SubUser"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["password field is sensitive - DO NOT LOG"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "subusers_update",
+      "category": "Sub Users",
+      "title": "Update a User",
+      "method": "PUT",
+      "path": "/sub-users/{userId}",
+      "full_url_template": "{{baseUrl}}/sub-users/{{userId}}",
+      "description": "Update a sub-user",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "userId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstName": {"type": "string"},
+            "lastName": {"type": "string"},
+            "email": {"type": "string"}
+          },
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "SubUser"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "subusers_delete",
+      "category": "Sub Users",
+      "title": "Delete a User",
+      "method": "DELETE",
+      "path": "/sub-users/{userId}",
+      "full_url_template": "{{baseUrl}}/sub-users/{{userId}}",
+      "description": "Delete a sub-user",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "userId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "{}"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - Require explicit confirmation"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "tags_get",
+      "category": "Tags",
+      "title": "Get a Tag",
+      "method": "GET",
+      "path": "/tags/{tagId}",
+      "full_url_template": "{{baseUrl}}/tags/{{tagId}}",
+      "description": "Get a single tag by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "tagId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": "Tag"}},
+        {"status": 404, "schema": {"type": "error", "error": {"message": "Tag not found"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "tags_list",
+      "category": "Tags",
+      "title": "Get all Tags",
+      "method": "GET",
+      "path": "/tags",
+      "full_url_template": "{{baseUrl}}/tags",
+      "description": "Get all tags",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Tag[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "tags_create",
+      "category": "Tags",
+      "title": "Create a Tag",
+      "method": "POST",
+      "path": "/tags",
+      "full_url_template": "{{baseUrl}}/tags",
+      "description": "Create a new tag",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "required": true},
+            "description": {"type": "string", "required": false, "default": ""},
+            "groupId": {"type": "string", "required": true},
+            "isHot": {"type": "boolean", "required": false, "default": false}
+          },
+          "required": ["name", "groupId"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Tag"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["groupId required - get from /tag-groups first"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "tags_update",
+      "category": "Tags",
+      "title": "Update a Tag",
+      "method": "PUT",
+      "path": "/tags/{tagId}",
+      "full_url_template": "{{baseUrl}}/tags/{{tagId}}",
+      "description": "Update a tag",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "tagId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "description": {"type": "string"},
+            "groupId": {"type": "string"},
+            "isHot": {"type": "boolean"}
+          },
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Tag"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "tags_delete",
+      "category": "Tags",
+      "title": "Delete a Tag",
+      "method": "DELETE",
+      "path": "/tags/{tagId}",
+      "full_url_template": "{{baseUrl}}/tags/{{tagId}}",
+      "description": "Delete a tag",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "tagId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Tag"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - May affect contacts with this tag"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taggroups_get",
+      "category": "Tag Groups",
+      "title": "Get a Group",
+      "method": "GET",
+      "path": "/tag-groups/{groupId}",
+      "full_url_template": "{{baseUrl}}/tag-groups/{{groupId}}",
+      "description": "Get a single tag group by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "groupId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": {"_id": "string", "name": "string"}}},
+        {"status": 404, "schema": {"type": "error", "error": {"message": "No Document Found"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taggroups_list",
+      "category": "Tag Groups",
+      "title": "Get all Groups",
+      "method": "GET",
+      "path": "/tag-groups",
+      "full_url_template": "{{baseUrl}}/tag-groups",
+      "description": "Get all tag groups",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagGroup[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taggroups_create",
+      "category": "Tag Groups",
+      "title": "Create a Group",
+      "method": "POST",
+      "path": "/tag-groups",
+      "full_url_template": "{{baseUrl}}/tag-groups",
+      "description": "Create a new tag group",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "required": true}
+          },
+          "required": ["name"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagGroup"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taggroups_update",
+      "category": "Tag Groups",
+      "title": "Update a Group",
+      "method": "PUT",
+      "path": "/tag-groups/{groupId}",
+      "full_url_template": "{{baseUrl}}/tag-groups/{{groupId}}",
+      "description": "Update a tag group",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "groupId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {"name": {"type": "string"}},
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagGroup"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taggroups_delete",
+      "category": "Tag Groups",
+      "title": "Delete a Group",
+      "method": "DELETE",
+      "path": "/tag-groups/{groupId}",
+      "full_url_template": "{{baseUrl}}/tag-groups/{{groupId}}",
+      "description": "Delete a tag group",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "groupId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagGroup"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - May orphan tags in this group"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taglabels_get",
+      "category": "Tag Labels",
+      "title": "Get a Label",
+      "method": "GET",
+      "path": "/tags/labels/{labelId}",
+      "full_url_template": "{{baseUrl}}/tags/labels/{{labelId}}",
+      "description": "Get a single tag label by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "labelId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagLabel"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taglabels_list",
+      "category": "Tag Labels",
+      "title": "Get all Labels",
+      "method": "GET",
+      "path": "/tags/labels",
+      "full_url_template": "{{baseUrl}}/tags/labels",
+      "description": "Get all tag labels",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagLabel[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taglabels_create",
+      "category": "Tag Labels",
+      "title": "Create a Label",
+      "method": "POST",
+      "path": "/tags/labels",
+      "full_url_template": "{{baseUrl}}/tags/labels",
+      "description": "Create a new tag label",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "required": true},
+            "color": {"type": "string", "required": true, "format": "#RRGGBB"}
+          },
+          "required": ["name", "color"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagLabel"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["color must be valid hex (#RRGGBB)"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taglabels_update",
+      "category": "Tag Labels",
+      "title": "Update a Label",
+      "method": "PUT",
+      "path": "/tags/labels/{labelId}",
+      "full_url_template": "{{baseUrl}}/tags/labels/{{labelId}}",
+      "description": "Update a tag label",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "labelId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "color": {"type": "string"}
+          },
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagLabel"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "taglabels_delete",
+      "category": "Tag Labels",
+      "title": "Delete a Label",
+      "method": "DELETE",
+      "path": "/tags/labels/{labelId}",
+      "full_url_template": "{{baseUrl}}/tags/labels/{{labelId}}",
+      "description": "Delete a tag label",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "labelId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "TagLabel"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfields_get",
+      "category": "Custom Fields",
+      "title": "Get a Field",
+      "method": "GET",
+      "path": "/custom-fields/{customFieldId}",
+      "full_url_template": "{{baseUrl}}/custom-fields/{{customFieldId}}",
+      "description": "Get a single custom field by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "customFieldId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": "CustomField"}},
+        {"status": 400, "schema": {"type": "error", "error": {"message": "Something Went Wrong"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": ["Returns 400 instead of 404 for not found"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfields_list",
+      "category": "Custom Fields",
+      "title": "Get all Fields",
+      "method": "GET",
+      "path": "/custom-fields",
+      "full_url_template": "{{baseUrl}}/custom-fields",
+      "description": "Get all custom fields",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomField[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfields_create",
+      "category": "Custom Fields",
+      "title": "Create a Field",
+      "method": "POST",
+      "path": "/custom-fields",
+      "full_url_template": "{{baseUrl}}/custom-fields",
+      "description": "Create a new custom field",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "required": true},
+            "slug": {"type": "string", "required": true},
+            "fieldType": {"type": "string", "required": true, "enum": ["text", "url"]},
+            "defaultValue": {"type": "string", "required": false},
+            "customFieldGroupId": {"type": "string", "required": false},
+            "type": {"type": "string", "required": true, "enum": ["contact", "email"]}
+          },
+          "required": ["name", "slug", "fieldType", "type"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomField"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["slug should be unique"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfields_update",
+      "category": "Custom Fields",
+      "title": "Update a Field",
+      "method": "PUT",
+      "path": "/custom-fields/{customFieldId}",
+      "full_url_template": "{{baseUrl}}/custom-fields/{{customFieldId}}",
+      "description": "Update a custom field",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "customFieldId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "slug": {"type": "string"},
+            "fieldType": {"type": "string"},
+            "defaultValue": {"type": "string"},
+            "customFieldGroupId": {"type": "string"}
+          },
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomField"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfields_delete",
+      "category": "Custom Fields",
+      "title": "Delete a Field",
+      "method": "DELETE",
+      "path": "/custom-fields/{customFieldId}",
+      "full_url_template": "{{baseUrl}}/custom-fields/{{customFieldId}}",
+      "description": "Delete a custom field",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "customFieldId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomField"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfieldgroups_get",
+      "category": "Custom Field Groups",
+      "title": "Get a Group",
+      "method": "GET",
+      "path": "/custom-field-groups/{groupId}",
+      "full_url_template": "{{baseUrl}}/custom-field-groups/{{groupId}}",
+      "description": "Get a single custom field group by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "groupId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": "CustomFieldGroup"}},
+        {"status": 400, "schema": {"type": "error", "error": {"message": "Something Went Wrong"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": ["Returns 400 instead of 404 for not found"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfieldgroups_list",
+      "category": "Custom Field Groups",
+      "title": "Get all Groups",
+      "method": "GET",
+      "path": "/custom-field-groups",
+      "full_url_template": "{{baseUrl}}/custom-field-groups",
+      "description": "Get all custom field groups",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomFieldGroup[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfieldgroups_create",
+      "category": "Custom Field Groups",
+      "title": "Create a Group",
+      "method": "POST",
+      "path": "/custom-field-groups",
+      "full_url_template": "{{baseUrl}}/custom-field-groups",
+      "description": "Create a new custom field group",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "required": true},
+            "type": {"type": "string", "required": true, "enum": ["contact"]}
+          },
+          "required": ["name", "type"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomFieldGroup"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfieldgroups_update",
+      "category": "Custom Field Groups",
+      "title": "Update a Group",
+      "method": "PUT",
+      "path": "/custom-field-groups/{groupId}",
+      "full_url_template": "{{baseUrl}}/custom-field-groups/{{groupId}}",
+      "description": "Update a custom field group",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [{"name": "groupId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "type": {"type": "string"}
+          },
+          "required": []
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomFieldGroup"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "customfieldgroups_delete",
+      "category": "Custom Field Groups",
+      "title": "Delete a Group",
+      "method": "DELETE",
+      "path": "/custom-field-groups/{groupId}",
+      "full_url_template": "{{baseUrl}}/custom-field-groups/{{groupId}}",
+      "description": "Delete a custom field group",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "groupId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "CustomFieldGroup (with deletedAt)"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - Sets deleted=true and deletedAt timestamp"],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "domains_get",
+      "category": "Domains",
+      "title": "Get a Domain",
+      "method": "GET",
+      "path": "/domains/{domainId}",
+      "full_url_template": "{{baseUrl}}/domains/{{domainId}}",
+      "description": "Get a single domain by ID",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "domainId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [
+        {"status": 200, "schema": {"type": "response", "data": "Domain"}},
+        {"status": 404, "schema": {"type": "error", "error": {"message": "Something Went Wrong"}}}
+      ],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "domains_list",
+      "category": "Domains",
+      "title": "Get all Domains",
+      "method": "GET",
+      "path": "/domains",
+      "full_url_template": "{{baseUrl}}/domains",
+      "description": "Get all domains",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Domain[]"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": ["Example response shows tag data instead of domain data (copy-paste error)"]
+    },
+
+    {
+      "id": "domains_smtp_list",
+      "category": "Domains",
+      "title": "Get Integration Domains",
+      "method": "POST",
+      "path": "/domains/smtp-domain-list",
+      "full_url_template": "{{baseUrl}}/domains/smtp-domain-list",
+      "description": "Get available SMTP domains for an integration",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "integrationId": {"type": "string", "required": true},
+            "accountId": {"type": "string", "required": true},
+            "domain": {"type": "string|null", "required": false}
+          },
+          "required": ["integrationId", "accountId"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "string[] (domain names)"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "domains_create",
+      "category": "Domains",
+      "title": "Create a Domain",
+      "method": "POST",
+      "path": "/domains",
+      "full_url_template": "{{baseUrl}}/domains",
+      "description": "Add/create a domain",
+      "headers": [
+        {"name": "X-API-KEY", "required": true, "notes": ""},
+        {"name": "Content-Type", "required": true, "notes": "application/json"}
+      ],
+      "path_params": [],
+      "query_params": [],
+      "request_body": {
+        "content_type": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "integrationId": {"type": "string", "required": true},
+            "accountId": {"type": "string", "required": true},
+            "domain": {"type": "string", "required": true}
+          },
+          "required": ["integrationId", "accountId", "domain"]
+        }
+      },
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Domain (with accountConnected)"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": [],
+      "doc_artifacts": []
+    },
+
+    {
+      "id": "domains_delete",
+      "category": "Domains",
+      "title": "Delete a Domain",
+      "method": "DELETE",
+      "path": "/domains/{domainId}",
+      "full_url_template": "{{baseUrl}}/domains/{{domainId}}",
+      "description": "Delete a domain",
+      "headers": [{"name": "X-API-KEY", "required": true, "notes": ""}],
+      "path_params": [{"name": "domainId", "type": "string", "required": true}],
+      "query_params": [],
+      "request_body": null,
+      "responses": [{"status": 200, "schema": {"type": "response", "data": "Domain (with deletedAt)"}}],
+      "pagination": {"type": "none"},
+      "edge_cases": ["DESTRUCTIVE - Sets deleted=true and deletedAt timestamp"],
+      "doc_artifacts": []
+    }
+  ],
+
+  "verification": {
+    "toc_count": 51,
+    "body_count": 51,
+    "final_unique_count": 51,
+    "mismatches": {
+      "toc_only": [],
+      "body_only": []
+    }
+  }
+}

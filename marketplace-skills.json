@@ -1,0 +1,922 @@
+[
+  {
+    "id": "activecampaign-email",
+    "name": "Activecampaign Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Provides comprehensive access to the ActiveCampaign API for managing contacts, email campaigns, marketing automations, and sales CRM. Use this skill ",
+    "downloadUrl": "/activecampaign-email.zip",
+    "premium": false
+  },
+  {
+    "id": "airtable-db",
+    "name": "Airtable Db",
+    "category": "Database & Backend",
+    "description": "\\\\\"Seamlessly manage and automate your Airtable databases. This skill empowers you to perform comprehensive CRUD operations on records, manage base sche",
+    "downloadUrl": "/airtable-db.zip",
+    "premium": false
+  },
+  {
+    "id": "anthropic-assistant",
+    "name": "Anthropic Assistant",
+    "category": "Automation",
+    "description": "\\\\\"Activates the Anthropic Claude 3 model via the Messages API to perform advanced reasoning, text and vision analysis, and complex instruction-followin",
+    "downloadUrl": "/anthropic-assistant.zip",
+    "premium": false
+  },
+  {
+    "id": "asana-productivity",
+    "name": "Asana Productivity",
+    "category": "Productivity",
+    "description": "\\\\\"Supercharge your productivity by managing Asana tasks, projects, and workflows directly from your command line. Use this skill to create, search, and",
+    "downloadUrl": "/asana-productivity.zip",
+    "premium": false
+  },
+  {
+    "id": "asana-tasks",
+    "name": "Asana Tasks",
+    "category": "Productivity",
+    "description": "\\\\\"Seamlessly manage your Asana workflows by creating, updating, and searching for tasks, projects, and subtasks. Use this skill to assign work, set dea",
+    "downloadUrl": "/asana-tasks.zip",
+    "premium": false
+  },
+  {
+    "id": "attio-crm",
+    "name": "Attio Crm",
+    "category": "CRM & Sales",
+    "description": "Supercharge your customer relationship management by seamlessly integrating with Attio. This skill empowers you to create, retrieve, update, and delet",
+    "downloadUrl": "/attio-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "aws-manager",
+    "name": "Aws Manager",
+    "category": "Cloud & Deploy",
+    "description": "\\\\\"Provides comprehensive management of Amazon Web Services (AWS) resources. Use this skill for provisioning, monitoring, and administering core AWS ser",
+    "downloadUrl": "/aws-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "azure-manager",
+    "name": "Azure Manager",
+    "category": "Cloud & Deploy",
+    "description": "\\\\\"Manages Microsoft Azure resources, including VMs, storage, and resource groups. Use this skill to automate Azure infrastructure provisioning, managem",
+    "downloadUrl": "/azure-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "beehiiv-newsletter",
+    "name": "Beehiiv Newsletter",
+    "category": "Automation",
+    "description": "\\\\\"Provides comprehensive management of Beehiiv newsletters, including publications, posts, subscribers, and segments. Activate this skill for tasks inv",
+    "downloadUrl": "/beehiiv-newsletter.zip",
+    "premium": false
+  },
+  {
+    "id": "bigcommerce-store",
+    "name": "Bigcommerce Store",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage your BigCommerce store with comprehensive API-driven control. This skill empowers you to automate product catalog management, strea",
+    "downloadUrl": "/bigcommerce-store.zip",
+    "premium": false
+  },
+  {
+    "id": "bitly-links",
+    "name": "Bitly Links",
+    "category": "Links",
+    "description": "\\\\\"Supercharge your link management with the Bitly API. This skill allows you to shorten URLs, create branded links, track detailed click analytics, and",
+    "downloadUrl": "/bitly-links.zip",
+    "premium": false
+  },
+  {
+    "id": "brevo-email",
+    "name": "Brevo Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Powerfully manage your entire Brevo email marketing and transactional messaging workflow. This skill enables creating and sending dynamic email campa",
+    "downloadUrl": "/brevo-email.zip",
+    "premium": false
+  },
+  {
+    "id": "calcom-scheduler",
+    "name": "Calcom Scheduler",
+    "category": "Scheduling",
+    "description": "\\\\\"Seamlessly manage your entire scheduling workflow on Cal.com. This skill empowers you to create and manage event types, control availability, handle ",
+    "downloadUrl": "/calcom-scheduler.zip",
+    "premium": false
+  },
+  {
+    "id": "chargebee-billing",
+    "name": "Chargebee Billing",
+    "category": "Automation",
+    "description": "\\\\\"Provides comprehensive, automated control over the Chargebee billing and subscription management platform. Use this skill for end-to-end revenue oper",
+    "downloadUrl": "/chargebee-billing.zip",
+    "premium": false
+  },
+  {
+    "id": "claude-assistant",
+    "name": "Claude Assistant",
+    "category": "AI & Content",
+    "description": "\\\\\"Unlock advanced reasoning and analysis by integrating Anthropic's Claude 3.5 Sonnet. This skill enables sophisticated text generation, in-depth image",
+    "downloadUrl": "/claude-assistant.zip",
+    "premium": false
+  },
+  {
+    "id": "clickup-manager",
+    "name": "Clickup Manager",
+    "category": "Automation",
+    "description": "Supercharge your productivity by managing ClickUp workspaces, projects, and tasks directly through chat. This skill enables you to create, assign, and",
+    "downloadUrl": "/clickup-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "clickup-productivity",
+    "name": "Clickup Productivity",
+    "category": "Automation",
+    "description": "\\\\\"Automate your entire ClickUp workflow. This skill enables you to create, retrieve, update, and delete tasks, manage project structures like spaces, f",
+    "downloadUrl": "/clickup-productivity.zip",
+    "premium": false
+  },
+  {
+    "id": "close-crm",
+    "name": "Close Crm",
+    "category": "CRM & Sales",
+    "description": "Full Close CRM management — leads, contacts, opportunities, activities, email sequences, call logging, smart views, and pipeline analytics via the Clo",
+    "downloadUrl": "/close-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "cloudinary-media",
+    "name": "Cloudinary Media",
+    "category": "Cloud & Deploy",
+    "description": "\\\\\"Seamlessly manage your entire media lifecycle on Cloudinary. This skill enables you to upload, transform, optimize, and deliver images and videos, as",
+    "downloadUrl": "/cloudinary-media.zip",
+    "premium": false
+  },
+  {
+    "id": "cold-outreach-sequencer",
+    "name": "Cold Outreach Sequencer",
+    "category": "Automation",
+    "description": "\\\\\"Drives scalable B2B sales development by automating hyper-personalized cold email campaigns. It researches prospects, crafts unique AI-generated mess",
+    "downloadUrl": "/cold-outreach-sequencer.zip",
+    "premium": false
+  },
+  {
+    "id": "competitor-intelligence-monitor",
+    "name": "Competitor Intelligence Monitor",
+    "category": "Automation",
+    "description": "A comprehensive intelligence agent that automates competitor monitoring across websites, pricing, product launches, customer reviews, and social media",
+    "downloadUrl": "/competitor-intelligence-monitor.zip",
+    "premium": false
+  },
+  {
+    "id": "contentful-cms",
+    "name": "Contentful Cms",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage your entire Contentful stack. This skill empowers you to create, edit, publish, and archive content, manage assets, and even automa",
+    "downloadUrl": "/contentful-cms.zip",
+    "premium": false
+  },
+  {
+    "id": "convertkit-email",
+    "name": "Convertkit Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Provides comprehensive management of ConvertKit email marketing campaigns. Use this skill to handle subscribers, automate email sequences, manage tag",
+    "downloadUrl": "/convertkit-email.zip",
+    "premium": false
+  },
+  {
+    "id": "copper-crm",
+    "name": "Copper Crm",
+    "category": "CRM & Sales",
+    "description": "\\\\\"Seamlessly manage your entire Copper CRM workflow. This skill empowers you to create, retrieve, update, and delete leads, people, companies, opportun",
+    "downloadUrl": "/copper-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "crisp-support",
+    "name": "Crisp Support",
+    "category": "Support",
+    "description": "\\\\\"Manages customer support and engagement using the Crisp API. This skill is ideal for handling conversations, managing contacts and companies, and acc",
+    "downloadUrl": "/crisp-support.zip",
+    "premium": false
+  },
+  {
+    "id": "discord-manager",
+    "name": "Discord Manager",
+    "category": "Automation",
+    "description": "\\\\\"Provides comprehensive management of Discord servers, enabling automated moderation, user engagement, and content delivery. Use this skill to send ta",
+    "downloadUrl": "/discord-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "dropbox-storage",
+    "name": "Dropbox Storage",
+    "category": "Storage",
+    "description": "\\\\\"Seamlessly manage and synchronize files, folders, and shared links with the Dropbox API. Use this skill to build robust workflows for cloud storage, ",
+    "downloadUrl": "/dropbox-storage.zip",
+    "premium": false
+  },
+  {
+    "id": "dub-links",
+    "name": "Dub Links",
+    "category": "Links",
+    "description": "\\\\\"Supercharge your link management with the Dub.co API. Create, track, and manage branded short links, analyze click-through rates, and organize your m",
+    "downloadUrl": "/dub-links.zip",
+    "premium": false
+  },
+  {
+    "id": "ecwid-store",
+    "name": "Ecwid Store",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage your Ecwid e-commerce store with comprehensive support for products, orders, customers, and more. Use this skill for all administra",
+    "downloadUrl": "/ecwid-store.zip",
+    "premium": false
+  },
+  {
+    "id": "elevenlabs-voice",
+    "name": "Elevenlabs Voice",
+    "category": "Automation",
+    "description": "\\\\\"Unlock hyper-realistic text-to-speech (TTS) and voice cloning with the ElevenLabs API. Use this skill to generate high-quality audio for videos, podc",
+    "downloadUrl": "/elevenlabs-voice.zip",
+    "premium": false
+  },
+  {
+    "id": "figma-design",
+    "name": "Figma Design",
+    "category": "Design & Media",
+    "description": "Seamlessly integrate with Figma to manage design files, components, and prototypes. Use this skill to automate design handoffs, export assets, and str",
+    "downloadUrl": "/figma-design.zip",
+    "premium": false
+  },
+  {
+    "id": "firebase-backend",
+    "name": "Firebase Backend",
+    "category": "Automation",
+    "description": "\\\\\"Provides comprehensive management of Firebase services via REST API, enabling interaction with Firestore, Realtime Database, Authentication, Cloud St",
+    "downloadUrl": "/firebase-backend.zip",
+    "premium": false
+  },
+  {
+    "id": "freshsales-crm",
+    "name": "Freshsales Crm",
+    "category": "CRM & Sales",
+    "description": "Supercharge your sales pipeline by managing contacts, accounts, deals, and tasks in Freshsales CRM. Use this skill for full lifecycle sales management",
+    "downloadUrl": "/freshsales-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "gcloud-manager",
+    "name": "Gcloud Manager",
+    "category": "Cloud & Deploy",
+    "description": "'Seamlessly manage your entire Google Cloud Platform infrastructure. This skill empowers you to control Compute Engine, Cloud Storage, BigQuery, GKE, ",
+    "downloadUrl": "/gcloud-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "gemini-assistant",
+    "name": "Gemini Assistant",
+    "category": "Automation",
+    "description": "A comprehensive skill for leveraging Google's Gemini 2.0 family of models (Flash and Pro) for advanced multimodal content generation, analysis, and in",
+    "downloadUrl": "/gemini-assistant.zip",
+    "premium": false
+  },
+  {
+    "id": "github-repos",
+    "name": "Github Repos",
+    "category": "Automation",
+    "description": "\\\\\"Comprehensive GitHub repository management via the REST API. This skill enables end-to-end workflows including repository creation, issue tracking, p",
+    "downloadUrl": "/github-repos.zip",
+    "premium": false
+  },
+  {
+    "id": "gitlab-repos",
+    "name": "Gitlab Repos",
+    "category": "Automation",
+    "description": "\\\\\"Comprehensive GitLab project and repository management. Use this skill to create, list, and manage projects, repositories, merge requests, issues, pi",
+    "downloadUrl": "/gitlab-repos.zip",
+    "premium": false
+  },
+  {
+    "id": "gmail-inbox",
+    "name": "Gmail Inbox",
+    "category": "Email Marketing",
+    "description": "\\\\\"Provides comprehensive, secure, and efficient management of Gmail inboxes. Use this skill to send, read, search, and organize emails, manage labels a",
+    "downloadUrl": "/gmail-inbox.zip",
+    "premium": false
+  },
+  {
+    "id": "google-calendar",
+    "name": "Google Calendar",
+    "category": "Scheduling",
+    "description": "\\\\\"Seamlessly manage Google Calendar to orchestrate events, schedules, and team availability. Use this skill for creating, searching, and updating calen",
+    "downloadUrl": "/google-calendar.zip",
+    "premium": false
+  },
+  {
+    "id": "google-drive",
+    "name": "Google Drive",
+    "category": "Storage",
+    "description": "\\\\\"Automate file management in Google Drive. This skill enables creating, searching, sharing, and organizing documents, spreadsheets, and folders to str",
+    "downloadUrl": "/google-drive.zip",
+    "premium": false
+  },
+  {
+    "id": "google-forms",
+    "name": "Google Forms",
+    "category": "Forms & Surveys",
+    "description": "\\\\\"Seamlessly create, manage, and analyze Google Forms and responses. Use this skill to build surveys, collect feedback, automate data entry from forms,",
+    "downloadUrl": "/google-forms.zip",
+    "premium": false
+  },
+  {
+    "id": "gumroad-sales",
+    "name": "Gumroad Sales",
+    "category": "Automation",
+    "description": "Automate Gumroad sales, subscriber, and product management. Use this skill to get sales reports, manage digital products, track subscriber activity, g",
+    "downloadUrl": "/gumroad-sales.zip",
+    "premium": false
+  },
+  {
+    "id": "hubspot-crm",
+    "name": "Hubspot Crm",
+    "category": "CRM & Sales",
+    "description": "\\\\\"Unlock comprehensive HubSpot CRM management. This skill enables creating, reading, updating, and deleting contacts, companies, and deals. It also sup",
+    "downloadUrl": "/hubspot-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "imagekit-media",
+    "name": "Imagekit Media",
+    "category": "Automation",
+    "description": "\\\\\"Unlock powerful, on-the-fly image and video transformations, optimization, and delivery with the ImageKit API. Use this skill to manage your entire m",
+    "downloadUrl": "/imagekit-media.zip",
+    "premium": false
+  },
+  {
+    "id": "intercom-support",
+    "name": "Intercom Support",
+    "category": "Support",
+    "description": "\\\\\"Manages customer support and engagement using the Intercom API. Use this skill to handle conversations, manage contacts and companies, search and cre",
+    "downloadUrl": "/intercom-support.zip",
+    "premium": false
+  },
+  {
+    "id": "jira-issues",
+    "name": "Jira Issues",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage Jira Cloud projects and issues via the REST API. This skill empowers you to create, update, and search for issues using JQL, transi",
+    "downloadUrl": "/jira-issues.zip",
+    "premium": false
+  },
+  {
+    "id": "jotform-forms",
+    "name": "Jotform Forms",
+    "category": "Forms & Surveys",
+    "description": "\\\\\"Automate form creation, submission management, and data analysis in Jotform. Use this skill to build dynamic data collection workflows, integrate for",
+    "downloadUrl": "/jotform-forms.zip",
+    "premium": false
+  },
+  {
+    "id": "klaviyo-email",
+    "name": "Klaviyo Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Unlock comprehensive Klaviyo email marketing automation. This skill enables end-to-end management of your email marketing operations, from granular p",
+    "downloadUrl": "/klaviyo-email.zip",
+    "premium": false
+  },
+  {
+    "id": "linear-tracker",
+    "name": "Linear Tracker",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage your software development lifecycle with the Linear Tracker skill. Create, update, and search for issues, manage projects and cycle",
+    "downloadUrl": "/linear-tracker.zip",
+    "premium": false
+  },
+  {
+    "id": "magento-store",
+    "name": "Magento Store",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage your Adobe Commerce (Magento) store with comprehensive control over products, customers, and orders. Use this skill for real-time i",
+    "downloadUrl": "/magento-store.zip",
+    "premium": false
+  },
+  {
+    "id": "mailchimp-email",
+    "name": "Mailchimp Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Provides comprehensive management of Mailchimp email marketing operations. It allows for seamless handling of audiences (lists), subscriber managemen",
+    "downloadUrl": "/mailchimp-email.zip",
+    "premium": false
+  },
+  {
+    "id": "mailgun-email",
+    "name": "Mailgun Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Provides comprehensive control over the Mailgun email service. It enables sending transactional and bulk emails, managing domain configurations, hand",
+    "downloadUrl": "/mailgun-email.zip",
+    "premium": false
+  },
+  {
+    "id": "make-automation",
+    "name": "Make Automation",
+    "category": "Automation",
+    "description": "\\\\\"Empower your agent to seamlessly manage and orchestrate Make.com (formerly Integromat) workflows. This skill provides robust capabilities for creatin",
+    "downloadUrl": "/make-automation.zip",
+    "premium": false
+  },
+  {
+    "id": "miro-boards",
+    "name": "Miro Boards",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage and enrich Miro boards to supercharge team collaboration. This skill allows you to create, populate, and organize Miro boards with ",
+    "downloadUrl": "/miro-boards.zip",
+    "premium": false
+  },
+  {
+    "id": "monday-productivity",
+    "name": "Monday Productivity",
+    "category": "Automation",
+    "description": "Supercharge your Monday.com workflows by managing boards, items, updates, and users via the GraphQL API. Use this skill for automating project managem",
+    "downloadUrl": "/monday-productivity.zip",
+    "premium": false
+  },
+  {
+    "id": "monday-workspace",
+    "name": "Monday Workspace",
+    "category": "Automation",
+    "description": "\\\\\"Automate your entire Monday.com workflow. This skill provides comprehensive control over your workspace, enabling you to create, retrieve, update, an",
+    "downloadUrl": "/monday-workspace.zip",
+    "premium": false
+  },
+  {
+    "id": "netlify-deploy",
+    "name": "Netlify Deploy",
+    "category": "Automation",
+    "description": "\\\\\"Automate end-to-end website deployment and management on Netlify. Use this skill to deploy sites from a Git repository or local directory, manage DNS",
+    "downloadUrl": "/netlify-deploy.zip",
+    "premium": false
+  },
+  {
+    "id": "notion-ai-writer",
+    "name": "Notion Ai Writer",
+    "category": "Productivity",
+    "description": "Supercharge your Notion workspace with AI. This skill seamlessly integrates OpenAI's powerful generative capabilities to create, summarize, translate,",
+    "downloadUrl": "/notion-ai-writer.zip",
+    "premium": false
+  },
+  {
+    "id": "notion-productivity",
+    "name": "Notion Productivity",
+    "category": "Productivity",
+    "description": "Automate your Notion workflows by creating, searching, and managing pages, databases, and content blocks. Use this skill to integrate Notion with othe",
+    "downloadUrl": "/notion-productivity.zip",
+    "premium": false
+  },
+  {
+    "id": "notion-workspace",
+    "name": "Notion Workspace",
+    "category": "Productivity",
+    "description": "\\\\\"Seamlessly manage your Notion workspace with powerful automations. This skill enables creating, updating, and querying pages and databases, appending",
+    "downloadUrl": "/notion-workspace.zip",
+    "premium": false
+  },
+  {
+    "id": "openai-assistant",
+    "name": "Openai Assistant",
+    "category": "AI & Content",
+    "description": "Empowers agents to leverage OpenAI's state-of-the-art models for advanced AI tasks, including sophisticated chat interactions (GPT-4), stunning image ",
+    "downloadUrl": "/openai-assistant.zip",
+    "premium": false
+  },
+  {
+    "id": "outlook-calendar",
+    "name": "Outlook Calendar",
+    "category": "Scheduling",
+    "description": "\\\\\"Seamlessly manage your Microsoft Outlook Calendar. This skill empowers you to create, view, and modify calendar events, schedule and manage meetings,",
+    "downloadUrl": "/outlook-calendar.zip",
+    "premium": false
+  },
+  {
+    "id": "outlook-inbox",
+    "name": "Outlook Inbox",
+    "category": "Automation",
+    "description": "\\\\\"Empowers agents to manage Outlook/Microsoft 365 inboxes by sending, reading, and searching emails, managing folders and rules, and integrating with c",
+    "downloadUrl": "/outlook-inbox.zip",
+    "premium": false
+  },
+  {
+    "id": "paypal-payments",
+    "name": "Paypal Payments",
+    "category": "Payments & Finance",
+    "description": "\\\\\"Seamlessly integrate PayPal for secure payment processing, order management, and subscription handling. Use this skill to create and manage orders, c",
+    "downloadUrl": "/paypal-payments.zip",
+    "premium": false
+  },
+  {
+    "id": "pexels-media",
+    "name": "Pexels Media",
+    "category": "Automation",
+    "description": "Seamlessly search and integrate millions of high-quality, royalty-free stock photos and videos from the Pexels library directly into your workflows. U",
+    "downloadUrl": "/pexels-media.zip",
+    "premium": false
+  },
+  {
+    "id": "pipedrive-crm",
+    "name": "Pipedrive Crm",
+    "category": "CRM & Sales",
+    "description": "\\\\\"Seamlessly manage your entire sales pipeline and customer relationships in Pipedrive. This skill enables comprehensive control over deals, contacts, ",
+    "downloadUrl": "/pipedrive-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "plaid-finance",
+    "name": "Plaid Finance",
+    "category": "AI & Content",
+    "description": "\\\\\"Unlock comprehensive financial data aggregation and account management with the Plaid API. This skill enables seamless bank account linking, real-tim",
+    "downloadUrl": "/plaid-finance.zip",
+    "premium": false
+  },
+  {
+    "id": "postmark-email",
+    "name": "Postmark Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Powerfully manage all aspects of your application's transactional email. This skill enables you to send individual and batch emails, manage dynamic t",
+    "downloadUrl": "/postmark-email.zip",
+    "premium": false
+  },
+  {
+    "id": "razorpay-payments",
+    "name": "Razorpay Payments",
+    "category": "Payments & Finance",
+    "description": "\\\\\"Seamlessly integrate Razorpay to manage the entire payment lifecycle. This skill empowers you to create and manage orders, process domestic and inter",
+    "downloadUrl": "/razorpay-payments.zip",
+    "premium": false
+  },
+  {
+    "id": "recurly-billing",
+    "name": "Recurly Billing",
+    "category": "Automation",
+    "description": "\\\\\"Manages the entire subscription lifecycle, from customer account creation to invoicing and revenue management, using the Recurly REST API. Activate t",
+    "downloadUrl": "/recurly-billing.zip",
+    "premium": false
+  },
+  {
+    "id": "salesforce-crm",
+    "name": "Salesforce Crm",
+    "category": "CRM & Sales",
+    "description": "Supercharge your sales workflow by seamlessly managing Salesforce CRM data. This skill empowers you to create, retrieve, update, and delete records fo",
+    "downloadUrl": "/salesforce-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "sanity-cms",
+    "name": "Sanity Cms",
+    "category": "Automation",
+    "description": "\\\\\"Provides comprehensive, high-speed management of the Sanity.io headless CMS. Use this skill for advanced programmatic content operations, including G",
+    "downloadUrl": "/sanity-cms.zip",
+    "premium": false
+  },
+  {
+    "id": "sendgrid-email",
+    "name": "Sendgrid Email",
+    "category": "Email Marketing",
+    "description": "\\\\\"Provides comprehensive SendGrid email functionality, enabling the sending of transactional and marketing emails, dynamic template and contact list ma",
+    "downloadUrl": "/sendgrid-email.zip",
+    "premium": false
+  },
+  {
+    "id": "shopify-store",
+    "name": "Shopify Store",
+    "category": "E-commerce",
+    "description": "\\\\\"Seamlessly manage your Shopify store with comprehensive support for products, orders, customers, and inventory. This skill enables automation of dail",
+    "downloadUrl": "/shopify-store.zip",
+    "premium": false
+  },
+  {
+    "id": "slack-manager",
+    "name": "Slack Manager",
+    "category": "Communication",
+    "description": "\\\\\"Seamlessly manage your Slack workspace with advanced controls. This skill empowers you to automate messaging, manage channels and users, handle files",
+    "downloadUrl": "/slack-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "square-payments",
+    "name": "Square Payments",
+    "category": "Payments & Finance",
+    "description": "\\\\\"Empowers agents to manage the entire customer lifecycle with Square, from processing payments and creating invoices to managing customer data and inv",
+    "downloadUrl": "/square-payments.zip",
+    "premium": false
+  },
+  {
+    "id": "strapi-cms",
+    "name": "Strapi Cms",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage and automate your Strapi headless CMS. This skill empowers you to perform comprehensive content operations, including advanced filt",
+    "downloadUrl": "/strapi-cms.zip",
+    "premium": false
+  },
+  {
+    "id": "stripe-payments",
+    "name": "Stripe Payments",
+    "category": "Payments & Finance",
+    "description": "\\\\\"Seamlessly integrate Stripe to manage the entire customer lifecycle, from creating customers and processing one-time charges to handling recurring su",
+    "downloadUrl": "/stripe-payments.zip",
+    "premium": false
+  },
+  {
+    "id": "supabase-db",
+    "name": "Supabase Db",
+    "category": "Database & Backend",
+    "description": "\\\\\"Provides comprehensive, high-level control over Supabase projects. Use it to manage database records, user authentication, file storage, and serverle",
+    "downloadUrl": "/supabase-db.zip",
+    "premium": false
+  },
+  {
+    "id": "surveysparrow-forms",
+    "name": "Surveysparrow Forms",
+    "category": "Forms & Surveys",
+    "description": "\\\\\"Automate survey lifecycle and data collection using the SurveySparrow API. This skill enables creating, managing, and sharing surveys, as well as ret",
+    "downloadUrl": "/surveysparrow-forms.zip",
+    "premium": false
+  },
+  {
+    "id": "telegram-bot",
+    "name": "Telegram Bot",
+    "category": "Automation",
+    "description": "\\\\\"Automate Telegram communications with a powerful bot. This skill enables sending targeted messages, managing group dynamics, distributing multimedia ",
+    "downloadUrl": "/telegram-bot.zip",
+    "premium": false
+  },
+  {
+    "id": "todoist-productivity",
+    "name": "Todoist Productivity",
+    "category": "Productivity",
+    "description": "Supercharge your productivity by managing Todoist tasks, projects, sections, and comments directly through the REST API. Use this skill to create, ret",
+    "downloadUrl": "/todoist-productivity.zip",
+    "premium": false
+  },
+  {
+    "id": "todoist-tasks",
+    "name": "Todoist Tasks",
+    "category": "Productivity",
+    "description": "\\\\\"Supercharge your productivity by managing Todoist tasks and projects via the REST API. Use this skill to create, assign, and track tasks, organize pr",
+    "downloadUrl": "/todoist-tasks.zip",
+    "premium": false
+  },
+  {
+    "id": "trello-boards",
+    "name": "Trello Boards",
+    "category": "Productivity",
+    "description": "\\\\\"Automate Trello workflows with precision. This skill enables creating, managing, and organizing Trello boards, lists, and cards via the REST API. Use",
+    "downloadUrl": "/trello-boards.zip",
+    "premium": false
+  },
+  {
+    "id": "trello-productivity",
+    "name": "Trello Productivity",
+    "category": "Productivity",
+    "description": "Supercharge your project management with seamless Trello integration. This skill empowers you to create, track, and manage Trello cards, boards, and l",
+    "downloadUrl": "/trello-productivity.zip",
+    "premium": false
+  },
+  {
+    "id": "twilio-comms",
+    "name": "Twilio Comms",
+    "category": "Automation",
+    "description": "\\\\\"Supercharge your applications with robust communication workflows using the Twilio API. This skill enables sending and receiving SMS, MMS, and WhatsA",
+    "downloadUrl": "/twilio-comms.zip",
+    "premium": false
+  },
+  {
+    "id": "twitter-social",
+    "name": "Twitter Social",
+    "category": "Social Media",
+    "description": "\\\\\"Seamlessly manage Twitter (X) presence by posting tweets, analyzing engagement, and monitoring brand mentions. Use this skill for comprehensive socia",
+    "downloadUrl": "/twitter-social.zip",
+    "premium": false
+  },
+  {
+    "id": "typeform-forms",
+    "name": "Typeform Forms",
+    "category": "Forms & Surveys",
+    "description": "\\\\\"Seamlessly create, manage, and analyze Typeform surveys, forms, and quizzes. Use this skill to automate response collection, build custom onboarding ",
+    "downloadUrl": "/typeform-forms.zip",
+    "premium": false
+  },
+  {
+    "id": "unsplash-media",
+    "name": "Unsplash Media",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly search, discover, and integrate millions of high-resolution, royalty-free images from Unsplash directly into your projects. Use this skill",
+    "downloadUrl": "/unsplash-media.zip",
+    "premium": false
+  },
+  {
+    "id": "vercel-deploy",
+    "name": "Vercel Deploy",
+    "category": "Automation",
+    "description": "\\\\\"Effortlessly deploy and manage your web projects on Vercel. This skill allows you to automate deployments, manage custom domains, configure environme",
+    "downloadUrl": "/vercel-deploy.zip",
+    "premium": false
+  },
+  {
+    "id": "whatsapp-business",
+    "name": "Whatsapp Business",
+    "category": "Automation",
+    "description": "\\\\\"Automate customer communication and manage workflows on the WhatsApp Business Cloud API. Use this skill to send transactional messages, marketing not",
+    "downloadUrl": "/whatsapp-business.zip",
+    "premium": false
+  },
+  {
+    "id": "wistia-video",
+    "name": "Wistia Video",
+    "category": "Video",
+    "description": "Seamlessly manage your entire Wistia video lifecycle, from uploading and organizing content in projects to accessing detailed analytics and customizin",
+    "downloadUrl": "/wistia-video.zip",
+    "premium": false
+  },
+  {
+    "id": "woocommerce-store",
+    "name": "Woocommerce Store",
+    "category": "E-commerce",
+    "description": "\\\\\"Unlock powerful e-commerce automation. This skill provides comprehensive control over your WooCommerce store via the REST API, enabling you to manage",
+    "downloadUrl": "/woocommerce-store.zip",
+    "premium": false
+  },
+  {
+    "id": "wordpress-cms",
+    "name": "Wordpress Cms",
+    "category": "Automation",
+    "description": "\\\\\"Automate your WordPress content lifecycle. This skill empowers you to create, manage, and publish posts, pages, and media, as well as handle users, c",
+    "downloadUrl": "/wordpress-cms.zip",
+    "premium": false
+  },
+  {
+    "id": "xano-backend",
+    "name": "Xano Backend",
+    "category": "Automation",
+    "description": "\\\\\"Provides comprehensive management of Xano no-code backends. Use this skill for full CRUD operations on database records, user authentication, file ma",
+    "downloadUrl": "/xano-backend.zip",
+    "premium": false
+  },
+  {
+    "id": "youtube-manager",
+    "name": "Youtube Manager",
+    "category": "Video",
+    "description": "\\\\\"Provides comprehensive YouTube channel and video management. Use it to search for videos, manage playlists and subscriptions, upload content, and ret",
+    "downloadUrl": "/youtube-manager.zip",
+    "premium": false
+  },
+  {
+    "id": "youtube-video",
+    "name": "Youtube Video",
+    "category": "Video",
+    "description": "\\\\\"Seamlessly manage your YouTube presence. This skill empowers you to upload videos, analyze performance with detailed channel and video statistics, ma",
+    "downloadUrl": "/youtube-video.zip",
+    "premium": false
+  },
+  {
+    "id": "zapier-automation",
+    "name": "Zapier Automation",
+    "category": "Automation",
+    "description": "\\\\\"Seamlessly manage and automate your Zapier workflows. This skill enables you to create, monitor, and manage Zaps, connections, and app triggers via t",
+    "downloadUrl": "/zapier-automation.zip",
+    "premium": false
+  },
+  {
+    "id": "zendesk-support",
+    "name": "Zendesk Support",
+    "category": "Support",
+    "description": "\\\\\"Automates comprehensive customer support operations in Zendesk. Use this skill to create, track, and update support tickets, manage users and organiz",
+    "downloadUrl": "/zendesk-support.zip",
+    "premium": false
+  },
+  {
+    "id": "zoho-crm",
+    "name": "Zoho Crm",
+    "category": "CRM & Sales",
+    "description": "\\\\\"Automate your entire sales and customer relationship lifecycle with the Zoho CRM skill. It provides comprehensive, expert-level control over leads, c",
+    "downloadUrl": "/zoho-crm.zip",
+    "premium": false
+  },
+  {
+    "id": "zoom-meetings",
+    "name": "Zoom Meetings",
+    "category": "Meetings",
+    "description": "\\\\\"Automate Zoom meeting and webinar workflows, including scheduling, participant management, and cloud recording administration. Use this skill to crea",
+    "downloadUrl": "/zoom-meetings.zip",
+    "premium": false
+  },
+  {
+    "id": "salespage-skill",
+    "name": "Sales Page Skill",
+    "category": "Chad's Skills",
+    "description": "Generate high-converting sales pages and deploy them directly to Vercel. Create complete, weaponized sales pages with proven copywriting formulas and instant deployment capabilities.",
+    "downloadUrl": "/skills/chads-skills/salespage-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "inbox-copywriter",
+    "name": "Inbox Copywriter",
+    "category": "Chad's Skills",
+    "description": "Write high-converting emails for all occasions: promotions, storytelling, sales, and more. Master the art of email copywriting with proven frameworks and multiple writing styles for maximum engagement.",
+    "downloadUrl": "/skills/chads-skills/email-conversion-engine-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "vsl-skill",
+    "name": "Video Sales Letter",
+    "category": "Chad's Skills",
+    "description": "Create professional Video Sales Letters (VSLs) with AI voice cloning. Transform sales pages into compelling video content with your own voice, complete with automated slide generation and video compilation.",
+    "downloadUrl": "/skills/chads-skills/vsl-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "herosection-skill",
+    "name": "Hero Section Generator",
+    "category": "Chad's Skills",
+    "description": "Generate powerful 3-part headline structures for hero sections using proven psychological frameworks. Create pattern-interrupting headlines with mechanism reveals and outcome + identity shifts.",
+    "downloadUrl": "/skills/chads-skills/herosection-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "master-copywriter",
+    "name": "Master Copywriter",
+    "category": "Chad's Skills",
+    "description": "Generate high-converting sales copy for digital products, workshops, and software tools. Master persuasion frameworks, emotional drivers, and mechanism-based credibility for maximum conversions.",
+    "downloadUrl": "/skills/chads-skills/salescopy-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "zipskills-skill",
+    "name": "ZipSkills",
+    "category": "Chad's Skills",
+    "description": "Create, package, and manage skill bundles with ZipSkills. Organize multiple skills into cohesive packages for easy distribution and installation.",
+    "downloadUrl": "/skills/chads-skills/zipskills-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "skill-creator-skill",
+    "name": "Skill Creator v2.0",
+    "category": "Chad's Skills",
+    "description": "The most comprehensive skill creation system ever built. 25+ slash commands, 12-phase guided wizard with memory persistence at every step, API integration flow for 3rd party products, skill packaging/testing/validation, 12 production templates (820 lines total), personality configuration, cron/automation setup, guardrails builder, error handling builder, and example prompt generator.",
+    "downloadUrl": "/skills/chads-skills/skill-creator-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "coursesprout",
+    "name": "Course Sprout",
+    "category": "Titanium Suite",
+    "description": "Course Sprout is a comprehensive course hosting and membership platform. Manage course access, memberships, users, lessons, gamification, and AI retrieval. Perfect for building community-driven educational experiences.",
+    "downloadUrl": "/skills/titanium-suite/coursesprout-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "letterman-skill",
+    "name": "Letterman Newsletter",
+    "category": "Titanium Suite",
+    "description": "Letterman is a newsletter/article management platform with AI content generation. Manage publications, articles, and AI-generated content with support for multiple AI models including GPT, Gemini, Grok, and Claude.",
+    "downloadUrl": "/skills/titanium-suite/letterman-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "mintbird-skill",
+    "name": "Mintbird",
+    "category": "Titanium Suite",
+    "description": "Create complete sales pages, funnels, and checkout flows with integrated product management. Build multi-step order forms, upsells, downsells, and complete sales workflows.",
+    "downloadUrl": "/skills/titanium-suite/mintbird-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "globalcontrol-skill",
+    "name": "Global Control v1",
+    "category": "Titanium Suite",
+    "description": "Manage contacts, tags, broadcasts, and workflows with Global Control API. Tag contacts, create reactivation campaigns, manage broadcasts, and automate contact workflows at scale.",
+    "downloadUrl": "/skills/titanium-suite/globalcontrol-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "page-sprout-skill",
+    "name": "Page Sprout v1.0",
+    "category": "Titanium Suite",
+    "description": "Create PopLinks (shortened tracking links), Lead Pages (lead capture), and Bridge Pages (pre-sell pages) with fast, minimal setup. Manage PopLinks, LeadStep, and Bridge Page workflows via API.",
+    "downloadUrl": "/skills/titanium-suite/page-sprout-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "quizforma-skill",
+    "name": "QuizForma",
+    "category": "Titanium Suite",
+    "description": "Create interactive quizzes and forms to engage your audience, capture leads, and gather valuable data. Build custom quiz logic, scoring systems, and lead capture workflows.",
+    "downloadUrl": "/skills/titanium-suite/quizforma-skill.zip",
+    "premium": true
+  },
+  {
+    "id": "poststream-skill",
+    "name": "PostStream Social",
+    "category": "Titanium Suite",
+    "description": "Schedule, publish, and manage social media posts across multiple platforms. Automate your social media strategy with PostStream's scheduling and analytics tools.",
+    "downloadUrl": "/skills/titanium-suite/poststream-skill.zip",
+    "premium": true
+  }
+]

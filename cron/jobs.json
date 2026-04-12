@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "29bd6c8f-78c4-4cf7-9a65-f4c893f0c50d",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Morning Greeting",
+      "enabled": true,
+      "createdAtMs": 1773179164929,
+      "updatedAtMs": 1774792885925,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "America/Edmonton"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Morning greeting time! Deliver Michelle's morning greeting including: top 3 priorities for the day, calendar events coming up, a motivational quote, any pending tasks, and weather update for Calgary."
+      },
+      "state": {
+        "nextRunAtMs": 1774879200000,
+        "lastRunAtMs": 1774792800025,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 85900,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "6c0d25ed-e925-42b4-acb8-42c86c5b6a85",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Evening Greeting",
+      "enabled": true,
+      "createdAtMs": 1773179260791,
+      "updatedAtMs": 1774746100593,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 19 * * *",
+        "tz": "America/Edmonton"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Evening greeting time! Deliver Michelle's evening check-in: review what we accomplished today, preview tomorrow's schedule, and provide a summary of API spending for the day."
+      },
+      "state": {
+        "nextRunAtMs": 1774832400000,
+        "lastRunAtMs": 1774746000038,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 100555,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fica-daily-report",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "FICA Campaign Daily Report",
+      "enabled": true,
+      "createdAtMs": 1774900000000,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check the FICA campaign status in Global Control and report to Michelle: 1) How many contacts now have 'fica prospect' tag, 2) How many emails were sent in last 24 hours, 3) Any bounces or unsubscribes, 4) Workflow progression status. Be specific with numbers.",
+        "model": "moonshot/kimi-k2.5",
+        "timeoutSeconds": 60
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "Michelle"
+      }
+    },
+    {
+      "id": "fica-campaign-daily",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "FICA Campaign Daily Tagging",
+      "enabled": true,
+      "createdAtMs": 1774900000000,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "America/Chicago"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Run the FICA campaign daily batch tagging now. Execute: cd /root/.openclaw/workspace && node fica-campaign-daily.js. Then report the results to Michelle including: 1) how many contacts were tagged, 2) what the calculated safe volume was, and 3) any errors or issues."
+      },
+      "delivery": {
+        "mode": "announce",
+        "to": "Michelle"
+      }
+    }
+  ]
+}

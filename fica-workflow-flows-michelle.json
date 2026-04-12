@@ -1,0 +1,198 @@
+{
+  "name": "FICA Tip Tax Credit - 2026",
+  "workflowGroupId": "",
+  "flows": [
+    {
+      "type": "SEND_EMAIL",
+      "index": 0,
+      "data": {
+        "name": "Email 1 - Gentle Introduction",
+        "subject": "A quick question about your payroll taxes",
+        "body": "<p>Hi {{contact.first_name}},</p><p>As someone who keeps a close eye on the financial health of businesses in the restaurant industry, I wanted to ask a quick question: have you ever looked into the FICA Tip Credit?</p><p>It's a federal tax credit specifically for establishments like yours, designed to refund a portion of the Social Security and Medicare taxes you pay on employee tips. It's surprising how many operators I speak with have never heard of it, or they believe they don't qualify when they actually do.</p><p>This isn't about selling you anything. I just believe in sharing valuable information when I see it. Given the current economic climate — with rising costs and tight margins — I feel it's more important than ever to ensure you're not leaving money on the table that is rightfully yours.</p><p>Would you be open to learning a bit more about it?</p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 1,
+      "data": {
+        "waitFor": "2",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 2,
+      "data": {
+        "name": "Email 2 - Educational Deep Dive",
+        "subject": "That tax credit I mentioned...",
+        "body": "<p>Hi {{contact.first_name}},</p><p>Following up on my last email, I wanted to share a bit more about the FICA Tip Credit (also known as IRC Section 45B).</p><p>Here's the core issue it solves: You pay the employer's share of FICA taxes on all reported employee tips, even though that money comes from your customers, not your business. For decades, this has been an unfair payroll tax burden on restaurant owners. The government recognized this and created this credit to give that money back to you.</p><p>It's a <strong>dollar-for-dollar credit</strong> against your income tax liability — not just a deduction. This means it directly reduces the amount of tax you owe.</p><p>Most CPAs are generalists and do a fantastic job with compliance, but they often lack the specialized focus to maximize this specific credit. It's one of the most underclaimed credits in the entire tax code.</p><p>Curious what you might be owed? There's a simple, free calculator you can use to get a preliminary estimate. It takes about 60 seconds.</p><p><strong>Check it out here:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 3,
+      "data": {
+        "waitFor": "3",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 4,
+      "data": {
+        "name": "Email 3 - Introducing the Specialist",
+        "subject": "The experts behind FICA Tip Credit recovery",
+        "body": "<p>Hi {{contact.first_name}},</p><p>I don't make recommendations lightly. When it comes to something as specialized as tax credit recovery, you need a team that lives and breathes this stuff. That's why I exclusively point people towards <strong>Fintitan</strong>.</p><p>These aren't generalist accountants. Their team is composed of tax attorneys, engineers, and forensic accountants who focus <em>only</em> on maximizing government tax incentives for businesses like yours. Their track record speaks for itself:</p><ul><li><strong>$2.1 Billion+</strong> in tax credits recovered for their clients</li><li><strong>5,000+</strong> businesses served across the country</li><li><strong>150+ tax specialists</strong> dedicated to credit recovery</li><li><strong>100% Audit Success Rate</strong> — they provide full legal defense and stand behind their work</li></ul><p>They've built proprietary software that cross-references your payroll data in ways that manual reviews simply can't, ensuring you get the maximum credit you're entitled to. They even help you amend up to three years of prior tax returns to recover money you missed in the past.</p><p>This is the team you want in your corner. They offer a completely free, no-obligation evaluation to give you a precise calculation of your potential refund.</p><p><strong>See what the experts can do for you:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 5,
+      "data": {
+        "waitFor": "3",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 6,
+      "data": {
+        "name": "Email 4 - Value Proposition",
+        "subject": "It's not a deduction — it's a check",
+        "body": "<p>Hi {{contact.first_name}},</p><p>I want to make one thing crystal clear about the FICA Tip Credit: this isn't about saving a few percentage points on your taxable income. This is about recovering cold, hard cash.</p><p>A <strong>deduction</strong> lowers your taxable income. A <strong>tax credit</strong> is a dollar-for-dollar reduction of the tax you owe. If the credit is larger than your tax bill, it can be carried back one year or forward up to twenty. Better yet, by amending prior returns, this process can result in a direct refund check from the IRS.</p><p>Think about what an unexpected cash injection of $20,000, $50,000, or even $100,000+ could do for your business right now:</p><ul><li>Offset rising food and labor costs that are eating into your margins</li><li>Invest in new equipment, renovations, or technology</li><li>Strengthen your cash reserves for peace of mind</li><li>Reinvest in your team with bonuses, training, or better benefits</li></ul><p>This money is sitting there, waiting to be claimed. Fintitan's entire model is built on helping you get it back. They operate on a <strong>success-based fee</strong>, meaning they don't get paid unless you get paid. There are zero upfront costs. Zero risk.</p><p><strong>Find out how much you're owed — get your free evaluation and estimate today:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 7,
+      "data": {
+        "waitFor": "3",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 8,
+      "data": {
+        "name": "Email 5 - Common Mistakes",
+        "subject": "The #1 mistake restaurants make with the FICA Tip Credit",
+        "body": "<p>Hi {{contact.first_name}},</p><p>The single biggest mistake restaurants and bars make with the FICA Tip Credit is simply not claiming it.</p><p>But among those who try, there are common errors that leave tens of thousands of dollars on the table:</p><ol><li><strong>Misclassifying Service Charges:</strong> Mandatory gratuities for large parties are considered wages, not tips, and are ineligible for the credit. Including them incorrectly can trigger an audit.</li><li><strong>Using the Wrong Minimum Wage Baseline:</strong> The calculation must use the 2007 federal minimum wage ($5.15/hr for tipped employees), regardless of your higher state or local wage. Using the wrong number means leaving money behind — or worse, filing an inaccurate claim.</li><li><strong>Incomplete Records:</strong> Without meticulous payroll data and tip reports, it's impossible to substantiate your claim and maximize the credit amount.</li></ol><p>Trying to navigate this alone is risky. Fintitan's specialists handle all of this for you. They ensure your claim is 100% compliant, maximized to the penny, and fully audit-proof.</p><p>They've recovered over <strong>$2 billion</strong> for a reason. They know the rules inside and out.</p><p><strong>Stop wondering if you're doing it right. Let the experts handle it with no upfront cost:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 9,
+      "data": {
+        "waitFor": "4",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 10,
+      "data": {
+        "name": "Email 6 - Urgency Angle",
+        "subject": "Why timing matters on this...",
+        "body": "<p>Hi {{contact.first_name}},</p><p>I know you have a lot on your plate. Running a restaurant means you're putting out fires every single day. But I want to share a thought on timing that could save you real money.</p><p>Congress recently reaffirmed and strengthened the FICA Tip Credit, which is fantastic news for the industry. However, that spotlight has also created a massive wave of demand. Fintitan is seeing a significant influx of new evaluation requests from restaurant operators across the country.</p><p>Here's why that matters to you: Fintitan's team doesn't cut corners. Their 100% audit success rate exists because they give every client's case the detailed attention it deserves. As their client list grows, the capacity for new evaluations tightens.</p><p>The best time to get in the queue is <strong>now</strong>, while they have the bandwidth to give your business the thorough, personalized analysis it deserves.</p><p>Don't wait until everyone else is rushing to claim their funds. Get ahead of the curve.</p><p><strong>Secure your spot for a free evaluation and see your potential refund estimate:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 11,
+      "data": {
+        "waitFor": "4",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 12,
+      "data": {
+        "name": "Email 7 - Lock In Your Rate",
+        "subject": "About Fintitan's service rates...",
+        "body": "<p>Hi {{contact.first_name}},</p><p>Something I think is important to mention, and it could directly affect how much money ends up back in your pocket.</p><p>Fintitan currently operates on a <strong>100% success-based fee</strong>. They only charge a percentage of the money they actually recover for you. If you don't get a refund, you pay absolutely nothing. It's a model that shows their confidence — and it makes this a completely risk-free decision for you.</p><p>However, I've been advised that due to the surge in demand following the recent legislative changes, Fintitan may need to adjust their fee structure for new clients in the near future. This isn't a sales tactic — it's a practical reality of managing capacity while maintaining the quality that produces their industry-leading results.</p><p>By requesting your free evaluation now, you have the opportunity to <strong>lock in their current, most favorable success-fee rates.</strong></p><p>Think about it this way: if you wait, you could end up paying a higher percentage on the exact same refund. The credit amount doesn't change — but your net take-home from it could.</p><p>It makes financial sense to act now and secure the best possible terms.</p><p><strong>Lock in your rate and get your free refund evaluation today:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 13,
+      "data": {
+        "waitFor": "4",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 14,
+      "data": {
+        "name": "Email 8 - Final Warning",
+        "subject": "{{contact.first_name}}, you might be leaving $80K+ on the table",
+        "body": "<p>Hi {{contact.first_name}},</p><p>I recently spoke with a restaurant owner I referred to Fintitan last month. They were skeptical at first — figured their CPA was already handling everything. But they went through with the free evaluation just to see.</p><p>Fintitan's team completed their analysis and identified <strong>$87,450</strong> in recoverable FICA tax credits by amending the last three years of returns. That's a direct check coming back to their business. No strings attached.</p><p>That owner told me they almost ignored my emails. They assumed they didn't qualify, or that it was \"too good to be true.\" Sound familiar?</p><p>I'm sharing this because I genuinely believe you could be in a similar position. If you have tipped employees — servers, bartenders, bussers — you are almost certainly overpaying on your FICA taxes right now.</p><p>But the window to lock in Fintitan's current success-fee rate is narrowing as their client roster fills up. Don't be the one who waits and wonders \"what if?\"</p><p><strong>Find out for certain. It's free. See what you're owed:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 15,
+      "data": {
+        "waitFor": "3",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 16,
+      "data": {
+        "name": "Email 9 - Last Chance",
+        "subject": "Last call for your FICA Tip Credit evaluation",
+        "body": "<p>Hi {{contact.first_name}},</p><p>I'll keep this short and direct.</p><p>I've been reaching out about the FICA Tip Credit because I believe it represents a significant financial opportunity for your business — potentially tens of thousands of dollars in recovered payroll taxes.</p><p>My ability to guarantee you can lock in Fintitan's current, most favorable success-based fee is coming to a close. After this, new clients may face adjusted terms.</p><p>Here's what's on the table right now:</p><ul><li><strong>Free evaluation</strong> — no cost, no obligation</li><li><strong>Retroactive recovery</strong> — up to 3 years of amended returns</li><li><strong>Dollar-for-dollar tax credit</strong> — not a deduction</li><li><strong>100% audit protection</strong> — full legal defense included</li><li><strong>Success-based fee</strong> — you pay nothing unless you get paid</li><li><strong>Current preferred rate</strong> — locked in when you start now</li></ul><p>This is your final opportunity to take advantage of this with the best terms available. I don't want you to miss it.</p><p><strong>Request your free consultation and estimate now:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>Best regards,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    },
+    {
+      "type": "TIMER",
+      "index": 17,
+      "data": {
+        "waitFor": "3",
+        "timeIn": "days"
+      }
+    },
+    {
+      "type": "SEND_EMAIL",
+      "index": 18,
+      "data": {
+        "name": "Email 10 - Breakup Email",
+        "subject": "Closing your file",
+        "body": "<p>Hi {{contact.first_name}},</p><p>I've reached out several times over the past few weeks about the FICA Tip Credit and the specialized recovery services offered through Fintitan. I haven't heard back, and I respect that.</p><p>You're busy. Running a restaurant is one of the hardest jobs there is. So I'll keep this simple: <strong>this is my last email on this topic.</strong></p><p>I won't be reaching out again about this. But I want to leave you with one thought.</p><p>The average restaurant with $500,000 in annual reported tips can recover over <strong>$107,000</strong> across a four-year window (current year plus a three-year lookback). That money doesn't expire tomorrow — but the opportunity to claim it at the most favorable rates won't last forever.</p><p>If you ever decide you want to see what the government owes you, the link below will always work. You can use the free calculator to get an instant estimate, or request a full evaluation from Fintitan's team. No pressure. No follow-up from me.</p><p><strong>The door is always open:</strong> <a href=\"https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO\">https://fintitan.com/services/fica-tip-credit/schedule?referrer=MRIBEIRO</a></p><p>I genuinely wish you and your business continued success.</p><p>All the best,<br>{{user.name}}</p>",
+        "from_email": "michelle",
+        "from_name": "Michelle Ribeiro",
+        "reply_to": "fica@gc.bizleads.online"
+      }
+    }
+  ]
+}

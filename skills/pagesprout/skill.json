@@ -1,0 +1,48 @@
+{
+  "name": "poplinks-manager",
+  "version": "1.0.0",
+  "description": "Manage PopLinks, Lead Pages, and Bridge Pages via PopLinks/MintBird API",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "commands": [
+    "/poplink",
+    "/leadstep",
+    "/bridgepage"
+  ],
+  "capabilities": [
+    "Create shortened links (PopLinks)",
+    "Manage lead capture pages",
+    "Manage bridge/advertorial pages",
+    "Clone existing pages",
+    "Update content (headlines, videos, bullets)",
+    "Manage SEO settings",
+    "Track stats and analytics"
+  ],
+  "requirements": {
+    "api": "PopLinks/MintBird API",
+    "api_base_url": "https://api.poplinks.io/api/ai",
+    "auth": "Bearer token",
+    "credentials_file": "credentials/poplinks-api.txt"
+  },
+  "documentation": {
+    "full": "SKILL.md",
+    "quick_start": "README.md",
+    "quick_reference": "QUICK_REFERENCE.md",
+    "credentials_template": "credentials.template.txt"
+  },
+  "tags": [
+    "poplinks",
+    "mintbird",
+    "lead-generation",
+    "funnel-builder",
+    "url-shortener",
+    "marketing",
+    "api"
+  ],
+  "platforms": [
+    "PopLinks",
+    "MintBird"
+  ],
+  "created": "2026-02-19",
+  "updated": "2026-02-19"
+}

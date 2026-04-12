@@ -1,0 +1,42 @@
+# Newsletter Article Link Mapping
+# Format: publication_name -> article_key -> details
+
+publications:
+  bizbuzz-calgary:
+    base_url: https://letterman.ai/p/bizbuzz-calgary
+    articles:
+      google-business-profile:
+        title: "The Complete Guide to Google Business Profile Optimization for Calgary Businesses"
+        slug: google-business-profile-guide
+        link_text: "Read the complete Google Business Profile optimization guide"
+        sections:
+          - GROWTH TIP
+          - Google Business Profile
+      
+      alberta-grants:
+        title: "Alberta Small Business Grants: Your Complete 2025 Guide to Free Funding"
+        slug: alberta-small-business-grants-guide
+        link_text: "Read our complete Alberta Small Business Grants Guide"
+        sections:
+          - OPPORTUNITIES BOARD
+          - Alberta Small Business Innovation Grant
+      
+      economic-pulse:
+        title: "Calgary Economic Pulse: What Business Owners Should Know This Quarter"
+        slug: calgary-economic-pulse
+        link_text: "Read Calgary Economic Pulse: What Business Owners Should Know"
+        sections:
+          - OPPORTUNITIES BOARD
+          - Spring Hiring Push
+          - Economic Pulse
+
+  stampede-city-buzz:
+    base_url: https://letterman.ai/p/stampede-city-buzz
+    articles:
+      # Add Stampede City Buzz articles here as they're created
+      placeholder:
+        title: "Article Title"
+        slug: article-slug
+        link_text: "Read the full article"
+        sections:
+          - SECTION NAME

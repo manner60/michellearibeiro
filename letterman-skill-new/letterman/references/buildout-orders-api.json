@@ -1,0 +1,373 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Letterman Buildout Orders",
+    "description": "# Letterman Buildout Orders API Documentation\n\nAPI endpoints for managing newsletter buildout orders, including order listing, state management, phase transitions, and step updates.\n\n## Authentication\n\nAll endpoints require Bearer token authentication. Include the token in the `Authorization` header:\n\n```\nAuthorization: Bearer {{accessToken}}\n```\n\n## Base URL\n\n```\nhttps://api.letterman.ai/api\n```\n\n## Rate Limiting\n\nAPI requests are subject to rate limiting. Please refer to the response headers for current limits.\n\n## Support\n\nFor API support, please contact the Letterman development team.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13141272"
+  },
+  "item": [
+    {
+      "name": "Buildout Orders",
+      "item": [
+        {
+          "name": "Get Order States",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/get-states",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", "get-states"]
+            },
+            "description": "# Get Order States\n\nRetrieves aggregated counts of orders in DRAFT or PENDING state for each step per phase.\n\n## Endpoint\n\n`GET /buildout-orders/get-states`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Response Fields\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `phase1` | object | Counts for Phase 1 steps |\n| `phase1.step1` | number | Count of pending Phase 1 Step 1 orders |\n| `phase1.step2` | number | Count of pending Phase 1 Step 2 orders |\n| `phase1.step3` | number | Count of pending Phase 1 Step 3 orders |\n| `phase2` | object | Counts for Phase 2 steps |\n| `phase2.step1` | number | Count of pending Phase 2 Step 1 orders |\n| `phase2.step2` | number | Count of pending Phase 2 Step 2 orders |\n| `hasPendingPhase1Order` | boolean | Whether any Phase 1 orders are pending |\n| `hasPendingPhase2Order` | boolean | Whether any Phase 2 orders are pending |"
+          },
+          "response": [
+            {
+              "name": "Get Order States",
+              "originalRequest": {
+                "method": "GET",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}],
+                "url": {"raw": "{{baseUrl}}/buildout-orders/get-states", "host": ["{{baseUrl}}"], "path": ["buildout-orders", "get-states"]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"phase1\": {\n            \"step1\": 3,\n            \"step2\": 2,\n            \"step3\": 1\n        },\n        \"phase2\": {\n            \"step1\": 2,\n            \"step2\": 1\n        },\n        \"hasPendingPhase1Order\": true,\n        \"hasPendingPhase2Order\": true\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders?phase={{phase}}&step={{step}}&show_completed={{showCompleted}}&state={{state}}&search={{search}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders"],
+              "query": [
+                {"key": "phase", "value": "{{phase}}", "description": "Phase filter (PHASE_1, PHASE_2). Default: PHASE_1"},
+                {"key": "step", "value": "{{step}}", "description": "Step filter (NEW_ORDER, STEP_1, STEP_2, STEP_3). Default: NEW_ORDER"},
+                {"key": "show_completed", "value": "{{showCompleted}}", "description": "Show completed orders (true/false)"},
+                {"key": "state", "value": "{{state}}", "description": "Filter by state"},
+                {"key": "search", "value": "{{search}}", "description": "Search term"}
+              ]
+            },
+            "description": "# List Orders\n\nRetrieves buildout orders filtered by phase and step.\n\n## Endpoint\n\n`GET /buildout-orders`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Query Parameters\n\n| Parameter | Type | Required | Default | Description |\n|-----------|------|----------|---------|-------------|\n| `phase` | string | No | PHASE_1 | Phase filter (PHASE_1, PHASE_2) |\n| `step` | string | No | NEW_ORDER | Step filter (NEW_ORDER, STEP_1, STEP_2, STEP_3) |\n| `show_completed` | string | No | false | Show completed orders (true/false) |\n| `state` | string | No | - | Filter by state |\n| `search` | string | No | - | Search term |\n\n## Phase & Step Combinations\n\n| Phase | Available Steps |\n|-------|----------------|\n| PHASE_1 | NEW_ORDER, STEP_1, STEP_2, STEP_3 |\n| PHASE_2 | NEW_ORDER, STEP_1, STEP_2 |"
+          },
+          "response": [
+            {
+              "name": "List Orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}],
+                "url": {"raw": "{{baseUrl}}/buildout-orders?phase=PHASE_1&step=NEW_ORDER", "host": ["{{baseUrl}}"], "path": ["buildout-orders"], "query": [{"key": "phase", "value": "PHASE_1"}, {"key": "step", "value": "NEW_ORDER"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"orders\": []\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Order",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"+1-555-123-4567\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Update Order\n\nUpdates a buildout order by ID.\n\n## Endpoint\n\n`PUT /buildout-orders/:id`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Order ID |\n\n## Request Body\n\nJSON object with the fields to update on the order."
+          },
+          "response": [
+            {
+              "name": "Update Order",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "body": {"mode": "raw", "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"+1-555-123-4567\"\n}", "options": {"raw": {"language": "json"}}},
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"+1-555-123-4567\",\n        \"phase\": \"PHASE_1\",\n        \"step\": \"NEW_ORDER\",\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Mark Phase 1 As Completed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id/mark-phase1-as-completed",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id", "mark-phase1-as-completed"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Mark Phase 1 As Completed\n\nMarks a Phase 1 buildout order as completed.\n\n## Endpoint\n\n`POST /buildout-orders/:id/mark-phase1-as-completed`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Order ID |"
+          },
+          "response": [
+            {
+              "name": "Mark Phase 1 As Completed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id/mark-phase1-as-completed", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id", "mark-phase1-as-completed"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"phase\": \"PHASE_1\",\n        \"step\": \"STEP_3\",\n        \"step3State\": \"COMPLETED\",\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Step 1 State",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"step1State\": \"COMPLETED\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id/step-1-state",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id", "step-1-state"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Update Step 1 State\n\nUpdates the Step 1 state of a buildout order. When set to COMPLETED, the order automatically advances to STEP_2.\n\n## Endpoint\n\n`POST /buildout-orders/:id/step-1-state`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Order ID |\n\n## Request Body\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `step1State` | string | Yes | New state (e.g., COMPLETED, DRAFT, PENDING) |"
+          },
+          "response": [
+            {
+              "name": "Update Step 1 State",
+              "originalRequest": {
+                "method": "POST",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "body": {"mode": "raw", "raw": "{\n    \"step1State\": \"COMPLETED\"\n}", "options": {"raw": {"language": "json"}}},
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id/step-1-state", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id", "step-1-state"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"step1State\": \"COMPLETED\",\n        \"step\": \"STEP_2\",\n        \"step1CompletedAt\": \"2024-06-20T14:45:00.000Z\",\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Copy To Phase 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id/copy-to-phase2",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id", "copy-to-phase2"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Copy To Phase 2\n\nCopies a Phase 1 order to Phase 2. Creates or updates a Phase 2 order with the same customer details and marks the original order as having an upsale.\n\n## Endpoint\n\n`POST /buildout-orders/:id/copy-to-phase2`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Phase 1 Order ID |"
+          },
+          "response": [
+            {
+              "name": "Copy To Phase 2",
+              "originalRequest": {
+                "method": "POST",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id/copy-to-phase2", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id", "copy-to-phase2"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"phase\": \"PHASE_1\",\n        \"includeUpSale2\": true,\n        \"isUpsale2Included\": true,\n        \"upSaleOrder2Id\": \"507f1f77bcf86cd799439012\",\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Step 2 State",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"step2State\": \"COMPLETED\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id/step-2-state",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id", "step-2-state"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Update Step 2 State\n\nUpdates the Step 2 state of a buildout order. When set to COMPLETED, the order automatically advances to STEP_3.\n\n## Endpoint\n\n`POST /buildout-orders/:id/step-2-state`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Order ID |\n\n## Request Body\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `step2State` | string | Yes | New state (e.g., COMPLETED, DRAFT, PENDING) |"
+          },
+          "response": [
+            {
+              "name": "Update Step 2 State",
+              "originalRequest": {
+                "method": "POST",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "body": {"mode": "raw", "raw": "{\n    \"step2State\": \"COMPLETED\"\n}", "options": {"raw": {"language": "json"}}},
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id/step-2-state", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id", "step-2-state"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"step2State\": \"COMPLETED\",\n        \"step\": \"STEP_3\",\n        \"step2CompletedAt\": \"2024-06-20T14:45:00.000Z\",\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Step 3 State",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"step3State\": \"COMPLETED\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id/step-3-state",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id", "step-3-state"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Update Step 3 State\n\nUpdates the Step 3 state of a buildout order. When set to COMPLETED, triggers a delivery tag and sends a delivery email.\n\n## Endpoint\n\n`POST /buildout-orders/:id/step-3-state`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Order ID |\n\n## Request Body\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `step3State` | string | Yes | New state (e.g., COMPLETED, DRAFT, PENDING) |"
+          },
+          "response": [
+            {
+              "name": "Update Step 3 State",
+              "originalRequest": {
+                "method": "POST",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "body": {"mode": "raw", "raw": "{\n    \"step3State\": \"COMPLETED\"\n}", "options": {"raw": {"language": "json"}}},
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id/step-3-state", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id", "step-3-state"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"step3State\": \"COMPLETED\",\n        \"step3CompletedAt\": \"2024-06-20T14:45:00.000Z\",\n        \"isDeliveryTagTriggered\": true,\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Phase 2 Step 2 State",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"},
+              {"key": "Content-Type", "value": "application/json", "type": "text"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"step2State\": \"COMPLETED\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{baseUrl}}/buildout-orders/:id/phase-2-step-2-state",
+              "host": ["{{baseUrl}}"],
+              "path": ["buildout-orders", ":id", "phase-2-step-2-state"],
+              "variable": [{"key": "id", "value": "{{orderId}}", "description": "Order ID"}]
+            },
+            "description": "# Update Phase 2 Step 2 State\n\nUpdates the Step 2 state of a Phase 2 buildout order. When set to COMPLETED, triggers a delivery tag and sends a delivery email.\n\n## Endpoint\n\n`POST /buildout-orders/:id/phase-2-step-2-state`\n\n## Authentication\n\n**Required** - Bearer token in Authorization header\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `id` | string | Yes | Order ID |\n\n## Request Body\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `step2State` | string | Yes | New state (e.g., COMPLETED, DRAFT, PENDING) |"
+          },
+          "response": [
+            {
+              "name": "Update Phase 2 Step 2 State",
+              "originalRequest": {
+                "method": "POST",
+                "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}", "type": "text"}, {"key": "Content-Type", "value": "application/json", "type": "text"}],
+                "body": {"mode": "raw", "raw": "{\n    \"step2State\": \"COMPLETED\"\n}", "options": {"raw": {"language": "json"}}},
+                "url": {"raw": "{{baseUrl}}/buildout-orders/:id/phase-2-step-2-state", "host": ["{{baseUrl}}"], "path": ["buildout-orders", ":id", "phase-2-step-2-state"], "variable": [{"key": "id", "value": "{{orderId}}"}]}
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{"key": "Content-Type", "value": "application/json; charset=utf-8"}],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"507f1f77bcf86cd799439011\",\n        \"step2State\": \"COMPLETED\",\n        \"step2CompletedAt\": \"2024-06-20T14:45:00.000Z\",\n        \"isDeliveryTagTriggered\": true,\n        \"updatedAt\": \"2024-06-20T14:45:00.000Z\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "# Buildout Orders\n\nEndpoints for managing newsletter buildout orders, including listing, updating, phase transitions, and step state management.\n\n## Available Endpoints\n\n| Method | Endpoint | Description |\n|--------|----------|-------------|\n| GET | `/buildout-orders/get-states` | Get order state counts |\n| GET | `/buildout-orders` | List orders |\n| PUT | `/buildout-orders/:id` | Update order |\n| POST | `/buildout-orders/:id/mark-phase1-as-completed` | Mark Phase 1 completed |\n| POST | `/buildout-orders/:id/step-1-state` | Update Step 1 state |\n| POST | `/buildout-orders/:id/copy-to-phase2` | Copy order to Phase 2 |\n| POST | `/buildout-orders/:id/step-2-state` | Update Step 2 state |\n| POST | `/buildout-orders/:id/step-3-state` | Update Step 3 state |\n| POST | `/buildout-orders/:id/phase-2-step-2-state` | Update Phase 2 Step 2 state |"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{"key": "token", "value": "{{accessToken}}", "type": "string"}]
+  },
+  "event": [
+    {"listen": "prerequest", "script": {"type": "text/javascript", "exec": [""]}},
+    {"listen": "test", "script": {"type": "text/javascript", "exec": [""]}}
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "https://api.letterman.ai/api", "type": "string"},
+    {"key": "accessToken", "value": "", "type": "string"},
+    {"key": "orderId", "value": "", "type": "string"},
+    {"key": "phase", "value": "PHASE_1", "type": "string"},
+    {"key": "step", "value": "NEW_ORDER", "type": "string"},
+    {"key": "showCompleted", "value": "false", "type": "string"},
+    {"key": "state", "value": "", "type": "string"},
+    {"key": "search", "value": "", "type": "string"}
+  ]
+}

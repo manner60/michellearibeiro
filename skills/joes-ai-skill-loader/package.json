@@ -1,0 +1,43 @@
+{
+  "name": "joes-ai-skill",
+  "version": "2.0.2",
+  "description": "Official joes.ai skill installer with certified catalog and certification levels",
+  "bin": {
+    "joes-ai-skill": "./bin/joes-ai-skill.js",
+    "joes-skill-install": "./bin/joes-skill-install-v2.js",
+    "joes": "./bin/joes-ai-skill.js"
+  },
+  "scripts": {
+    "install-global": "npm install -g .",
+    "test": "node bin/joes-ai-skill.js --version"
+  },
+  "keywords": [
+    "openclaw", 
+    "skills", 
+    "joes.ai", 
+    "certification", 
+    "installer", 
+    "catalog",
+    "certified-skills"
+  ],
+  "author": "Joe Heiser (joes.ai)",
+  "license": "MIT",
+  "homepage": "https://joes.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoeTheGoatFarmer/joes-ai-skill.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "files": [
+    "bin/",
+    "lib/",
+    "certified-skills.json",
+    "_meta.json",
+    "README.md",
+    "CATALOG-SYSTEM.md",
+    "LICENSE"
+  ]
+}

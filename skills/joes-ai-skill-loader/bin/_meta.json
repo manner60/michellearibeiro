@@ -1,0 +1,21 @@
+{
+  "name": "joes-ai-skill-installer",
+  "version": "2.0.0",
+  "description": "Official joes.ai skill installer with certified catalog and certification levels",
+  "homepage": "https://joes.ai",
+  "author": "Joe Heiser",
+  "released": "2026-04-01",
+  "features": [
+    "Certified Skills Catalog",
+    "Preset Installs",
+    "Version Pinning",
+    "SHA-256 Verification",
+    "Automatic Downloads",
+    "Backward Compatible"
+  ],
+  "catalog": {
+    "version": "1.0.0",
+    "skills_count": 1,
+    "presets": ["default", "full"]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "publication": "Stampede City Buzz",
+  "lastUpdated": "2026-03-19",
+  "stories": [
+    {
+      "id": 1,
+      "headline": "Calgary Stampede 2026: Early Preparations and What to Expect",
+      "source": "Research needed",
+      "summary": "The Calgary Stampede is gearing up for another year of western celebration. Early preparations are underway for the July event.",
+      "localRelevance": "The Stampede is Calgary's most iconic event, bringing millions in tourism and showcasing western heritage.",
+      "suggestedKeyword": "Calgary Stampede 2026",
+      "wordCount": 800,
+      "used": false,
+      "category": "Events",
+      "tags": ["Stampede", "Calgary", "Western Heritage", "Tourism"]
+    },
+    {
+      "id": 2,
+      "headline": "Local Calgary Businesses Thriving Despite Economic Challenges",
+      "source": "Research needed",
+      "summary": "Calgary's local business community continues to show resilience with new startups and innovative business models emerging across the city.",
+      "localRelevance": "Supporting local Calgary businesses strengthens the community and creates jobs for residents.",
+      "suggestedKeyword": "Calgary local business",
+      "wordCount": 600,
+      "used": false,
+      "category": "Business",
+      "tags": ["Local Business", "Economy", "Calgary", "Entrepreneurship"]
+    },
+    {
+      "id": 3,
+      "headline": "Calgary's Western Culture: Preserving Heritage in Modern Times",
+      "source": "Research needed",
+      "summary": "How Calgary maintains its western roots while embracing modern development and diversity.",
+      "localRelevance": "Western culture is central to Calgary's identity and attracts visitors from around the world.",
+      "suggestedKeyword": "Calgary western heritage",
+      "wordCount": 700,
+      "used": false,
+      "category": "Culture",
+      "tags": ["Western Culture", "Heritage", "Calgary", "History"]
+    },
+    {
+      "id": 4,
+      "headline": "New Restaurants and Eateries Opening in Calgary This Spring",
+      "source": "Research needed",
+      "summary": "Calgary's food scene continues to grow with exciting new dining options opening across the city.",
+      "localRelevance": "Food and dining are essential parts of Calgary's social scene and local economy.",
+      "suggestedKeyword": "Calgary restaurants",
+      "wordCount": 600,
+      "used": false,
+      "category": "Food & Dining",
+      "tags": ["Restaurants", "Food", "Calgary", "Local Business"]
+    },
+    {
+      "id": 5,
+      "headline": "Community Events Bringing Calgarians Together This Month",
+      "source": "Research needed",
+      "summary": "From farmers markets to festivals, Calgary offers numerous community events for residents to connect and celebrate.",
+      "localRelevance": "Community events strengthen neighborhood bonds and support local vendors and artists.",
+      "suggestedKeyword": "Calgary community events",
+      "wordCount": 650,
+      "used": false,
+      "category": "Community",
+      "tags": ["Community", "Events", "Calgary", "Local"]
+    },
+    {
+      "id": 6,
+      "headline": "Calgary's Tech Sector: Innovation Hub of the Prairies",
+      "source": "Research needed",
+      "summary": "Calgary's technology sector continues to grow, attracting talent and investment to the city.",
+      "localRelevance": "Tech growth diversifies Calgary's economy beyond oil and gas.",
+      "suggestedKeyword": "Calgary tech industry",
+      "wordCount": 750,
+      "used": false,
+      "category": "Business",
+      "tags": ["Technology", "Innovation", "Calgary", "Economy"]
+    },
+    {
+      "id": 7,
+      "headline": "Outdoor Adventures: Exploring Calgary's Natural Beauty",
+      "source": "Research needed",
+      "summary": "From the Bow River to nearby mountains, Calgary offers incredible outdoor recreation opportunities.",
+      "localRelevance": "Outdoor lifestyle is a major draw for Calgary residents and visitors.",
+      "suggestedKeyword": "Calgary outdoor activities",
+      "wordCount": 700,
+      "used": false,
+      "category": "Lifestyle",
+      "tags": ["Outdoors", "Recreation", "Calgary", "Nature"]
+    },
+    {
+      "id": 8,
+      "headline": "Calgary Real Estate Market: Trends and Insights",
+      "source": "Research needed",
+      "summary": "Analysis of current real estate trends in Calgary's housing market.",
+      "localRelevance": "Real estate affects all Calgary residents and reflects economic health.",
+      "suggestedKeyword": "Calgary real estate",
+      "wordCount": 800,
+      "used": false,
+      "category": "Real Estate",
+      "tags": ["Real Estate", "Housing", "Calgary", "Market"]
+    }
+  ],
+    {
+      "id": 9,
+      "headline": "Hot New Restaurant Openings in Calgary This Month",
+      "source": "Research needed",
+      "summary": "The latest restaurants and cafes opening their doors in Calgary, from fine dining to casual eats.",
+      "localRelevance": "New restaurants create buzz and give Calgarians fresh dining options to explore.",
+      "suggestedKeyword": "new restaurants Calgary",
+      "wordCount": 700,
+      "used": false,
+      "category": "Food & Dining",
+      "tags": ["Restaurant Openings", "New", "Calgary", "Dining"]
+    },
+    {
+      "id": 10,
+      "headline": "Special Events and Pop-Ups Happening in Calgary",
+      "source": "Research needed",
+      "summary": "Limited-time events, pop-up markets, food festivals, and special experiences coming to Calgary.",
+      "localRelevance": "Special events create excitement and give residents unique experiences.",
+      "suggestedKeyword": "Calgary special events",
+      "wordCount": 650,
+      "used": false,
+      "category": "Events",
+      "tags": ["Special Events", "Pop-ups", "Calgary", "Festivals"]
+    },
+    {
+      "id": 11,
+      "headline": "Chef Spotlights: Calgary's Culinary Talent Making Waves",
+      "source": "Research needed",
+      "summary": "Profiles of innovative Calgary chefs and restaurateurs shaping the city's food scene.",
+      "localRelevance": "Local chefs are celebrities in Calgary's tight-knit food community.",
+      "suggestedKeyword": "Calgary chefs",
+      "wordCount": 750,
+      "used": false,
+      "category": "Food & Dining",
+      "tags": ["Chefs", "Culinary", "Calgary", "Restaurants"]
+    },
+    {
+      "id": 12,
+      "headline": "Foodie Events: Tastings, Pairings, and Culinary Experiences",
+      "source": "Research needed",
+      "summary": "Wine tastings, food pairings, cooking classes, and culinary events for Calgary food lovers.",
+      "localRelevance": "Foodie events attract passionate diners and support local producers.",
+      "suggestedKeyword": "Calgary food events",
+      "wordCount": 600,
+      "used": false,
+      "category": "Food & Dining",
+      "tags": ["Food Events", "Tastings", "Calgary", "Culinary"]
+    }
+  ],
+  "notes": "Story bank created for Stampede City Buzz. Articles need research and writing. Publication ID needed to post to Letterman. Focus areas: Calgary city life, restaurant openings, special events, western culture, local business."
+}

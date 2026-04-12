@@ -1,0 +1,10 @@
+{
+  "warmupDay": 26,
+  "currentDailyVolume": 57,
+  "numberOfInboxes": 1,
+  "listType": "cold",
+  "lastRunDate": "2026-04-12",
+  "lastSuccessfulTagged": 57,
+  "lastRecommendedNextVolume": 57,
+  "notes": "Initialized on 2026-04-10 by Michelle decision. Assumed baseline: day 24 at 40/day. Script will auto-track forward from here."
+}

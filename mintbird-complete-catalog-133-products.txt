@@ -1,0 +1,220 @@
+# COMPLETE MINTBIRD PRODUCT CATALOG
+# AI OpenClaw Skills - All Products
+# Generated: April 12, 2026
+# Total Products: 133
+
+================================================================================
+COMPLETE PRODUCT SUMMARY
+================================================================================
+
+Total Products: 133
+
+Breakdown:
+- Chad's Skills: 7 products ($129 each)
+- Titanium Suite: 7 products ($129 each)  
+- 10 Special Skills: 10 products ($39-$129)
+- Integration Skills: 101 products ($19-$89)
+- Onboarding Services: 4 products ($297-$497)
+- Hosting & Support: 4 products ($97-$997)
+
+Total Catalog Value: ~$8,500+
+
+================================================================================
+CHAD'S SKILLS (7 products @ $129)
+================================================================================
+
+1. Inbox Copywriter - ID: 2270
+2. Sales Page Skill - ID: 2307
+3. Video Sales Letter - ID: 2308
+4. Hero Section Generator - ID: 2309
+5. Master Copywriter - ID: 2310
+6. ZipSkills - ID: 2311
+7. Skill Creator V2.0 - ID: 2312
+
+================================================================================
+TITANIUM SUITE (7 products @ $129)
+================================================================================
+
+8. Course Sprout - ID: 2313
+9. Letterman Newsletter - ID: 2314
+10. Mintbird - ID: 2315
+11. Global Control V1 - ID: 2316
+12. Page Sprout V1.0 - ID: 2317
+13. QuizForma - ID: 2318
+14. PostStream Social - ID: 2319
+
+================================================================================
+10 SPECIAL SKILLS
+================================================================================
+
+15. Web Scraper Extractor - $79 - ID: 2293
+16. Lead Magnet Creator - $97 - ID: 2294
+17. PDF Document Processor - $49 - ID: 2295
+18. Travel Planner - $39 - ID: 2296
+19. Data Analyst - $89 - ID: 2297
+20. Competitive Analyzer - $69 - ID: 2298
+21. Sales Funnel Copywriter - $129 - ID: 2299
+22. AEO Optimizer - $59 - ID: 2300
+23. SEO Content Writer - $79 - ID: 2301
+24. Spreadsheet Automator - $49 - ID: 2302
+
+================================================================================
+ONBOARDING SERVICES
+================================================================================
+
+25. Basic Onboarding - $297 - ID: 2273
+26. Basic Onboarding - 3 Pay - $99x3 - ID: 2280
+27. Pro Onboarding - $497 - ID: 2274
+28. Pro Onboarding - 3 Pay - $166x3 - ID: 2281
+
+================================================================================
+HOSTING & SUPPORT
+================================================================================
+
+29. OpenClaw Hosting - $97/mo - ID: 2275
+30. OpenClaw Hosting - Annual - $997/yr - ID: 2279
+31. Support Retainer - 2 Tasks - $197/mo - ID: 2276
+32. Support Retainer - 6 Tasks - $497/mo - ID: 2277
+
+================================================================================
+INTEGRATION SKILLS (101 products)
+================================================================================
+
+AI & CONTENT (3)
+- Anthropic Assistant - $49
+- Claude Assistant - $39
+- Gemini Assistant - $49
+- OpenAI Assistant - $49
+
+AUTOMATION & OPERATIONS (39)
+- Make Automation - $49
+- Zapier Automation - $49
+- AWS Manager - $69
+- Azure Manager - $69
+- Firebase Backend - $69
+- GCloud Manager - $69
+- Netlify Deploy - $49
+- Supabase DB - $69
+- Vercel Deploy - $49
+- Xano Backend - $69
+- Cold Outreach Sequencer - $49
+- Competitor Intelligence Monitor - $49
+- Data Analyst - $89
+
+MARKETING & EMAIL (9)
+- ActiveCampaign Email - $39
+- Beehiiv Newsletter - $49
+- Brevo Email - $39
+- ConvertKit Email - $39
+- Klaviyo Email - $49
+- Mailchimp Email - $49
+- Mailgun Email - $49
+- Postmark Email - $49
+- SendGrid Email - $49
+
+PRODUCTIVITY & PROJECTS (9)
+- Asana Productivity - $29
+- Asana Tasks - $29
+- ClickUp Manager - $49
+- ClickUp Productivity - $49
+- Linear Tracker - $49
+- Monday Productivity - $49
+- Monday Workspace - $49
+- Notion AI Writer - $49
+- Notion Productivity - $49
+- Notion Workspace - $49
+- Todoist Productivity - $29
+- Todoist Tasks - $29
+
+SALES & CRM (8)
+- Attio CRM - $59
+- Close CRM - $59
+- Copper CRM - $59
+- Freshsales CRM - $59
+- HubSpot CRM - $59
+- Pipedrive CRM - $59
+- Salesforce CRM - $59
+- Zoho CRM - $59
+
+COMMERCE & PAYMENTS (6)
+- BigCommerce Store - $49
+- Chargebee Billing - $49
+- Ecwid Store - $49
+- Gumroad Sales - $49
+- Magento Store - $49
+- PayPal Payments - $49
+- Razorpay Payments - $49
+- Recurly Billing - $49
+- Shopify Store - $49
+- Square Payments - $49
+- Stripe Payments - $49
+- WooCommerce Store - $49
+
+CLOUD & INFRASTRUCTURE (4)
+- Cloudinary Media - $69
+- ImageKit Media - $69
+- Dropbox Storage - $19
+
+SCHEDULING & MEETINGS (4)
+- Cal.com Scheduler - $19
+- Google Calendar - $49
+- Outlook Calendar - $49
+- Zoom Meetings - $49
+
+COMMUNICATION & MESSAGING (4)
+- Discord Manager - $49
+- Crisp Support - $29
+- Intercom Support - $49
+- Slack Manager - $49
+- Telegram Bot - $49
+- Twilio Comms - $49
+- WhatsApp Business - $49
+
+FORMS & LEAD CAPTURE (4)
+- Google Forms - $49
+- JotForm Forms - $49
+- SurveySparrow Forms - $49
+- Typeform Forms - $49
+
+VIDEO & AUDIO (3)
+- ElevenLabs Voice - $49
+- Pexels Media - $49
+- Unsplash Media - $49
+- Wistia Video - $49
+- YouTube Manager - $49
+- YouTube Video - $49
+
+LINKS & TRACKING (2)
+- Bitly Links - $19
+- Dub Links - $19
+
+DESIGN & MEDIA (1)
+- Figma Design - $49
+- Miro Boards - $49
+
+SOCIAL & AUDIENCE GROWTH (1)
+- Twitter Social - $49
+
+CONTENT MANAGEMENT
+- Contentful CMS - $49
+- Sanity CMS - $49
+- Strapi CMS - $49
+- WordPress CMS - $49
+
+DEVELOPMENT TOOLS
+- GitHub Repos - $49
+- GitLab Repos - $49
+- Jira Issues - $49
+
+================================================================================
+NOTES
+================================================================================
+
+1. All products are active in Mintbird
+2. All use digital product type
+3. URLs use aiopenclawskills.com domain (configure in Mintbird)
+4. 10 Special Skills included FREE with Basic Onboarding
+5. All skills require OpenClaw Hosting to function
+6. Support retainers are optional monthly subscriptions
+
+================================================================================

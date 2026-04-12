@@ -1,0 +1,65 @@
+Subject: Your OpenClaw Skill is Ready - {{product_name}}
+
+Hi {{customer_first_name}},
+
+Thank you for your purchase! Your OpenClaw skill is attached and ready to use.
+
+═══════════════════════════════════════
+📦 ORDER DETAILS
+═══════════════════════════════════════
+
+Product: {{product_name}}
+Order Number: {{order_number}}
+Purchase Date: {{order_date}}
+
+═══════════════════════════════════════
+📥 DOWNLOAD YOUR SKILL
+═══════════════════════════════════════
+
+Your skill files are attached to this email:
+- SKILL.md (main skill file)
+- Any supporting scripts or configuration files
+
+═══════════════════════════════════════
+🚀 GETTING STARTED
+═══════════════════════════════════════
+
+1. SAVE THE FILES
+   Download and save the attached files to your computer
+
+2. INSTALL THE SKILL
+   - If you have OpenClaw running: Upload the SKILL.md file to your skills directory
+   - If you need help: Reply to this email or visit https://aiopenclawskills.com/services.html
+
+3. START USING IT
+   Your skill is now ready to use with your OpenClaw assistant!
+
+═══════════════════════════════════════
+💡 NEED HELP?
+═══════════════════════════════════════
+
+Installation Support:
+- Basic Onboarding ($297): https://aiopenclawskills.com/services.html
+- Pro Onboarding ($497): Includes 5 additional premium skills
+
+Questions? Reply to this email or contact us at skills@aiopenclawskills.com
+
+═══════════════════════════════════════
+📋 IMPORTANT NOTES
+═══════════════════════════════════════
+
+• This skill is licensed for your use only (see LICENSE.md for details)
+• Keep your files secure - they contain your purchase receipt
+• Save this email for your records
+
+═══════════════════════════════════════
+
+Thank you for choosing AI OpenClaw Skills!
+
+Best regards,
+The AI OpenClaw Skills Team
+https://aiopenclawskills.com
+
+---
+This email was sent to {{customer_email}} regarding order {{order_number}}.
+If you have any questions, please reply to this email or contact us at skills@aiopenclawskills.com

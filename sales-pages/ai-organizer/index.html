@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Organizer - Stop Letting AI Conversations Pile Up</title>
+    <meta name="description" content="AI Organizer helps you instantly search, structure, and reuse your AI conversations without scrolling or losing your best work.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+        
+        .hero h3 {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .hero p {
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: #218838;
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.3em;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: #f8f9fa;
+        }
+        
+        .problem h2 {
+            color: #dc3545;
+        }
+        
+        .problem-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+        
+        .problem-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 1.1em;
+        }
+        
+        .problem-list li strong {
+            color: #dc3545;
+        }
+        
+        /* Solution Section */
+        .solution {
+            background: white;
+        }
+        
+        .solution h2 {
+            color: #28a745;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .benefit-item::before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        
+        /* Packages Section */
+        .packages {
+            background: #f8f9fa;
+        }
+        
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .package {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .package h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .package .tagline {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        
+        .package ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .package ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .package ul li:before {
+            content: "•";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .package.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+        
+        .package.featured .badge {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: white;
+            text-align: center;
+        }
+        
+        .price-tag {
+            font-size: 3em;
+            color: #28a745;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .price-note {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        /* Bonuses Section */
+        .bonuses {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .bonuses h2 {
+            color: white;
+        }
+        
+        .bonus-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .bonus-item {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .bonus-item h4 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .bonus-item p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: #f8f9fa;
+        }
+        
+        .faq-item {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .faq-item p {
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: #999;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .hero h2 {
+                font-size: 1.2em;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .package.featured {
+                transform: none;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Stop Letting AI Conversations Pile Up</h1>
+            <h2>Instantly Search, Structure, And Reuse Your Conversations</h2>
+            <h3>Without Scrolling, Rebuilding, Or Losing Your Best Work</h3>
+            <p><strong>AI Organizer</strong> is the organization and search system that works with the most popular AI Platforms to help you keep your conversations and prompts structured, searchable, and easy to access.</p>
+            <a href="#pricing" class="btn">CLAIM THIS AWESOME BONUS!</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">The Real Reason AI Becomes Frustrating Over Time</h2>
+            <p class="section-subtitle">AI itself isn't the problem. The problem is what happens after months of daily use.</p>
+            
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 30px;">Every conversation you start gets added to a growing, unorganized list. Research, ideas, drafts, prompts, and projects all end up mixed together.</p>
+            
+            <p style="text-align: center; font-weight: 600; margin-bottom: 20px;">Over time, things start to break down:</p>
+            
+            <ul class="problem-list">
+                <li><strong>Important chats get buried</strong> — Lost in an endless scroll of history</li>
+                <li><strong>You scroll endlessly</strong> trying to find one answer you know you had</li>
+                <li><strong>Great prompts disappear</strong> — The perfect prompt you wrote last month? Gone.</li>
+                <li><strong>You redo work you already completed</strong> — Rebuilding conversations from scratch</li>
+                <li><strong>Time gets wasted searching</strong> instead of actually working</li>
+            </ul>
+            
+            <div style="max-width: 600px; margin: 40px auto; text-align: center;">
+                <p style="margin-bottom: 20px;">Most people try quick fixes.</p>
+                <p>They copy text into documents.<br>
+                They bookmark conversations.<br>
+                They save notes in random places.</p>
+                <p style="margin-top: 30px; font-weight: 600; color: #dc3545;">Those solutions don't scale.</p>
+                <p>As AI usage grows, the mess grows with it.</p>
+                <p style="margin-top: 30px; font-size: 1.2em; font-weight: 600; color: #333;">AI Organizer exists to stop that cycle.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title" style="color: #28a745;">Introducing: AI Organizer</h2>
+            
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 1.1em;">
+                <strong>AI Organizer</strong> is a central system that lets you <strong>save, organize, search, and reuse</strong> everything you create with AI — including conversations, prompts, ideas, and workflows — across multiple AI platforms.
+            </p>
+            
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+                Instead of losing work inside endless chat histories, <strong>AI Organizer</strong> gives you a single, structured workspace where:
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    AI conversations can be saved and grouped by project, client, or topic
+                </div>
+                <div class="benefit-item">
+                    Prompts can be stored, tagged, and reused anytime
+                </div>
+                <div class="benefit-item">
+                    Notes can be added so you always remember why something was saved
+                </div>
+                <div class="benefit-item">
+                    Searches return results instantly, even inside long conversations
+                </div>
+                <div class="benefit-item">
+                    Prompts can be inserted directly into AI chats with one click
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 40px; font-size: 1.1em; font-weight: 600;">
+                Everything stays <span style="color: #28a745;">organized, easy to find, and ready to use again</span> — without copying, pasting, or rebuilding work from scratch.
+            </p>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#pricing" class="btn">CLAIM THIS AWESOME BONUS!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="problem" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">What AI Organizer Helps You Do</h2>
+            <p class="section-subtitle">AI Organizer gives you full control over your AI work.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    Save AI conversations so they don't get lost
+                </div>
+                <div class="benefit-item">
+                    Save prompts you want to reuse
+                </div>
+                <div class="benefit-item">
+                    Organize everything into workspaces, folders, and subfolders
+                </div>
+                <div class="benefit-item">
+                    Search conversations and prompt content instantly
+                </div>
+                <div class="benefit-item">
+                    Add notes to capture context and why something matters
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your AI Organizer Package</h2>
+            <p class="section-subtitle">Select the perfect plan for your needs</p>
+            
+            <div class="package-grid">
+                <div class="package">
+                    <h3>AI Organizer</h3>
+                    <p class="tagline">The essential organization system for AI users</p>
+                    <ul>
+                        <li>Save and organize AI conversations</li>
+                        <li>Basic search functionality</li>
+                        <li>Folder structure for organization</li>
+                    </ul>
+                    <a href="#buy" class="btn" style="margin-top: 20px;">CLAIM THIS AWESOME BONUS!</a>
+                </div>
+                
+                <div class="package featured">
+                    <span class="badge">MOST POPULAR</span>
+                    <h3>AI Organizer Advanced</h3>
+                    <p class="tagline">Enhanced organization with advanced features</p>
+                    <ul>
+                        <li>Everything in Basic, PLUS:</li>
+                        <li>Advanced search with filters</li>
+                        <li>Prompt library with tagging</li>
+                        <li>Cross-platform compatibility</li>
+                        <li>Note-taking on saved items</li>
+                    </ul>
+                    <a href="#buy" class="btn" style="margin-top: 20px;">CLAIM THIS AWESOME BONUS!</a>
+                </div>
+                
+                <div class="package">
+                    <h3>AI Organizer Ultimate</h3>
+                    <p class="tagline">The complete AI workflow management system</p>
+                    <ul>
+                        <li>Everything in Advanced, PLUS:</li>
+                        <li>One-click prompt insertion into chats</li>
+                        <li>Advanced workspace management</li>
+                        <li>Priority support</li>
+                        <li>Bonus training materials</li>
+                    </ul>
+                    <a href="#buy" class="btn" style="margin-top: 20px;">CLAIM THIS AWESOME BONUS!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="buy">
+        <div class="container">
+            <h2 class="section-title">Investment</h2>
+            <div class="price-tag">$10</div>
+            <p class="price-note">Simple, affordable pricing with tiered options to match your needs.</p>
+            <p style="margin-top: 20px; font-weight: 600; color: #28a745;">No subscriptions. No monthly fees. One-time investment.</p>
+            <div style="margin-top: 40px;">
+                <a href="#buy" class="btn btn-secondary" style="font-size: 1.3em; padding: 20px 50px;">YES! I WANT AI ORGANIZER!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonuses Section -->
+    <section class="bonuses">
+        <div class="container">
+            <h2 class="section-title">Exclusive Bonuses</h2>
+            <p class="section-subtitle" style="color: white; opacity: 0.9;">When you get AI Organizer through this page, you'll also receive:</p>
+            
+            <div class="bonus-list">
+                <div class="bonus-item">
+                    <h4>BONUS #1: AI Prompt Mastery Guide</h4>
+                    <p>A collection of 50+ proven prompts organized by use case</p>
+                </div>
+                <div class="bonus-item">
+                    <h4>BONUS #2: Workflow Templates</h4>
+                    <p>Pre-built workspace templates for common projects</p>
+                </div>
+                <div class="bonus-item">
+                    <h4>BONUS #3: Quick-Start Video Training</h4>
+                    <p>Get up and running in under 15 minutes</p>
+                </div>
+                <div class="bonus-item">
+                    <h4>BONUS #4: AI Productivity Cheat Sheet</h4>
+                    <p>Never waste time searching again</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h4>Q: Will this work with ChatGPT, Claude, and other AI platforms?</h4>
+                <p>A: Yes! AI Organizer is designed to work across multiple popular AI platforms.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Q: Is this a one-time payment or subscription?</h4>
+                <p>A: One-time payment. No recurring fees.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Q: How quickly can I get started?</h4>
+                <p>A: Immediately after purchase. The quick-start bonus will have you organized in 15 minutes.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Q: What if I need help?</h4>
+                <p>A: Advanced and Ultimate packages include support. Plus you get the video training bonus.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to End the AI Chaos?</h2>
+            <p>Stop losing your best AI work.<br>
+            Stop scrolling endlessly.<br>
+            Stop rebuilding conversations from scratch.</p>
+            <p style="font-weight: 600; margin: 30px 0;">Get AI Organizer now and take control of your AI workflow.</p>
+            <a href="#buy" class="btn" style="font-size: 1.3em; padding: 20px 50px;">CLAIM THIS AWESOME BONUS!</a>
+            <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">Remember: This offer includes exclusive bonuses only available through this page. Don't miss out!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AI Organizer. All rights reserved.</p>
+            <p style="margin-top: 10px;">Contact: support@aibizapps.com</p>
+        </div>
+    </footer>
+
+    <!-- Payment Integration Placeholder -->
+    <!-- 
+    TO DO: Add your Stripe or PayPal integration here
+    
+    For Stripe:
+    1. Create a Stripe account at https://stripe.com
+    2. Create products for each tier (Basic $10, Advanced $XX, Ultimate $XX)
+    3. Get your publishable key
+    4. Add Stripe.js and create checkout buttons
+    
+    For PayPal:
+    1. Create a PayPal business account
+    2. Create buttons for each product
+    3. Add PayPal SDK and button code
+    
+    Replace the href="#buy" links with actual payment links or button code
+    -->
+
+</body>
+</html>

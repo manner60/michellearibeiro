@@ -1,0 +1,40 @@
+{
+  "$schema": "https://joes.ai/schemas/certified-skills-v1.json",
+  "version": "1.0.0",
+  "catalog_url": "https://raw.githubusercontent.com/joethegoatfarmer/joes-ai-skill-installer/main/certified-skills.json",
+  "last_updated": "2026-04-01T21:29:00Z",
+  "skills": [
+    {
+      "skill_id": "memory-bank",
+      "name": "Memory Bank",
+      "description": "Personal memory management and recall system",
+      "homepage": "https://joes.ai/skills/memory-bank",
+      "latest": "v2026-04-01_p1",
+      "default_install": true,
+      "versions": [
+        {
+          "version": "v2026-04-01_p1",
+          "date": "2026-04-01",
+          "patch": 1,
+          "zip_url": "https://raw.githubusercontent.com/joethegoatfarmer/joes-ai-skill-installer/5426208/alex-shared/shared-context/artifacts/memory-bank-skill/v2026-04-01_p1/memory-bank-skill_v2026-04-01_p1.zip",
+          "commit": "5426208",
+          "commit_url": "https://github.com/joethegoatfarmer/joes-ai-skill-installer/commit/5426208",
+          "sha256": null,
+          "notes": "Initial certified release with memory_search, memory_get, and memory_write tools"
+        }
+      ]
+    }
+  ],
+  "presets": {
+    "default": {
+      "name": "Default Certified Set",
+      "description": "Essential skills for most users",
+      "skills": ["memory-bank"]
+    },
+    "full": {
+      "name": "Full Certified Set",
+      "description": "All certified skills",
+      "skills": ["memory-bank"]
+    }
+  }
+}

@@ -1,0 +1,210 @@
+# Complete MintBird Product List
+# AI OpenClaw Skills - All Products
+# Generated: April 12, 2026
+
+================================================================================
+CHAD'S SKILLS (7 products)
+================================================================================
+
+1. Inbox Copywriter
+   Price: $129
+   ID: 2270
+   URL: https://aiopenclawskills.com/39T74PiunY
+
+2. Sales Page Skill
+   Price: $129
+   ID: 2307
+   URL: https://aiopenclawskills.com/IpppuEDQA5
+
+3. Video Sales Letter (VSL)
+   Price: $129
+   ID: 2308
+   URL: https://aiopenclawskills.com/ZsMpo3Y3py
+
+4. Hero Section Generator
+   Price: $129
+   ID: 2309
+   URL: https://aiopenclawskills.com/NxwCzhK5Cu
+
+5. Master Copywriter
+   Price: $129
+   ID: 2310
+   URL: https://aiopenclawskills.com/koH2z8YO2i
+
+6. ZipSkills
+   Price: $129
+   ID: 2311
+   URL: https://aiopenclawskills.com/B1Hdcp8et2
+
+7. Skill Creator V2.0
+   Price: $129
+   ID: 2312
+   URL: https://aiopenclawskills.com/0vwuMtiB6R
+
+================================================================================
+TITANIUM SUITE (7 products)
+================================================================================
+
+8. Course Sprout
+   Price: $129
+   ID: 2313
+   URL: https://aiopenclawskills.com/iqD5ogEWsb
+
+9. Letterman Newsletter
+   Price: $129
+   ID: 2314
+   URL: https://aiopenclawskills.com/FJJTOK9rGV
+
+10. Mintbird
+    Price: $129
+    ID: 2315
+    URL: https://aiopenclawskills.com/VasdwDmtNV
+
+11. Global Control V1
+    Price: $129
+    ID: 2316
+    URL: https://aiopenclawskills.com/t0NcAGElHV
+
+12. Page Sprout V1.0
+    Price: $129
+    ID: 2317
+    URL: https://aiopenclawskills.com/F0SbCMipak
+
+13. QuizForma
+    Price: $129
+    ID: 2318
+    URL: https://aiopenclawskills.com/FYAeo5LKId
+
+14. PostStream Social
+    Price: $129
+    ID: 2319
+    URL: https://aiopenclawskills.com/2nTv7HszEo
+
+================================================================================
+ONBOARDING SERVICES (4 products)
+================================================================================
+
+15. Basic Onboarding
+    Price: $297
+    ID: 2273
+    URL: https://aiopenclawskills.com/FfkE8slbgI
+
+16. Basic Onboarding - 3 Pay
+    Price: $99 x 3
+    ID: 2280
+    URL: https://aiopenclawskills.com/0MBdA13bKp
+
+17. Pro Onboarding
+    Price: $497
+    ID: 2274
+    URL: https://aiopenclawskills.com/JMVd8UqCCK
+
+18. Pro Onboarding - 3 Pay
+    Price: $166 x 3
+    ID: 2281
+    URL: https://aiopenclawskills.com/Mkc1lTBYNm
+
+================================================================================
+HOSTING & SUPPORT (4 products)
+================================================================================
+
+19. OpenClaw Hosting
+    Price: $97/month
+    ID: 2275
+    URL: https://aiopenclawskills.com/fo8gTZjGyB
+
+20. OpenClaw Hosting - Annual
+    Price: $997/year
+    ID: 2279
+    URL: https://aiopenclawskills.com/VD4B1g1UZv
+
+21. Support Retainer - 2 Tasks
+    Price: $197/month
+    ID: 2276
+    URL: https://aiopenclawskills.com/5noGkODtOK
+
+22. Support Retainer - 6 Tasks
+    Price: $497/month
+    ID: 2277
+    URL: https://aiopenclawskills.com/q0GLj6ndRE
+
+================================================================================
+10 SPECIAL SKILLS (10 products)
+================================================================================
+
+23. Web Scraper Extractor
+    Price: $79
+    ID: 2293
+    URL: https://aiopenclawskills.com/bSqNBr5zVz
+
+24. Lead Magnet Creator
+    Price: $97
+    ID: 2294
+    URL: https://aiopenclawskills.com/WFjrkXELXq
+
+25. PDF Document Processor
+    Price: $49
+    ID: 2295
+    URL: https://aiopenclawskills.com/VxrtMqq37i
+
+26. Travel Planner
+    Price: $39
+    ID: 2296
+    URL: https://aiopenclawskills.com/RdwknOT4OF
+
+27. Data Analyst
+    Price: $89
+    ID: 2297
+    URL: https://aiopenclawskills.com/IKcAPOsuaL
+
+28. Competitive Analyzer
+    Price: $69
+    ID: 2298
+    URL: https://aiopenclawskills.com/ixt7K0Knpy
+
+29. Sales Funnel Copywriter
+    Price: $129
+    ID: 2299
+    URL: https://aiopenclawskills.com/5eAvThu5UO
+
+30. AEO Optimizer
+    Price: $59
+    ID: 2300
+    URL: https://aiopenclawskills.com/EKlhziCvGN
+
+31. SEO Content Writer
+    Price: $79
+    ID: 2301
+    URL: https://aiopenclawskills.com/MTnGkcKbQz
+
+32. Spreadsheet Automator
+    Price: $49
+    ID: 2302
+    URL: https://aiopenclawskills.com/EtqplYI5wj
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total Products: 32
+
+By Category:
+- Chad's Skills: 7 products ($129 each)
+- Titanium Suite: 7 products ($129 each)
+- Onboarding Services: 4 products ($297-$497)
+- Hosting & Support: 4 products ($97-$997)
+- 10 Special Skills: 10 products ($39-$129)
+
+Total Value (if purchased individually): ~$3,500+
+
+================================================================================
+NOTES
+================================================================================
+
+1. All URLs use aiopenclawskills.com domain (personal domain)
+2. Products need domain configuration in Mintbird to work
+3. 10 Special Skills are included FREE with Basic Onboarding
+4. All skills require OpenClaw Hosting to function
+5. Support retainers are optional monthly subscriptions
+
+================================================================================

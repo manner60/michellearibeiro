@@ -1,0 +1,11 @@
+{
+  "name": "FICA Tip Tax Credit - 2026",
+  "workflowGroupId": "",
+  "goalSettings": {
+    "enabled": true,
+    "label": "Goal",
+    "tagIds": ["69c16cb8f62b867fbbff2d4c"],
+    "moveToWorkflow": false,
+    "workflowId": ""
+  }
+}

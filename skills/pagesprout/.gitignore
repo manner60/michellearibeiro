@@ -1,0 +1,18 @@
+# Credentials - NEVER commit these
+credentials.txt
+poplinks-api.txt
+*.key
+*.token
+
+# Local config
+config.local.json
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# Testing
+test-output/
+.test-cache/

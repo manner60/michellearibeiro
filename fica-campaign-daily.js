@@ -91,8 +91,11 @@ async function getEligibleContacts(sourceTagId, targetTagId, limit) {
   const allContacts = [];
   const seenEmails = new Set();
   let page = 1;
+  const maxPages = 200; // Increased from 10 to 200 (20,000 contacts max)
   
-  while (allContacts.length < limit && page <= 10) {
+  console.log(`  Scanning contacts (up to ${maxPages * 100} total)...`);
+  
+  while (allContacts.length < limit && page <= maxPages) {
     const data = apiGet(`/api/ai/contacts?page=${page}&limit=100`);
     if (!data || !data.contacts) break;
     
@@ -108,10 +111,19 @@ async function getEligibleContacts(sourceTagId, targetTagId, limit) {
     
     allContacts.push(...eligible);
     
+    if (page % 10 === 0) {
+      console.log(`    Page ${page}: ${allContacts.length} eligible found so far...`);
+    }
+    
     if (data.contacts.length < 100) break;
     page++;
   }
   
+  if (page > maxPages) {
+    console.log(`  WARNING: Reached max page limit (${maxPages}). There may be more eligible contacts.`);
+  }
+  
+  console.log(`  Scanned ${(page - 1) * 100} contacts, found ${allContacts.length} eligible`);
   return allContacts.slice(0, limit);
 }
 

@@ -1,8 +1,6 @@
 // Stripe webhook endpoint for AI Organizer purchases
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { exec } = require('child_process');
-const { promisify } = require('util');
-const execAsync = promisify(exec);
+const { provisionLicense } = require('./browsx-provision');
 
 module.exports = async (req, res) => {
   // Only accept POST requests
@@ -31,32 +29,19 @@ module.exports = async (req, res) => {
     
     // Determine tier based on amount (in cents)
     let tier;
-    if (amount === 9700 || amount === 9700) tier = 'standard';      // $97
-    else if (amount === 19700 || amount === 19700) tier = 'enhanced'; // $197
-    else if (amount === 29700 || amount === 29700) tier = 'ultimate'; // $297
+    if (amount === 9700) tier = 'standard';      // $97
+    else if (amount === 19700) tier = 'enhanced'; // $197
+    else if (amount === 29700) tier = 'ultimate'; // $297
     else tier = 'standard'; // default
     
-    console.log(`Payment received: ${customerEmail} - ${tier}`);
+    console.log(`Payment received: ${customerEmail} - ${tier} ($${amount/100})`);
     
     // Trigger Browsx provisioning
     try {
-      const { stdout, stderr } = await execAsync(
-        `python3 ${__dirname}/browsx_provision_ai_organizer.py "${customerEmail}" "${tier}"`,
-        {
-          env: {
-            ...process.env,
-            BROWSX_USER: process.env.BROWSX_USER,
-            BROWSX_PASS: process.env.BROWSX_PASS
-          },
-          timeout: 30000
-        }
-      );
-      
-      console.log('Browsx provisioning result:', stdout);
-      if (stderr) console.error('Browsx stderr:', stderr);
-      
+      const result = await provisionLicense(customerEmail, tier);
+      console.log('Browsx provisioning result:', JSON.stringify(result));
     } catch (error) {
-      console.error('Browsx provisioning failed:', error);
+      console.error('Browsx provisioning failed:', error.message);
       // Don't fail the webhook - Stripe will retry
     }
   }

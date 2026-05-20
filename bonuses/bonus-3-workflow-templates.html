@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflow Templates | AI Organizer</title>
+  <style>
+    @page {
+      margin: 36px 44px;
+      size: letter;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 20px 24px 32px;
+    }
+
+    /* Cover Page */
+    .cover {
+      page-break-after: always;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0a1a 0%, #1a0a2e 50%, #0f0f1a 100%);
+      color: white;
+      padding: 40px 24px;
+      margin: 0 0 24px;
+      border-radius: 20px;
+    }
+    .cover-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #00d4ff;
+      margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-size: clamp(30px, 5vw, 38px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: white;
+      border: none;
+      padding: 0;
+    }
+    .cover-subtitle {
+      font-size: 17px;
+      color: #a0a0b0;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+    .cover-badge {
+      margin-top: 28px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* Content Styles */
+    .content {
+      padding-top: 12px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 16px 18px 28px;
+        font-size: 10.5pt;
+      }
+      .cover {
+        min-height: auto;
+        padding: 32px 18px;
+        border-radius: 16px;
+      }
+      .cover-logo {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+      }
+      .cover-subtitle {
+        font-size: 15px;
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+      .cover {
+        min-height: 100vh;
+        margin: -36px -44px 0;
+        border-radius: 0;
+        padding: 50px 40px;
+      }
+      .content {
+        max-width: none;
+      }
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 30px 0 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #4f46e5;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4f46e5;
+      margin: 25px 0 12px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: 20px 0 10px;
+    }
+    h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 15px 0 8px;
+    }
+    p {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+    ul, ol {
+      margin: 10px 0 15px 25px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    ol li .num {
+      font-weight: 700;
+      color: #4f46e5;
+      margin-right: 8px;
+    }
+    strong {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .prompt-label {
+      display: inline-block;
+      background: #4f46e5;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 10px 0 5px;
+    }
+    
+    /* Page breaks */
+    h1 {
+      page-break-before: always;
+    }
+    h1:first-of-type {
+      page-break-before: avoid;
+    }
+    
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 10px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="cover-logo">AI Organizer</div>
+    <h1>Workflow Templates</h1>
+    <p class="cover-subtitle">Plug-and-Play Prompt Flows for Faster Results</p>
+    <div class="cover-badge">Marketer Edition</div>
+  </div>
+  
+  <div class="content">
+    <h1>AI Workflow Quick-Start Templates</h1></p><p><h2>Subtitle</h2><br>Plug-and-play workflow templates that help you turn one-off prompting into repeatable systems.</p><p><h2>How to use this</h2><br>These are not meant to be rigid scripts.<br>They are starter flows.</p><p>Use them when you want to:<br><li>move faster</li><br><li>reduce blank-page friction</li><br><li>keep quality more consistent</li><br><li>save workflows worth reusing inside AI Organizer</li></p><p>For each workflow:<br>1. run the prompts in order<br>2. customize the inputs<br>3. save the best outputs<br>4. tag the workflow if it performs well<br>5. reuse and refine it over time</p><p>---</p><p><h2>Workflow 1: Offer Creation Workflow</h2><br><h3>Best for</h3><br>Building a simple digital offer, lead magnet, bonus, or product angle.</p><p><h3>Step 1 — define the audience</h3><br><strong>Prompt:</strong><br>Help me define the clearest target audience for this offer.<br>Here is the niche/topic: [insert niche]<br>Here is what I want to sell: [insert offer idea]<br>Break down:<br><li>who this is for</li><br><li>what they want</li><br><li>what they are frustrated by</li><br><li>what outcome they care about most</li></p><p><h3>Step 2 — surface pain points</h3><br><strong>Prompt:</strong><br>List the top 10 pain points this audience has related to [insert topic].<br>Make them practical, emotional, and specific.</p><p><h3>Step 3 — generate offer angles</h3><br><strong>Prompt:</strong><br>Based on this audience and these pain points, give me 10 offer angles for [insert offer].<br>Make them clear, marketable, and outcome-focused.</p><p><h3>Step 4 — build the promise</h3><br><strong>Prompt:</strong><br>Turn these offer angles into 5 strong core promises for a landing page.<br>Keep them believable and benefit-led.</p><p><h3>Step 5 — create bonus ideas</h3><br><strong>Prompt:</strong><br>Suggest 10 bonus ideas that increase perceived value for this offer without drifting off-topic.<br>Focus on speed, implementation, clarity, or better results.</p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>winning angles</li><br><li>strongest promise</li><br><li>bonus ideas worth testing</li><br><li>notes on which angle feels most marketable</li></p><p>---</p><p><h2>Workflow 2: Bridge Page Workflow</h2><br><h3>Best for</h3><br>Writing affiliate bridge pages, pre-sell pages, or short sales pages.</p><p><h3>Step 1 — summarize the product</h3><br><strong>Prompt:</strong><br>Summarize this product in plain English.<br>Include:<br><li>what it does</li><br><li>who it is for</li><br><li>the main problem it solves</li><br><li>the main outcome it helps create</li><br>Product details: [insert details]</p><p><h3>Step 2 — identify the strongest angle</h3><br><strong>Prompt:</strong><br>Based on this product summary, what are the 5 strongest marketing angles for a bridge page?<br>Rank them from safest to boldest.</p><p><h3>Step 3 — write headline options</h3><br><strong>Prompt:</strong><br>Write 15 bridge page headline options for this product.<br>Make them clear, benefit-led, and non-hypey.</p><p><h3>Step 4 — write page sections</h3><br><strong>Prompt:</strong><br>Write a simple bridge page draft using this structure:<br><li>headline</li><br><li>subheadline</li><br><li>problem</li><br><li>solution</li><br><li>who it’s for</li><br><li>bonuses</li><br><li>CTA</li><br>Use this angle: [insert chosen angle]</p><p><h3>Step 5 — tighten the copy</h3><br><strong>Prompt:</strong><br>Rewrite this page draft to make it cleaner, easier to skim, and more persuasive without sounding exaggerated.<br>Paste draft: [insert draft]</p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>best headline set</li><br><li>strongest angle</li><br><li>final page draft</li><br><li>any CTA lines worth reusing later</li></p><p>---</p><p><h2>Workflow 3: Email Promo Workflow</h2><br><h3>Best for</h3><br>Creating short promo emails for offers, bonuses, launches, or affiliate campaigns.</p><p><h3>Step 1 — get the email angle</h3><br><strong>Prompt:</strong><br>Give me 5 email angles to promote this offer.<br>Make them distinct.<br>Possible angles can include pain, speed, simplicity, curiosity, and transformation.<br>Offer: [insert offer]<br>Audience: [insert audience]</p><p><h3>Step 2 — write subject lines</h3><br><strong>Prompt:</strong><br>Write 15 email subject lines for this offer based on these angles.<br>Keep them simple and believable.</p><p><h3>Step 3 — draft the email</h3><br><strong>Prompt:</strong><br>Write a short promo email for this offer.<br>Use this angle: [insert angle]<br>Structure:<br><li>hook</li><br><li>problem</li><br><li>simple solution</li><br><li>CTA</li><br>Tone: practical, concise, persuasive</p><p><h3>Step 4 — write alternate versions</h3><br><strong>Prompt:</strong><br>Give me 3 alternate versions of this email:<br><li>shorter</li><br><li>more pain-led</li><br><li>more curiosity-led</li></p><p><h3>Step 5 — extract reusable assets</h3><br><strong>Prompt:</strong><br>Pull out the best lines from this email that could be reused as:<br><li>subject lines</li><br><li>CTA lines</li><br><li>promo post hooks</li></p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>best subject lines</li><br><li>final email</li><br><li>strongest hook lines</li><br><li>tested angle notes</li></p><p>---</p><p><h2>Workflow 4: Social / Telegram Promo Workflow</h2><br><h3>Best for</h3><br>Creating short-form promo content fast.</p><p><h3>Step 1 — extract key pains</h3><br><strong>Prompt:</strong><br>List the top frustrations this audience has related to [insert topic or offer].<br>Focus on things that work well in short-form social content.</p><p><h3>Step 2 — generate hook lines</h3><br><strong>Prompt:</strong><br>Write 20 short hooks for Telegram or social posts promoting this idea.<br>Make them punchy, useful, and non-cringey.<br>Idea: [insert idea]</p><p><h3>Step 3 — turn hooks into posts</h3><br><strong>Prompt:</strong><br>Turn these hooks into 10 short promo posts.<br>Each should be concise, readable, and naturally lead into curiosity or action.</p><p><h3>Step 4 — vary the tone</h3><br><strong>Prompt:</strong><br>Rewrite these 10 posts in 3 tones:<br><li>practical</li><br><li>direct</li><br><li>slightly provocative</li></p><p><h3>Step 5 — isolate winners</h3><br><strong>Prompt:</strong><br>Based on these drafts, which 5 are most likely to stop scrolling and why?</p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>best hooks</li><br><li>best-performing tone style</li><br><li>reusable short posts</li><br><li>notes on which angles feel strongest</li></p><p>---</p><p><h2>Workflow 5: Audience Research Workflow</h2><br><h3>Best for</h3><br>Understanding pains, objections, desires, and buying language faster.</p><p><h3>Step 1 — build the audience snapshot</h3><br><strong>Prompt:</strong><br>Create an audience snapshot for [insert niche/audience].<br>Include:<br><li>goals</li><br><li>frustrations</li><br><li>fears</li><br><li>buying motivations</li><br><li>common objections</li></p><p><h3>Step 2 — pull messaging themes</h3><br><strong>Prompt:</strong><br>Based on this snapshot, what messaging themes would resonate most in marketing copy?<br>Give me at least 10.</p><p><h3>Step 3 — extract phrases</h3><br><strong>Prompt:</strong><br>Turn these audience pains and desires into short copy phrases, hooks, and bullet ideas I can reuse later.</p><p><h3>Step 4 — connect it to the offer</h3><br><strong>Prompt:</strong><br>Map these audience insights directly to this offer:<br>[insert offer]<br>Show which pains it solves best and which claims feel most believable.</p><p><h3>Step 5 — summarize the insight</h3><br><strong>Prompt:</strong><br>Summarize the 5 most useful insights from this research for future copywriting.</p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>audience snapshot</li><br><li>strongest messaging themes</li><br><li>reusable phrases</li><br><li>final insight summary</li></p><p>---</p><p><h2>Workflow 6: Blog / Content Draft Workflow</h2><br><h3>Best for</h3><br>Turning rough ideas into clearer educational or authority content.</p><p><h3>Step 1 — pick the angle</h3><br><strong>Prompt:</strong><br>Give me 10 blog or content angles around this topic: [insert topic]<br>Make them specific, useful, and relevant to [insert audience].</p><p><h3>Step 2 — build the outline</h3><br><strong>Prompt:</strong><br>Create a clean outline for this topic:<br>[insert chosen angle]<br>Include key points, examples, and a logical flow.</p><p><h3>Step 3 — draft the content</h3><br><strong>Prompt:</strong><br>Write a first draft based on this outline.<br>Keep it useful, readable, and specific.</p><p><h3>Step 4 — improve clarity</h3><br><strong>Prompt:</strong><br>Rewrite this draft to improve clarity, flow, and readability.<br>Remove fluff and tighten weak sections.<br>Paste draft: [insert draft]</p><p><h3>Step 5 — repurpose the asset</h3><br><strong>Prompt:</strong><br>Turn this content into:<br><li>5 social hooks</li><br><li>3 email angles</li><br><li>5 bullet takeaways</li></p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>best angle</li><br><li>final outline</li><br><li>final draft</li><br><li>repurposing assets</li></p><p>---</p><p><h2>Workflow 7: Lead Gen / Outreach Workflow</h2><br><h3>Best for</h3><br>Creating outreach angles, follow-ups, and clearer lead-gen messaging.</p><p><h3>Step 1 — define the prospect</h3><br><strong>Prompt:</strong><br>Help me define this target prospect clearly.<br>Business type: [insert business type]<br>Need/problem: [insert problem]<br>Break down what they care about, what annoys them, and what result they want.</p><p><h3>Step 2 — create outreach angles</h3><br><strong>Prompt:</strong><br>Give me 10 outreach angles for this prospect.<br>Make them relevant, concise, and non-spammy.</p><p><h3>Step 3 — write first-message variations</h3><br><strong>Prompt:</strong><br>Write 10 first-message outreach variations based on these angles.<br>Keep them short and conversational.</p><p><h3>Step 4 — write follow-ups</h3><br><strong>Prompt:</strong><br>Write 5 follow-up messages for prospects who did not reply.<br>Make them polite, useful, and not pushy.</p><p><h3>Step 5 — improve the strongest angle</h3><br><strong>Prompt:</strong><br>Which outreach angle is strongest and why?<br>Now rewrite the best first message and follow-up pair using that angle.</p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>best outreach angle</li><br><li>strongest first messages</li><br><li>best follow-up sequence</li><br><li>notes on what feels natural vs forced</li></p><p>---</p><p><h2>Workflow 8: Reuse and Optimization Workflow</h2><br><h3>Best for</h3><br>Improving old prompts, drafts, and saved assets instead of starting over.</p><p><h3>Step 1 — review the asset</h3><br><strong>Prompt:</strong><br>Review this saved asset and tell me:<br><li>what is strong</li><br><li>what is weak</li><br><li>what should be improved</li><br>Asset: [paste prompt, copy, or workflow]</p><p><h3>Step 2 — improve it</h3><br><strong>Prompt:</strong><br>Rewrite this asset so it is clearer, stronger, and easier to reuse later.<br>Keep the original intent but improve quality.</p><p><h3>Step 3 — create variants</h3><br><strong>Prompt:</strong><br>Create 3 alternate versions of this asset for different use cases or tones.</p><p><h3>Step 4 — label the best use case</h3><br><strong>Prompt:</strong><br>For each version, tell me the best use case and when I should use it.</p><p><h3>Step 5 — write the save note</h3><br><strong>Prompt:</strong><br>Write a short note I can save with this asset explaining why it matters and when to reuse it.</p><p><h3>Save inside AI Organizer</h3><br>Save:<br><li>improved version</li><br><li>best-use-case notes</li><br><li>alternate variants</li><br><li>reusable context note</li></p><p>---</p><p><h2>Suggested tags for saved workflows</h2><br>Use tags like:<br><li>workflow</li><br><li>tested</li><br><li>reuse</li><br><li>content</li><br><li>sales</li><br><li>email</li><br><li>launch</li><br><li>lead-gen</li></p><p>Do not over-tag.<br>Keep it useful.</p><p>---</p><p><h2>Final tip</h2><br>The value of a workflow is not just the prompts.<br>It is the repeatability.</p><p>If a sequence helps you get to a useful outcome faster, save it, name it clearly, and tag it so future-you can use it again without rebuilding the process from scratch.<br>
+    
+    <div class="footer">
+      © 2026 AI Organizer. All rights reserved.<br>
+      For support, contact us via your purchase email.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Organizer | Stop Losing Your Best AI Work</title>
+  <meta name="description" content="Save, organize, search, and instantly reuse everything you create with AI — across ChatGPT, Claude, Gemini, Perplexity, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-card: #1e1e2a;
+      --bg-hover: #1c1c27;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --text-muted: #606070;
+      --accent-cyan: #00d4ff;
+      --accent-blue: #4f46e5;
+      --accent-purple: #7c3aed;
+      --accent-green: #10b981;
+      --accent-pink: #ec4899;
+      --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+      --gradient-glow: linear-gradient(135deg, rgba(79, 70, 229, 0.3) 0%, rgba(124, 58, 237, 0.2) 100%);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+      --shadow-glow: 0 0 40px rgba(79, 70, 229, 0.3);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .promo-stack {
+      position: relative;
+      z-index: 1100;
+      box-shadow: var(--shadow-md);
+    }
+
+    .promo-banner {
+      background: linear-gradient(135deg, #facc15 0%, #f59e0b 100%);
+      color: #111827;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* Navigation */
+    .nav {
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px 0;
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      background: var(--accent-green);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      padding: 56px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(79, 70, 229, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(124, 58, 237, 0.1), transparent),
+        radial-gradient(ellipse 50% 30% at 20% 80%, rgba(236, 72, 153, 0.08), transparent);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 968px) {
+      .promo-banner {
+        font-size: 11px;
+        padding: 8px 12px;
+      }
+
+      .nav {
+        top: 0;
+        padding: 10px 0;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 40px;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(79, 70, 229, 0.15);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+
+    @media (max-width: 968px) {
+      .hero-description {
+        max-width: 100%;
+      }
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 968px) {
+      .hero-ctas {
+        justify-content: center;
+      }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-green);
+      color: #000;
+      padding: 16px 32px;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      padding: 16px 32px;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-trust {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 968px) {
+      .hero-trust {
+        justify-content: center;
+      }
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .trust-item::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+    }
+
+    .dashboard-mockup {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .dashboard-mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .floating-stats {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: rgba(22, 22, 31, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .stat-card:nth-child(2) { animation-delay: -2s; }
+    .stat-card:nth-child(3) { animation-delay: -4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 120px 24px;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 64px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-description {
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Product Preview */
+    .product-preview {
+      background: var(--bg-secondary);
+    }
+
+    .preview-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .preview-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 70, 229, 0.3);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .preview-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .preview-content {
+      padding: 24px;
+    }
+
+    .preview-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .preview-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 968px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 70, 229, 0.2);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Problem vs Solution */
+    .problem-solution {
+      background: var(--bg-secondary);
+    }
+
+    .comparison-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .comparison-card {
+      padding: 40px;
+      border-radius: var(--radius-xl);
+      position: relative;
+    }
+
+    .problem-card {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(153, 27, 27, 0.05));
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .solution-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 78, 59, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .comparison-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .problem-card h3 { color: #ef4444; }
+    .solution-card h3 { color: #10b981; }
+
+    .comparison-card ul {
+      list-style: none;
+    }
+
+    .comparison-card li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .comparison-card li:last-child {
+      border-bottom: none;
+    }
+
+    .problem-card li::before {
+      content: '✕';
+      color: #ef4444;
+      font-weight: 700;
+    }
+
+    .solution-card li::before {
+      content: '✓';
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    .comparison-arrow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: var(--bg-card);
+      border: 2px solid rgba(79, 70, 229, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-arrow {
+        display: none;
+      }
+    }
+
+    /* Content Sections */
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .content-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-bottom: 120px;
+    }
+
+    .content-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-row.reverse {
+      direction: rtl;
+    }
+
+    .content-row.reverse > * {
+      direction: ltr;
+    }
+
+    @media (max-width: 968px) {
+      .content-row {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    .content-text h3 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .content-text p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .content-visual {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .content-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Pricing */
+    .pricing {
+      background: var(--bg-secondary);
+    }
+
+    .pricing-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 968px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 70, 229, 0.2);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid rgba(79, 70, 229, 0.4);
+      box-shadow: var(--shadow-glow);
+      transform: scale(1.02);
+    }
+
+    .pricing-card.featured:hover {
+      transform: scale(1.02) translateY(-4px);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-primary);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pricing-name {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .pricing-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      padding: 10px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-features li.included::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    .pricing-features li.not-included {
+      color: var(--text-muted);
+    }
+
+    .pricing-features li.not-included::before {
+      content: '—';
+      color: var(--text-muted);
+    }
+
+    .pricing-cta {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .pricing-cta-primary {
+      background: var(--accent-green);
+      color: #000;
+    }
+
+    .pricing-cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    }
+
+    .pricing-cta-starter {
+      background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+    }
+
+    .pricing-cta-starter:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
+    }
+
+    .pricing-cta-enterprise {
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(236, 72, 153, 0.25);
+    }
+
+    .pricing-cta-enterprise:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(236, 72, 153, 0.35);
+    }
+
+    /* Bonuses */
+    .bonuses-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 968px) {
+      .bonuses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bonuses-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .bonus-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      padding-top: 48px;
+    }
+
+    .bonus-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 70, 229, 0.3);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .bonus-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+
+    .bonus-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .bonus-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--bg-secondary);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-lg);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-question h3 {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer p {
+      padding: 0 24px 24px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      text-align: center;
+      padding: 160px 24px;
+      position: relative;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(79, 70, 229, 0.15), transparent);
+      pointer-events: none;
+    }
+
+    .final-cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .final-cta p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .final-cta .btn-primary {
+      padding: 20px 48px;
+      font-size: 18px;
+    }
+
+    .final-cta-trust {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="promo-stack">
+    <div class="promo-banner">Limited Time - Launch Discount | Use Coupon Code INTRO25 for 25% Off</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-content">
+      <div class="nav-logo">AI Organizer</div>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#pricing" class="nav-cta">Get Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">Now Available</div>
+        <h1>Stop Losing Your Best <span>Prompts, Chats & AI Work</span></h1>
+        <p class="hero-description">Save, organize, search, and instantly reuse everything you create with AI — across ChatGPT, Claude, Gemini, Perplexity, and more.</p>
+        <div class="hero-ctas">
+          <a href="#pricing" class="btn-primary">Get Access</a>
+          <a href="#features" class="btn-secondary">See How It Works</a>
+        </div>
+        <div class="hero-trust">
+          <span class="trust-item">Works with major AI platforms</span>
+          <span class="trust-item">No subscriptions</span>
+          <span class="trust-item">Lifetime access</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="dashboard-mockup">
+          <img src="/images/hero-dashboard.jpg" alt="AI Organizer Dashboard" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Preview Section -->
+  <section class="section product-preview" id="preview">
+    <div class="section-header">
+      <span class="section-label">Product Preview</span>
+      <h2>How AI Organizer Helps You Be More Efficient</h2>
+      <p class="section-description">A centralized workspace for your prompts, conversations, notes, and workflows.</p>
+    </div>
+    <div class="preview-grid">
+      <div class="preview-card">
+        <img src="/images/prompts-library.jpg" alt="Saved Prompts Library" />
+        <div class="preview-content">
+          <h3>Saved Prompts Library</h3>
+          <p>Organize and categorize all your best prompts in one searchable library.</p>
+        </div>
+      </div>
+      <div class="preview-card">
+        <img src="/images/search-function.jpg" alt="Powerful Search" />
+        <div class="preview-content">
+          <h3>Powerful Search</h3>
+          <p>Find any conversation, prompt, or note instantly with intelligent search.</p>
+        </div>
+      </div>
+      <div class="preview-card">
+        <img src="/images/workspace-org.jpg" alt="Workspace Organization" />
+        <div class="preview-content">
+          <h3>Workspace Organization</h3>
+          <p>Create separate workspaces for different projects, clients, or businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section class="section" id="features">
+    <div class="section-header">
+      <span class="section-label">Features</span>
+      <h2>Everything You Need to Organize Your AI Work</h2>
+      <p class="section-description">Powerful features designed for marketers, creators, and solopreneurs who use AI daily.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Save & Organize Chats</h3>
+        <p>Save conversations from ChatGPT, Claude, Gemini, and more. Never lose an important chat again.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Powerful Search</h3>
+        <p>Find any conversation, prompt, or note instantly — even inside long chat histories.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>Tag & Categorize</h3>
+        <p>Organize with workspaces, folders, subfolders, and custom tags. Build your own system.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>One-Click Reuse</h3>
+        <p>Insert saved prompts directly into AI chats without copying, pasting, or switching tabs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Cross Platform</h3>
+        <p>Works with all major AI platforms. One central hub for all your AI work.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Prompt Flows</h3>
+        <p>Connect multiple prompts into reusable workflows for complex, multi-step tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem vs Solution Section -->
+  <section class="section problem-solution">
+    <div class="section-header">
+      <span class="section-label">The Transformation</span>
+      <h2>From Chaos to Organized</h2>
+      <p class="section-description">See how AI Organizer transforms your AI workflow.</p>
+    </div>
+    <div class="comparison-grid">
+      <div class="comparison-card problem-card">
+        <h3>Without AI Organizer</h3>
+        <ul>
+          <li>Important chats get buried</li>
+          <li>You scroll endlessly trying to find one answer</li>
+          <li>Great prompts disappear forever</li>
+          <li>You redo work you already completed</li>
+          <li>Time gets wasted searching instead of working</li>
+        </ul>
+      </div>
+      <div class="comparison-arrow">→</div>
+      <div class="comparison-card solution-card">
+        <h3>With AI Organizer</h3>
+        <ul>
+          <li>Save AI conversations so they don't get lost</li>
+          <li>Store prompts you want to reuse</li>
+          <li>Organize into workspaces, folders, subfolders</li>
+          <li>Search conversations and content instantly</li>
+          <li>Add notes so context never disappears</li>
+          <li>Reuse prompts directly inside AI platforms</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workspace Organization Section -->
+  <section class="section">
+    <div class="content-section">
+      <div class="content-row">
+        <div class="content-text">
+          <span class="section-label">Organization</span>
+          <h3>Organize Everything Into Workspaces & Folders</h3>
+          <p>Create separate workspaces for businesses, clients, projects, or ideas. Keep your AI work structured instead of scattered. Build folder hierarchies that make sense for your workflow.</p>
+          <a href="#pricing" class="btn-primary">Start Organizing</a>
+        </div>
+        <div class="content-visual">
+          <img src="/images/workspace-folders.jpg" alt="Workspace Folders" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prompt Reuse Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="content-section">
+      <div class="content-row reverse">
+        <div class="content-text">
+          <span class="section-label">Efficiency</span>
+          <h3>Reuse Prompts Directly Inside AI Platforms</h3>
+          <p>No more copying and pasting. No more switching between tabs. Access your entire prompt library with one click and insert them directly into any AI chat interface.</p>
+          <a href="#pricing" class="btn-primary">Streamline Your Workflow</a>
+        </div>
+        <div class="content-visual">
+          <img src="/images/prompt-reuse.jpg" alt="Prompt Reuse" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross Platform Section -->
+  <section class="section">
+    <div class="content-section">
+      <div class="content-row">
+        <div class="content-text">
+          <span class="section-label">Compatibility</span>
+          <h3>Save From Multiple AI Platforms</h3>
+          <p>ChatGPT, Claude, Gemini, Perplexity — bring them all together. AI Organizer works with all major AI platforms, giving you one centralized workspace for everything.</p>
+          <a href="#pricing" class="btn-primary">Connect Your AI Tools</a>
+        </div>
+        <div class="content-visual">
+          <img src="/images/cross-platform.jpg" alt="Cross Platform" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section pricing" id="pricing">
+    <div class="section-header">
+      <span class="section-label">Pricing</span>
+      <h2>Choose Your Plan</h2>
+      <p class="section-description">Pick the level that matches how deeply AI is part of your daily workflow.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Standard</div>
+        <div class="pricing-price">$10<span>/one-time</span></div>
+        <p class="pricing-description">Perfect for getting started</p>
+        <ul class="pricing-features">
+          <li class="included">Save Chats from 1 AI Tool</li>
+          <li class="included">1 Workspace</li>
+          <li class="included">Save 15 Conversations</li>
+          <li class="included">Save 15 Prompts</li>
+          <li class="included">Create Up To 3 Folders</li>
+          <li class="not-included">Subfolders</li>
+          <li class="not-included">Tags & Notes</li>
+          <li class="not-included">Prompt Flows</li>
+          <li class="not-included">Bonuses</li>
+        </ul>
+        <a href="https://buy.stripe.com/5kQ4gB3xq1qkbvW1Re9EI01" class="pricing-cta pricing-cta-starter">Get Standard</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-name">Enhanced</div>
+        <div class="pricing-price">$20<span>/one-time</span></div>
+        <p class="pricing-description">For serious AI users</p>
+        <ul class="pricing-features">
+          <li class="included">Save Chats from 3 AI Tools</li>
+          <li class="included">3 Workspaces</li>
+          <li class="included">Save 50 Conversations</li>
+          <li class="included">Save 50 Prompts</li>
+          <li class="included">Create Up To 5 Folders</li>
+          <li class="included">1 Subfolder</li>
+          <li class="included">Tags & Notes</li>
+          <li class="included">Prompt Flow Feature</li>
+          <li class="not-included">Bonuses</li>
+        </ul>
+        <a href="https://buy.stripe.com/3cI7sN6JCglearS1Re9EI02" class="pricing-cta pricing-cta-primary">Get Enhanced</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-name">Ultimate</div>
+        <div class="pricing-price">$30<span>/one-time</span></div>
+        <p class="pricing-description">For power users & teams</p>
+        <ul class="pricing-features">
+          <li class="included">Save Chats from 5 AI Tools</li>
+          <li class="included">Unlimited Workspaces</li>
+          <li class="included">Unlimited Conversations</li>
+          <li class="included">Unlimited Prompts</li>
+          <li class="included">Unlimited Folders</li>
+          <li class="included">Unlimited Subfolders</li>
+          <li class="included">All Features Unlocked</li>
+          <li class="included">All 4 Bonuses Included</li>
+        </ul>
+        <a href="https://buy.stripe.com/9B67sNd80ed60Ri2Vi9EI03" class="pricing-cta pricing-cta-enterprise">Get Ultimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Included Systems Section -->
+  <section class="section" id="systems">
+    <div class="section-header">
+      <span class="section-label">Included Bonuses</span>
+      <h2>Everything You Get With Ultimate</h2>
+      <p class="section-description">When you grab AI Organizer <strong style="color: var(--accent-cyan);">Ultimate</strong> today, you also get these bonuses.</p>
+    </div>
+    <div class="bonuses-grid">
+      <div class="bonus-card">
+        <div style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700;">BONUS 1</div>
+        <div class="bonus-icon">🎯</div>
+        <h3>Prompt Vault</h3>
+        <p>200+ ready-to-use marketing prompts for content, sales, email, and social media.</p>
+      </div>
+      <div class="bonus-card">
+        <div style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700;">BONUS 2</div>
+        <div class="bonus-icon">📚</div>
+        <h3>Setup Guide</h3>
+        <p>Step-by-step guide to setting up folders, tags, notes, and structure.</p>
+      </div>
+      <div class="bonus-card">
+        <div style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700;">BONUS 3</div>
+        <div class="bonus-icon">⚡</div>
+        <h3>Workflow Templates</h3>
+        <p>Done-for-you multi-step prompt flows for complex tasks.</p>
+      </div>
+      <div class="bonus-card">
+        <div style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700;">BONUS 4</div>
+        <div class="bonus-icon">🗂️</div>
+        <h3>Starter Kit</h3>
+        <p>Plug-and-play organization system with folder ideas and tag categories.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq" id="faq">
+    <div class="section-header">
+      <span class="section-label">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Who is AI Organizer best for?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Solopreneurs, marketers, freelancers, and digital creators who use AI regularly and want a better way to save, organize, search, and reuse prompts, chats, and workflows.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Do I need to be technical to use this?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>No. The goal is not to build a complicated system. It is to make your AI work easier to organize and retrieve.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Is this a subscription?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>No. All tiers are one-time purchases. You get lifetime access to the software and bonuses included in your tier.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Which tier should I choose?</h3>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>If you want the core tool plus setup help, the Enhanced tier is strong. If you want the full system with all workflow templates and organization support, go for Ultimate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="final-cta">
+    <div class="final-cta-content">
+      <h2>Stop Rebuilding Work You Already Did</h2>
+      <p>Your prompts, chats, workflows, and AI knowledge deserve a permanent organized home. Get AI Organizer and build a system you can actually use.</p>
+      <a href="https://buy.stripe.com/9B67sNd80ed60Ri2Vi9EI03" class="btn-primary">Get AI Organizer Now</a>
+      <div class="final-cta-trust">
+        <span class="trust-item">Lifetime access</span>
+        <span class="trust-item">Instant setup</span>
+        <span class="trust-item">Works with major AI tools</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>AI Organizer: Marketer Edition | Built for solopreneurs who use AI to get real work done</p>
+    <p style="margin-top: 10px;">Support: support@aibizapps.com</p>
+  </footer>
+
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(faq => {
+          faq.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,32 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michelle Ribeiro - AI Tools & Resources</title>
-  <meta http-equiv="refresh" content="0; url=/ai-organizer/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michelle Ribeiro | Trusted AI Tools, Systems & Digital Recommendations</title>
+  <meta name="description" content="Michelle Ribeiro shares trusted AI tools, digital systems, recommendations, and offer pages for marketers, founders, and online business builders." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #23c7ff;
+      --primary-dark: #1297c9;
+      --secondary: #8b5cf6;
+      --accent: #35d6a5;
+      --bg: #090b12;
+      --surface: #121723;
+      --surface-2: #181f30;
+      --surface-3: #202941;
+      --text: #f8fbff;
+      --muted: #9eb0d1;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       margin: 0;
-      background: #0a0a0f;
-      color: #fff;
+      font-family: Inter, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(35,199,255,0.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(139,92,246,0.14), transparent 24%),
+        linear-gradient(180deg, #090b12 0%, #0d1320 50%, #090d16 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
-    .loading {
-      text-align: center;
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 28px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(9,11,18,0.72); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    a {
-      color: #00d4ff;
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 18px 0;
+    }
+    .brand { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+    .brand span { color: var(--primary); }
+    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 0.95rem; }
+    .hero { padding: 68px 0 42px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      color: var(--primary); font-size: 0.86rem; font-weight: 700; margin-bottom: 18px;
+    }
+    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; margin: 0; letter-spacing: -0.04em; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.8rem); line-height: 0.98; margin-bottom: 18px; }
+    .lead { font-size: 1.08rem; color: var(--muted); max-width: 720px; margin: 0 0 26px; }
+    .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border-radius: 999px;
+      font-weight: 700; transition: .2s ease; border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), #5b7cff); color: #06101d; box-shadow: 0 10px 30px rgba(35,199,255,0.25); }
+    .btn-secondary { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.10); }
+    .hero-card, .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .hero-card { padding: 18px; }
+    .hero-image-wrap {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(35,199,255,0.18), rgba(139,92,246,0.16));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      min-height: 560px;
+    }
+    .hero-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9,11,18,0.02) 0%, rgba(9,11,18,0.18) 100%);
+      pointer-events: none;
+    }
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-image-badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      right: 18px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(9,11,18,0.68);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .hero-image-badge strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .hero-image-badge span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .hero-list { margin: 16px 0 0; padding-left: 18px; color: var(--muted); }
+    .hero-list li { margin-bottom: 10px; }
+    section { padding: 28px 0; }
+    .section-head { margin-bottom: 24px; max-width: 760px; }
+    .section-head h2 { font-size: clamp(1.9rem, 3vw, 2.9rem); margin-bottom: 10px; }
+    .section-head p { margin: 0; color: var(--muted); }
+    .featured-grid, .review-grid, .trust-grid { display: grid; gap: 20px; }
+    .featured-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .review-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    .card { padding: 24px; }
+    .card .tag {
+      display: inline-block; padding: 8px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+      background: rgba(35,199,255,0.10); color: var(--primary); margin-bottom: 14px;
+    }
+    .card h3 { font-size: 1.35rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); margin: 0 0 16px; }
+    .card .card-link { color: var(--text); font-weight: 700; }
+    .featured { position: relative; overflow: hidden; }
+    .featured::after {
+      content: ''; position: absolute; inset: auto -40px -40px auto; width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(35,199,255,0.18), transparent 65%);
+    }
+    .about-box {
+      padding: 28px; border-radius: 30px; background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(35,199,255,0.12));
+      border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow);
+    }
+    .about-box p { color: var(--text); font-size: 1.04rem; max-width: 880px; }
+    .cta {
+      margin: 28px 0 64px; padding: 34px; border-radius: 30px;
+      background: linear-gradient(135deg, rgba(35,199,255,0.18), rgba(139,92,246,0.18));
+      border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow);
+      display: grid; grid-template-columns: 1.2fr auto; gap: 20px; align-items: center;
+    }
+    .cta h2 { font-size: 2rem; margin-bottom: 8px; }
+    .cta p { margin: 0; color: var(--muted); max-width: 760px; }
+    footer { padding: 0 0 34px; color: var(--muted); }
+    .footer-inner { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 980px) {
+      .hero-grid, .featured-grid, .review-grid, .trust-grid, .cta { grid-template-columns: 1fr; }
+      .nav-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <div class="loading">
-    <p>Redirecting to <a href="/ai-organizer/">AI Organizer</a>...</p>
-  </div>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Michelle <span>Recommends</span></div>
+      <div class="nav-links">
+        <a href="#featured">Featured</a>
+        <a href="#reviews">Latest Pages</a>
+        <a href="#about">About</a>
+        <a href="#connect">Connect</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Trusted tools • AI systems • smart recommendations</div>
+        <h1>Trusted AI tools, digital systems, and recommendations for people building online.</h1>
+        <p class="lead">
+          I’m Michelle Ribeiro. I test, build, and recommend digital tools, workflows, and offers that help marketers, founders, and business builders move faster with more clarity and less noise.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#featured">See Featured Picks</a>
+          <a class="btn btn-secondary" href="#about">Why Trust My Recommendations</a>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <img src="./assets/michelle-ribeiro-headshot.jpg" alt="Michelle Ribeiro" class="hero-image" />
+        <div class="hero-image-badge">
+          <strong>Michelle Ribeiro</strong>
+          <span>AI tools, lead generation, digital systems, and trusted recommendations.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="featured">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured Recommendations</h2>
+          <p>
+            These are the kinds of tools, offers, and systems this site is built to feature — useful, practical, and worth a closer look.
+          </p>
+        </div>
+        <div class="featured-grid">
+          <article class="card featured">
+            <div class="tag">Featured Tool</div>
+            <h3>AI Organizer</h3>
+            <p>A cleaner way to save, organize, search, and reuse your best AI prompts, chats, workflows, and assets.</p>
+            <a class="card-link" href="#">View Recommendation →</a>
+          </article>
+          <article class="card featured">
+            <div class="tag">Featured System</div>
+            <h3>Lead Generation Workflows</h3>
+            <p>Practical outbound and conversion systems designed to help niche offers find the right people faster.</p>
+            <a class="card-link" href="#">Explore System Pages →</a>
+          </article>
+          <article class="card featured">
+            <div class="tag">Featured Picks</div>
+            <h3>Tools I Actually Recommend</h3>
+            <p>Software, automations, and useful products that support momentum, clarity, and online growth.</p>
+            <a class="card-link" href="#">See My Picks →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <h2>Latest Pages & Recommendations</h2>
+          <p>
+            This section can hold product pages, reviews, recommendation posts, offer spotlights, and curated tools as the site grows.
+          </p>
+        </div>
+        <div class="review-grid">
+          <article class="card">
+            <div class="tag">Latest Page</div>
+            <h3>AI Organizer</h3>
+            <p>A focused recommendation page for keeping your AI work from getting buried, scattered, or forgotten.</p>
+            <a class="card-link" href="#">Open Page →</a>
+          </article>
+          <article class="card">
+            <div class="tag">Recommendation</div>
+            <h3>AI + Marketing Systems</h3>
+            <p>A future category for workflows, software, and digital tools that help online operators do more with less friction.</p>
+            <a class="card-link" href="#">See Recommendations →</a>
+          </article>
+          <article class="card">
+            <div class="tag">Offer Spotlight</div>
+            <h3>Lead Gen & Conversion Pages</h3>
+            <p>Bridge pages, recommendation funnels, and direct-response assets built to move people from interest to action.</p>
+            <a class="card-link" href="#">View Offer Pages →</a>
+          </article>
+          <article class="card">
+            <div class="tag">Coming Soon</div>
+            <h3>Newsletter & Insights</h3>
+            <p>A place for useful breakdowns, lessons learned, curated opportunities, and digital growth notes over time.</p>
+            <a class="card-link" href="#">Join the Updates →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container trust-grid">
+        <div class="about-box">
+          <h2 style="margin-bottom:12px;">Why trust this site?</h2>
+          <p>
+            I’m not trying to recommend everything. I’m building a trusted home for tools, systems, and offers that I believe are actually useful. My work sits at the intersection of AI, lead generation, affiliate marketing, newsletters, and digital growth — so the goal here is simple: make the good stuff easier to find.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag">What matters here</div>
+          <h3>Clarity over hype.</h3>
+          <p>Useful recommendations. Better digital paths. Stronger trust. Less noise.</p>
+          <p style="margin-top:14px; color:var(--text); font-weight:700;">This should feel vibrant — but still grounded.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>Want better tools, cleaner systems, and smarter recommendations?</h2>
+            <p>
+              This site is becoming the front door for everything I want to share, recommend, and build online. If that’s your world too, you’ll want to keep an eye on what lands here next.
+            </p>
+          </div>
+          <div>
+            <a class="btn btn-primary" href="mailto:michelle@aibizapps.com">Connect With Michelle</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Michelle Ribeiro</div>
+      <div>Built as a trusted recommendation hub.</div>
+    </div>
+  </footer>
 </body>
 </html>

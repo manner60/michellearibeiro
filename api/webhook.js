@@ -2,6 +2,23 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { provisionLicense } = require('./browsx-provision');
 
+// Disable body parsing for raw body access
+module.exports.config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+// Helper to get raw body
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', chunk => data += chunk);
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+}
+
 module.exports = async (req, res) => {
   // Only accept POST requests
   if (req.method !== 'POST') {
@@ -14,8 +31,11 @@ module.exports = async (req, res) => {
   let event;
   
   try {
+    // Get raw body for signature verification
+    const rawBody = await getRawBody(req);
+    
     // Verify webhook signature
-    event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
   } catch (err) {
     console.log(`Webhook signature verification failed: ${err.message}`);
     return res.status(400).json({ error: 'Invalid signature' });

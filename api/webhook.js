@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
     // Trigger Browsx provisioning
     try {
       const { stdout, stderr } = await execAsync(
-        `python3 /root/.openclaw/workspace/browsx_provision_ai_organizer.py "${customerEmail}" "${tier}"`,
+        `python3 ${__dirname}/browsx_provision_ai_organizer.py "${customerEmail}" "${tier}"`,
         {
           env: {
             ...process.env,

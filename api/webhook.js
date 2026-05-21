@@ -47,11 +47,12 @@ module.exports = async (req, res) => {
     const customerEmail = session.customer_details?.email;
     const amount = session.amount_total;
 
-    // Determine tier based on amount (in cents)
+    // Determine tier based on amount (in cents) - handle $0 for free/coupon purchases
     let tier;
     if (amount === 9700) tier = 'standard';      // $97
     else if (amount === 19700) tier = 'enhanced'; // $197
     else if (amount === 29700) tier = 'ultimate'; // $297
+    else if (amount === 0) tier = 'standard';    // Free/coupon purchases
     else tier = 'standard'; // default
 
     console.log(`Payment received: ${customerEmail} - ${tier} ($${amount/100})`);
@@ -61,13 +62,27 @@ module.exports = async (req, res) => {
     try {
       const result = await provisionLicense(customerEmail, tier);
       console.log('Browsx provisioning result:', JSON.stringify(result));
+      
+      // Return success with license info
+      return res.status(200).json({ 
+        received: true, 
+        provisioned: true,
+        email: customerEmail,
+        tier: tier,
+        license: result.data?.license_key || 'generated'
+      });
     } catch (error) {
       console.error('Browsx provisioning failed:', error.message);
       console.error('Stack:', error.stack);
-      // Don't fail the webhook - Stripe will retry
+      // Return 200 so Stripe doesn't retry, but include error info
+      return res.status(200).json({ 
+        received: true, 
+        provisioned: false,
+        error: error.message 
+      });
     }
   }
 
-  // Return 200 to acknowledge receipt
+  // Return 200 to acknowledge receipt for other event types
   res.status(200).json({ received: true });
 };

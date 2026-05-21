@@ -2,6 +2,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { provisionLicense } = require('./browsx-provision');
 const { storeLicense } = require('./license-store');
+const { createContact } = require('./gc-client');
 
 // Disable body parsing for raw body access
 module.exports.config = {
@@ -60,6 +61,24 @@ module.exports = async (req, res) => {
     console.log(`Payment received: ${customerEmail} - ${tier} ($${amount/100})`);
     console.log(`Env vars check: BROWSX_USER=${process.env.BROWSX_USER ? 'set' : 'missing'}, BROWSX_PASS=${process.env.BROWSX_PASS ? 'set' : 'missing'}`);
 
+    // Create contact in GC
+    let gcResult;
+    try {
+      const gcApiKey = process.env.GC_API_KEY;
+      if (gcApiKey) {
+        gcResult = await createContact(customerEmail, customerName, gcApiKey, [
+          'ai-organizer-buyer',
+          `ai-organizer-${tier}`
+        ]);
+        console.log('GC contact created:', JSON.stringify(gcResult));
+      } else {
+        console.log('GC_API_KEY not set, skipping GC contact creation');
+      }
+    } catch (gcError) {
+      console.error('GC contact creation failed:', gcError.message);
+      // Don't fail the webhook if GC fails
+    }
+
     // Trigger Browsx provisioning
     try {
       const result = await provisionLicense(customerEmail, tier);
@@ -81,6 +100,7 @@ module.exports = async (req, res) => {
       return res.status(200).json({ 
         received: true, 
         provisioned: true,
+        gcCreated: !!gcResult?.contact?.id,
         email: customerEmail,
         tier: tier,
         license: licenseKey || 'generated'
@@ -92,6 +112,7 @@ module.exports = async (req, res) => {
       return res.status(200).json({ 
         received: true, 
         provisioned: false,
+        gcCreated: !!gcResult?.contact?.id,
         error: error.message 
       });
     }

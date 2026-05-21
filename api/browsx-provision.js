@@ -106,7 +106,9 @@ async function provision(cookie, nonce, email, licenseType) {
     nonce: nonce,
     parent_license_id: PARENT_ID,
     license_type: licenseType,
-    customer_email: email
+    customer_email: email,
+    send_email: '1',
+    notify_customer: '1'
   };
   
   const { body } = await post(AJAX, payload, cookie);

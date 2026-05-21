@@ -1,6 +1,7 @@
 // Stripe webhook endpoint for AI Organizer purchases
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { provisionLicense } = require('./browsx-provision');
+const { storeLicense } = require('./license-store');
 
 // Disable body parsing for raw body access
 module.exports.config = {
@@ -63,13 +64,24 @@ module.exports = async (req, res) => {
       const result = await provisionLicense(customerEmail, tier);
       console.log('Browsx provisioning result:', JSON.stringify(result));
       
+      // Store license key
+      const licenseKey = result.data?.license_key;
+      if (licenseKey) {
+        storeLicense(customerEmail, {
+          licenseKey: licenseKey,
+          tier: tier,
+          amount: amount
+        });
+        console.log(`License stored for ${customerEmail}: ${licenseKey}`);
+      }
+      
       // Return success with license info
       return res.status(200).json({ 
         received: true, 
         provisioned: true,
         email: customerEmail,
         tier: tier,
-        license: result.data?.license_key || 'generated'
+        license: licenseKey || 'generated'
       });
     } catch (error) {
       console.error('Browsx provisioning failed:', error.message);

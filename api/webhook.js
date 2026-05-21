@@ -67,7 +67,7 @@ module.exports = async (req, res) => {
       const gcApiKey = process.env.GC_API_KEY;
       if (gcApiKey) {
         gcResult = await createContact(customerEmail, customerName, gcApiKey, [
-          'AI-ORGANIZER-2025',
+          'AI-ORGANIZER-2026',
           `AI-ORGANIZER-${tier.toUpperCase()}`,
           'MICHELLE-REFERRAL',
           'DIGITAL-PRODUCT'

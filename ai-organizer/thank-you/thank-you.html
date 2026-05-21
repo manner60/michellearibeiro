@@ -41,8 +41,8 @@
   <div class="wrap">
     <div class="card">
       <div class="success">✓</div>
-      <h1 id="greeting">Thank You For Your Purchase!</h1>
-      <p class="sub" id="sub-greeting">Your payment is confirmed. Your AI Organizer access details will come from <strong style="color:#fff">BrowsX.com</strong> within the next 2 hours.</p>
+      <h1>Thank You For Your Purchase!</h1>
+      <p class="sub">Your payment is confirmed. Your AI Organizer access details will come from <strong style="color:#fff">BrowsX.com</strong> within the next 2 hours.</p>
 
       <h2>What Happens Next</h2>
       <div class="steps">
@@ -56,47 +56,12 @@
         <p>If you don't see the BrowsX email, please check spam, promotions, or updates folders before reaching out.</p>
       </div>
 
-      <div id="license-box" class="setup-box" style="display:none;border-color:rgba(16,185,129,.5);background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(37,99,235,.15));">
-        <h2>🔑 Your AI Organizer License Key</h2>
-        <p style="font-size:18px;margin-bottom:16px;">Use this license key to activate your AI Organizer account:</p>
-        <div id="license-key" style="background:rgba(0,0,0,.3);padding:16px 20px;border-radius:12px;font-family:monospace;font-size:20px;font-weight:700;text-align:center;letter-spacing:2px;margin-bottom:16px;word-break:break-all;"></div>
-        <p style="font-size:14px;color:var(--text-secondary);">Save this key — you'll need it to access AI Organizer.</p>
-      </div>
-
       <div class="setup-box">
         <h2>📘 Setup & Installation Instructions</h2>
         <p>Use the setup guide below for step-by-step instructions on how to install AI Organizer, get set up, and start using the product. You can also download the main AI Organizer PDF referenced inside the guide.</p>
         <a class="btn btn-secondary" href="/ai-organizer/bonuses/ai-organizer-setup-guide.docx" target="_blank" download>Download Setup Guide</a>
         <a class="btn btn-primary" href="/ai-organizer/bonuses/ai-organizer.pdf" target="_blank" download>Download AI Organizer PDF</a>
       </div>
-
-      <script>
-        // Fetch license key and personalize from URL parameter or API
-        (async function() {
-          const urlParams = new URLSearchParams(window.location.search);
-          const email = urlParams.get('email');
-          
-          if (email) {
-            try {
-              const response = await fetch(`/api/get-license?email=${encodeURIComponent(email)}`);
-              if (response.ok) {
-                const data = await response.json();
-                if (data.licenseKey) {
-                  document.getElementById('license-key').textContent = data.licenseKey;
-                  document.getElementById('license-box').style.display = 'block';
-                }
-                // Personalize greeting if name is available
-                if (data.name) {
-                  document.getElementById('greeting').textContent = `Thank You, ${data.name}!`;
-                  document.getElementById('sub-greeting').innerHTML = `Hi ${data.name}, your payment is confirmed. Your AI Organizer access details are below.`;
-                }
-              }
-            } catch (e) {
-              console.log('Could not retrieve license:', e);
-            }
-          }
-        })();
-      </script>
 
       <div class="cta-row">
         <a class="btn btn-primary" href="/ai-organizer/">Back to AI Organizer</a>

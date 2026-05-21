@@ -66,11 +66,18 @@ module.exports = async (req, res) => {
     try {
       const gcApiKey = process.env.GC_API_KEY;
       if (gcApiKey) {
+        // Map tier to your existing GC tags
+        const tierTagMap = {
+          'standard': 'aio-std',
+          'enhanced': 'aio-enh',
+          'ultimate': 'aio-ult'
+        };
+        const tierTag = tierTagMap[tier] || 'aio-std';
+        
         gcResult = await createContact(customerEmail, customerName, gcApiKey, [
-          'AI-ORGANIZER-2026',
-          `AI-ORGANIZER-${tier.toUpperCase()}`,
-          'MICHELLE-REFERRAL',
-          'DIGITAL-PRODUCT'
+          tierTag,
+          'ai-organizer-2026',
+          'michelle-referral'
         ]);
         console.log('GC contact created:', JSON.stringify(gcResult));
       } else {

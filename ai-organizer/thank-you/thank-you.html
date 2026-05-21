@@ -41,8 +41,8 @@
   <div class="wrap">
     <div class="card">
       <div class="success">✓</div>
-      <h1>Thank You For Your Purchase!</h1>
-      <p class="sub">Your payment is confirmed. Your AI Organizer access details will come from <strong style="color:#fff">BrowsX.com</strong> within the next 2 hours.</p>
+      <h1 id="greeting">Thank You For Your Purchase!</h1>
+      <p class="sub" id="sub-greeting">Your payment is confirmed. Your AI Organizer access details will come from <strong style="color:#fff">BrowsX.com</strong> within the next 2 hours.</p>
 
       <h2>What Happens Next</h2>
       <div class="steps">
@@ -71,7 +71,7 @@
       </div>
 
       <script>
-        // Fetch license key from URL parameter or try to retrieve from API
+        // Fetch license key and personalize from URL parameter or API
         (async function() {
           const urlParams = new URLSearchParams(window.location.search);
           const email = urlParams.get('email');
@@ -84,6 +84,11 @@
                 if (data.licenseKey) {
                   document.getElementById('license-key').textContent = data.licenseKey;
                   document.getElementById('license-box').style.display = 'block';
+                }
+                // Personalize greeting if name is available
+                if (data.name) {
+                  document.getElementById('greeting').textContent = `Thank You, ${data.name}!`;
+                  document.getElementById('sub-greeting').innerHTML = `Hi ${data.name}, your payment is confirmed. Your AI Organizer access details are below.`;
                 }
               }
             } catch (e) {

@@ -30,6 +30,7 @@ module.exports = (req, res) => {
     success: true,
     licenseKey: license.licenseKey,
     tier: license.tier,
+    name: license.name || '',
     createdAt: license.createdAt
   });
 };

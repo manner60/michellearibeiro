@@ -46,6 +46,7 @@ module.exports = async (req, res) => {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     const customerEmail = session.customer_details?.email;
+    const customerName = session.customer_details?.name || '';
     const amount = session.amount_total;
 
     // Determine tier based on amount (in cents) - handle $0 for free/coupon purchases
@@ -64,15 +65,16 @@ module.exports = async (req, res) => {
       const result = await provisionLicense(customerEmail, tier);
       console.log('Browsx provisioning result:', JSON.stringify(result));
       
-      // Store license key
+      // Store license key with customer name
       const licenseKey = result.data?.license_key;
       if (licenseKey) {
         storeLicense(customerEmail, {
           licenseKey: licenseKey,
           tier: tier,
-          amount: amount
+          amount: amount,
+          name: customerName
         });
-        console.log(`License stored for ${customerEmail}: ${licenseKey}`);
+        console.log(`License stored for ${customerName} (${customerEmail}): ${licenseKey}`);
       }
       
       // Return success with license info

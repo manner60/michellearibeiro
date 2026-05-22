@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | AI Organizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary:#0a0a0f; --bg-card:#1e1e2a; --text-primary:#fff; --text-secondary:#a0a0b0;
+      --accent-green:#10b981; --accent-blue:#2563eb; --accent-purple:#8b5cf6; --radius:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;padding:32px 20px}
+    .wrap{max-width:900px;margin:0 auto}
+    .card{background:var(--bg-card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:32px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+    .success{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:42px;background:linear-gradient(135deg,#059669,#10b981);margin:0 auto 24px}
+    h1{text-align:center;font-size:clamp(32px,5vw,52px);margin-bottom:12px}
+    .sub{text-align:center;color:var(--text-secondary);max-width:700px;margin:0 auto 30px}
+    .steps{display:grid;gap:18px;margin-top:28px}
+    .step{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.03);border-radius:14px;padding:18px}
+    .num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));font-weight:800;flex-shrink:0}
+    h2{font-size:22px;margin:26px 0 14px}
+    h3{font-size:17px;margin-bottom:4px}
+    p{color:var(--text-secondary)}
+    .note{margin-top:26px;padding:18px;border-left:4px solid var(--accent-blue);background:rgba(37,99,235,.12);border-radius:0 12px 12px 0}
+    .setup-box{margin-top:26px;padding:22px;border:1px solid rgba(16,185,129,.35);background:linear-gradient(135deg,rgba(16,185,129,.16),rgba(37,99,235,.14));border-radius:16px}
+    .setup-box h2{margin:0 0 10px;font-size:22px;color:#fff}
+    .setup-box p{margin-bottom:16px}
+    .setup-box .btn{margin-right:10px;margin-bottom:10px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+    .btn{display:inline-block;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:700}
+    .btn-primary{background:linear-gradient(135deg,#10b981,#059669);color:#04130d}
+    .btn-secondary{background:linear-gradient(135deg,#2563eb,#8b5cf6);color:#fff}
+    .footer{text-align:center;margin-top:24px;color:var(--text-secondary)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="success">✓</div>
+      <h1>Thank You For Your Purchase!</h1>
+      <p class="sub">Your payment is confirmed. Your AI Organizer access details will come from <strong style="color:#fff">BrowsX.com</strong> within the next 2 hours.</p>
+
+      <h2>What Happens Next</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h3>Check Your Inbox</h3><p>Watch for an email from <strong style="color:#fff">BrowsX.com</strong> with your AI Organizer access details and next steps.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h3>Whitelist Support</h3><p>Add <strong style="color:#fff">support@aibizapps.com</strong> to your contacts so nothing gets missed.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h3>Need Help?</h3><p>If you don't receive your BrowsX access email within the next 2 hours, contact support and we'll get you taken care of.</p></div></div>
+      </div>
+
+      <div class="note">
+        <strong style="color:#fff">Important:</strong>
+        <p>If you don't see the BrowsX email, please check spam, promotions, or updates folders before reaching out.</p>
+      </div>
+
+      <div class="setup-box">
+        <h2>📘 Setup & Installation Instructions</h2>
+        <p>Use the setup guide below for step-by-step instructions on how to install AI Organizer, get set up, and start using the product. You can also download the main AI Organizer PDF referenced inside the guide.</p>
+        <a class="btn btn-secondary" href="/ai-organizer/bonuses/ai-organizer-setup-guide.docx" target="_blank" download>Download Setup Guide</a>
+        <a class="btn btn-primary" href="/ai-organizer/bonuses/ai-organizer.pdf" target="_blank" download>Download AI Organizer PDF</a>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/ai-organizer/">Back to AI Organizer</a>
+        <a class="btn btn-secondary" href="mailto:support@aibizapps.com">Email Support</a>
+      </div>
+    </div>
+    <p class="footer">Support: support@aibizapps.com</p>
+  </div>
+</body>
+</html>

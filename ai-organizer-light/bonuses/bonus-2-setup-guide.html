@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Guide | AI Organizer</title>
+  <style>
+    @page {
+      margin: 36px 44px;
+      size: letter;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 20px 24px 32px;
+    }
+
+    /* Cover Page */
+    .cover {
+      page-break-after: always;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0a1a 0%, #1a0a2e 50%, #0f0f1a 100%);
+      color: white;
+      padding: 40px 24px;
+      margin: 0 0 24px;
+      border-radius: 20px;
+    }
+    .cover-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #00d4ff;
+      margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-size: clamp(30px, 5vw, 38px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: white;
+      border: none;
+      padding: 0;
+    }
+    .cover-subtitle {
+      font-size: 17px;
+      color: #a0a0b0;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+    .cover-badge {
+      margin-top: 28px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* Content Styles */
+    .content {
+      padding-top: 12px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 16px 18px 28px;
+        font-size: 10.5pt;
+      }
+      .cover {
+        min-height: auto;
+        padding: 32px 18px;
+        border-radius: 16px;
+      }
+      .cover-logo {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+      }
+      .cover-subtitle {
+        font-size: 15px;
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+      .cover {
+        min-height: 100vh;
+        margin: -36px -44px 0;
+        border-radius: 0;
+        padding: 50px 40px;
+      }
+      .content {
+        max-width: none;
+      }
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 30px 0 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #4f46e5;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4f46e5;
+      margin: 25px 0 12px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: 20px 0 10px;
+    }
+    h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 15px 0 8px;
+    }
+    p {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+    ul, ol {
+      margin: 10px 0 15px 25px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    ol li .num {
+      font-weight: 700;
+      color: #4f46e5;
+      margin-right: 8px;
+    }
+    strong {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .prompt-label {
+      display: inline-block;
+      background: #4f46e5;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 10px 0 5px;
+    }
+    
+    /* Page breaks */
+    h1 {
+      page-break-before: always;
+    }
+    h1:first-of-type {
+      page-break-before: avoid;
+    }
+    
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 10px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="cover-logo">AI Organizer</div>
+    <h1>Setup Guide</h1>
+    <p class="cover-subtitle">Step-by-Step Guide to Organizing Your AI Work</p>
+    <div class="cover-badge">AI Organizer Guide</div>
+  </div>
+  
+  <div class="content">
+    <h1>AI Organizer Setup Guide</h1></p><p><h2>Subtitle</h2><br>A simple step-by-step guide to help you set up AI Organizer so your prompts, chats, notes, and workflows are easier to find and reuse.</p><p><h2>Start Here</h2><br>The goal is not to build a perfect system.<br>The goal is to build a usable system fast.</p><p>If you overbuild the structure, you will avoid using it.<br>If you keep it practical, you will actually save better assets and find them later.</p><p>This guide gives you a simple setup flow you can apply right away.</p><p>---</p><p><h2>What a good setup should do</h2><br>A strong setup should help you:<br><li>save useful prompts and chats quickly</li><br><li>find things later without digging</li><br><li>separate active work from random clutter</li><br><li>reuse strong assets instead of rebuilding them</li><br><li>keep your system clean as usage grows</li></p><p>If your setup does those 5 things, it is working.</p><p>---</p><p><h2>The 5-part setup process</h2><br>1. Choose your top-level structure<br>2. Create project and asset categories<br>3. Set your tag system<br>4. Add notes and naming rules<br>5. Save your first high-value assets</p><p>---</p><p><h2>Step 1: Choose your top-level structure</h2><br>Start broad.<br>Do not create 20 folders on day one.</p><p>For most marketers, freelancers, and solopreneurs, this kind of top-level structure is enough:</p><p><li>Content</li><br><li>Sales</li><br><li>Email</li><br><li>Social</li><br><li>Offers</li><br><li>Research</li><br><li>Workflows</li><br><li>Swipe File</li><br><li>Client Work</li><br><li>Archive</li></p><p><h3>Why this works</h3><br>These folders reflect what you actually do with AI.<br>That makes retrieval easier because you usually remember the purpose of an asset before you remember its exact wording.</p><p><h3>Rule</h3><br>If a folder would only hold 1 or 2 items, do not create it yet.<br>Wait until the category becomes real.</p><p>---</p><p><h2>Step 2: Create project and asset categories underneath</h2><br>Once your top-level folders exist, add subfolders only where active work needs them.</p><p><h3>Example structure</h3><br><strong>Content</strong><br><li>Blog</li><br><li>Newsletter</li><br><li>Social Posts</li><br><li>Video Scripts</li></p><p><strong>Sales</strong><br><li>Headlines</li><br><li>Landing Pages</li><br><li>CTA Ideas</li><br><li>Offer Angles</li></p><p><strong>Offers</strong><br><li>AI Organizer Campaign</li><br><li>Future Offers</li><br><li>Bonus Ideas</li></p><p><strong>Research</strong><br><li>Audience Pain Points</li><br><li>Competitor Notes</li><br><li>Market Insights</li></p><p><strong>Workflows</strong><br><li>Blog Workflow</li><br><li>Email Workflow</li><br><li>Launch Workflow</li></p><p><h3>Rule</h3><br>Use subfolders for real work streams, not imagined future complexity.</p><p>---</p><p><h2>Step 3: Set your tag system</h2><br>Tags are where most people make the mess worse.<br>Keep them small and consistent.</p><p>Use 3 simple tag groups:</p><p><h3>A) Status tags</h3><br>Use these to show stage or quality.<br><li>idea</li><br><li>draft</li><br><li>active</li><br><li>tested</li><br><li>winner</li><br><li>archived</li></p><p><h3>B) Format tags</h3><br>Use these to describe what the asset is.<br><li>prompt</li><br><li>chat</li><br><li>workflow</li><br><li>copy</li><br><li>notes</li><br><li>research</li><br><li>checklist</li></p><p><h3>C) Topic tags</h3><br>Use these to show where it applies.<br><li>content</li><br><li>sales</li><br><li>email</li><br><li>launch</li><br><li>lead-gen</li><br><li>social</li><br><li>seo</li><br><li>affiliate</li><br><li>client</li></p><p><h3>Tagging rule</h3><br>If you cannot explain why a tag exists in one sentence, do not add it.</p><p><h3>Good example</h3><br>A saved prompt might use:<br><li>tested</li><br><li>prompt</li><br><li>email</li></p><p>That is enough.</p><p>---</p><p><h2>Step 4: Create simple naming rules</h2><br>Names should help you recognize an asset in seconds.</p><p><h3>Best naming format</h3><br><strong>[Function] - [Goal] - [Specific Topic]</strong></p><p><h3>Examples</h3><br><li>Email - Welcome Sequence - New Leads</li><br><li>Sales - Headlines - AI Organizer</li><br><li>Content - Blog Outline - Affiliate Marketing</li><br><li>Workflow - Launch Planning - Low Ticket Offer</li><br><li>Research - Audience Pain Points - Solopreneurs</li></p><p><h3>Avoid names like</h3><br><li>good prompt</li><br><li>test 3</li><br><li>useful one</li><br><li>idea maybe</li><br><li>rewrite later</li></p><p>Vague names create future confusion.</p><p>---</p><p><h2>Step 5: Add context notes when something matters</h2><br>Saving the asset is not always enough.<br>The note is what tells future-you why it matters.</p><p>Whenever something works well, add a short note answering one or more of these:<br><li>Why did I save this?</li><br><li>What did it help me create?</li><br><li>When should I reuse it?</li><br><li>What should I change next time?</li></p><p><h3>Example note</h3><br>Used for a bridge page draft with pain-led messaging. Good fit for low-ticket offer copy and promo hooks. Reuse when targeting daily AI users.</p><p><h3>Rule</h3><br>If an asset is worth keeping, it is usually worth one sentence of context.</p><p>---</p><p><h2>Your first 5 assets to save</h2><br>To make the system useful immediately, do not start by saving random scraps.<br>Start with high-value assets.</p><p>Save these first:<br>1. your best reusable prompt<br>2. one high-performing chat or response flow<br>3. one research asset with real insight<br>4. one piece of copy worth reusing<br>5. one workflow or repeatable process</p><p><h3>Why this matters</h3><br>A system becomes useful faster when the first things inside it are actually valuable.</p><p>---</p><p><h2>Best practices for weekly upkeep</h2><br>A good setup only stays useful if it gets light maintenance.</p><p><h3>Once per week, do this:</h3><br><li>move weak or outdated items to archive</li><br><li>tag recent winners clearly</li><br><li>rename anything vague</li><br><li>add notes to anything worth reusing</li><br><li>review your swipe file</li><br><li>delete or archive obvious junk</li></p><p><h3>Time needed</h3><br>10 to 15 minutes is enough.</p><p>This is not admin for the sake of admin.<br>It protects your best work from getting buried.</p><p>---</p><p><h2>How to avoid common setup mistakes</h2></p><p><h3>Mistake 1: Too many folders</h3><br>Problem:<br>You create so much structure that saving becomes annoying.</p><p>Fix:<br>Stay broad at the top. Add detail only where activity exists.</p><p><h3>Mistake 2: Random tags</h3><br>Problem:<br>You create tags in the moment with no system.</p><p>Fix:<br>Use a fixed small tag bank.</p><p><h3>Mistake 3: Saving everything</h3><br>Problem:<br>Your organizer becomes a junk drawer.</p><p>Fix:<br>Save assets worth reusing, learning from, or referencing.</p><p><h3>Mistake 4: No notes</h3><br>Problem:<br>You find the asset later but do not remember why it mattered.</p><p>Fix:<br>Add one sentence of context.</p><p><h3>Mistake 5: No archive habit</h3><br>Problem:<br>Old clutter crowds active assets.</p><p>Fix:<br>Archive aggressively and keep active folders clean.</p><p>---</p><p><h2>Recommended starter structure for your kind of work</h2><br>For affiliate marketing, outreach, and digital offers, this structure makes sense:</p><p><li>Offers</li><br>  - Active Funnels<br>  - Offer Angles<br>  - Bonus Ideas<br><li>Content</li><br>  - Emails<br>  - Telegram Posts<br>  - Landing Page Copy<br>  - Hooks<br><li>Lead Gen</li><br>  - Outreach Scripts<br>  - Follow-Ups<br>  - Prospecting Ideas<br><li>Research</li><br>  - Audience Pain Points<br>  - Competitors<br>  - Winning Angles<br><li>Workflows</li><br>  - Offer Creation<br>  - Promo Planning<br>  - Email Campaigns<br><li>Swipe File</li><br>  - Headlines<br>  - CTAs<br>  - Objection Handling<br><li>Archive</li></p><p>This is practical, simple, and aligned with the work.</p><p>---</p><p><h2>15-minute quick-start setup</h2><br>If you want the fastest useful version, do this:</p><p><h3>Minute 1–3</h3><br>Create top-level folders.</p><p><h3>Minute 4–6</h3><br>Add a few key subfolders for current projects.</p><p><h3>Minute 7–9</h3><br>Create your status, format, and topic tags.</p><p><h3>Minute 10–12</h3><br>Save 3 to 5 high-value assets.</p><p><h3>Minute 13–15</h3><br>Rename them properly and add short notes.</p><p>After that, the system is live.<br>You can improve it as you go.</p><p>---</p><p><h2>What “organized enough” looks like</h2><br>You do not need perfection.<br>You need to be able to:<br><li>find good assets quickly</li><br><li>know what is active vs old</li><br><li>identify winners fast</li><br><li>reuse work with less friction</li></p><p>If that is happening, your setup is good enough.</p><p>---</p><p><h2>Final reminder</h2><br>AI gets messy fast.<br>That does not mean your workflow has to.</p><p>A simple structure, a small tag system, and a few strong habits will take you much further than a complicated setup you never maintain.</p><p>Keep it clean.<br>Keep it usable.<br>Keep what works.<br>
+    
+    <div class="footer">
+      © 2026 AI Organizer. All rights reserved.<br>
+      For support, contact us via your purchase email.
+    </div>
+  </div>
+</body>
+</html>

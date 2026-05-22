@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to AI Organizer Ultimate | Your Bonuses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-card: #1e1e2a;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent-green: #10b981;
+      --accent-cyan: #00d4ff;
+      --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 24px;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+    .email-notice {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .email-notice h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--accent-cyan);
+    }
+    .email-notice p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .setup-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(0, 212, 255, 0.14));
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .setup-box h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .setup-box p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .bonuses-section {
+      margin-bottom: 48px;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .section-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+    }
+    .bonuses-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .bonuses-grid { grid-template-columns: 1fr; }
+    }
+    .bonus-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .bonus-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+    .bonus-number {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-primary);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .bonus-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gradient-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+    .bonus-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .bonus-card p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .download-btn {
+      display: inline-block;
+      background: var(--accent-green);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    }
+    .next-steps {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .next-steps h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .next-steps ol {
+      padding-left: 24px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .next-steps li {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .home-link {
+      display: block;
+      text-align: center;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .home-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="success-icon">✓</div>
+      <h1>Welcome to AI Organizer Ultimate!</h1>
+      <p class="subtitle">You now have access to the complete system + all 4 bonuses</p>
+    </div>
+    
+    <div class="email-notice">
+      <h2>📧 Account Access</h2>
+      <p>Please check your inbox (and spam folder) for an email from <strong style="color:#fff">BrowsX.com</strong> with your AI Organizer login information. Your access details should arrive within a short period of time.</p>
+    </div>
+
+    <div class="setup-box">
+      <h2>📘 Setup & Installation Instructions</h2>
+      <p>Use the setup guide below for step-by-step instructions on how to install AI Organizer, get set up, and start using the product. You can also download the main AI Organizer PDF referenced inside the guide.</p>
+      <a href="/ai-organizer/bonuses/ai-organizer-setup-guide.docx" class="download-btn" target="_blank" download>Download Setup Guide</a>
+      <a href="/ai-organizer/bonuses/ai-organizer.pdf" class="download-btn" target="_blank" download style="margin-left:12px;">Download AI Organizer PDF</a>
+    </div>
+    
+    <div class="bonuses-section">
+      <div class="section-title">
+        <h2>Your Ultimate Bonuses</h2>
+        <p>Download all your bonuses below. These are yours to keep forever.</p>
+      </div>
+      
+      <div class="bonuses-grid">
+        <div class="bonus-card">
+          <div class="bonus-number">BONUS 1</div>
+          <div class="bonus-icon">🎯</div>
+          <h3>Prompt Power Pack</h3>
+          <p>200+ ready-to-use marketing prompts for content, sales, email, social media, and productivity.</p>
+          <a href="/ai-organizer/bonuses/bonus-1-prompt-power-pack.pdf" class="download-btn" target="_blank" download>Download PDF</a>
+        </div>
+        
+        <div class="bonus-card">
+          <div class="bonus-number">BONUS 2</div>
+          <div class="bonus-icon">📚</div>
+          <h3>Setup Guide</h3>
+          <p>Step-by-step guide to setting up folders, tags, notes, and structure for maximum organization.</p>
+          <a href="/ai-organizer/bonuses/bonus-2-setup-guide.pdf" class="download-btn" target="_blank" download>Download PDF</a>
+        </div>
+        
+        <div class="bonus-card">
+          <div class="bonus-number">BONUS 3</div>
+          <div class="bonus-icon">⚡</div>
+          <h3>Workflow Templates</h3>
+          <p>Done-for-you multi-step prompt flows that turn complex tasks into repeatable systems.</p>
+          <a href="/ai-organizer/bonuses/bonus-3-workflow-templates.pdf" class="download-btn" target="_blank" download>Download PDF</a>
+        </div>
+        
+        <div class="bonus-card">
+          <div class="bonus-number">BONUS 4</div>
+          <div class="bonus-icon">🗂️</div>
+          <h3>Folder & Tag Starter Kit</h3>
+          <p>Plug-and-play organization system with folder ideas, tag categories, and naming conventions.</p>
+          <a href="/ai-organizer/bonuses/bonus-4-starter-kit.pdf" class="download-btn" target="_blank" download>Download PDF</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="next-steps">
+      <h2>What Happens Next:</h2>
+      <ol>
+        <li>Access all your bonuses above</li>
+        <li>Watch for an email from BrowsX.com with your AI Organizer account access</li>
+        <li>Follow the setup instructions in the email</li>
+        <li>Log into your AI Organizer and start organizing your AI work!</li>
+      </ol>
+    </div>
+    
+    <a href="/ai-organizer/" class="home-link">← Back to Home</a>
+  </div>
+</body>
+</html>

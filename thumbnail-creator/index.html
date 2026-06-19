@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michelle's AI Thumbnail Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #ec4899; --dark: #0f172a; --darker: #020617; --light: #f8fafc; --gray: #64748b; }
+        body { font-family: 'Inter', sans-serif; background: var(--darker); color: var(--light); min-height: 100vh; overflow-x: hidden; }
+        .app-container { display: flex; height: 100vh; }
+        .sidebar { width: 280px; background: var(--dark); border-right: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; padding: 20px; overflow-y: auto; }
+        .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .logo-text { font-weight: 700; font-size: 18px; background: linear-gradient(135deg, var(--light), var(--gray)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 12px; margin-top: 20px; }
+        .template-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .template-item { aspect-ratio: 16/9; background: rgba(255,255,255,0.05); border-radius: 8px; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--gray); }
+        .template-item:hover { border-color: var(--primary); transform: scale(1.02); }
+        .template-item.active { border-color: var(--primary); background: rgba(99, 102, 241, 0.1); }
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .top-bar { height: 60px; background: var(--dark); border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; flex-wrap: wrap; gap: 10px; }
+        .canvas-size-selector { display: flex; gap: 8px; flex-wrap: wrap; }
+        .size-btn { padding: 6px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--gray); font-size: 12px; cursor: pointer; transition: all 0.2s; }
+        .size-btn:hover, .size-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .top-actions { display: flex; gap: 12px; }
+        .btn { padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; display: flex; align-items: center; gap: 8px; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: var(--light); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+        .canvas-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%), var(--darker); position: relative; overflow: auto; padding: 40px; }
+        #thumbnail-canvas { background: white; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 100%; max-height: 100%; }
+        .right-panel { width: 320px; background: var(--dark); border-left: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; overflow-y: auto; }
+        .panel-section { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .panel-title { font-size: 14px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .tool-group { margin-bottom: 20px; }
+        .tool-label { font-size: 12px; color: var(--gray); margin-bottom: 8px; display: block; }
+        input[type="text"], textarea, select { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--light); font-size: 14px; font-family: inherit; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        textarea { min-height: 80px; resize: vertical; }
+        .color-picker-wrapper { display: flex; gap: 10px; flex-wrap: wrap; }
+        .color-option { width: 32px; height: 32px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+        .color-option:hover, .color-option.active { border-color: white; transform: scale(1.1); }
+        .font-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .font-option { padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; text-align: center; font-size: 16px; transition: all 0.2s; }
+        .font-option:hover, .font-option.active { border-color: var(--primary); background: rgba(99, 102, 241, 0.1); }
+        .ai-prompt-box { background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1)); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 16px; margin-top: 16px; }
+        .ai-prompt-box h4 { font-size: 13px; margin-bottom: 10px; color: var(--primary); }
+        .ai-generate-btn { width: 100%; margin-top: 10px; padding: 12px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .ai-generate-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3); }
+        @media (max-width: 1200px) { .sidebar { width: 240px; } .right-panel { width: 280px; } }
+        @media (max-width: 900px) { .app-container { flex-direction: column; } .sidebar, .right-panel { width: 100%; height: auto; max-height: 300px; } .canvas-wrapper { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo"><div class="logo-icon">🎨</div><div class="logo-text">ThumbCraft AI</div></div>
+            <div class="section-title">Templates</div>
+            <div class="template-grid" id="templateGrid">
+                <div class="template-item active" data-template="blank"><span>Blank</span></div>
+                <div class="template-item" data-template="gradient"><span>Gradient</span></div>
+                <div class="template-item" data-template="bold-text"><span>Bold Text</span></div>
+                <div class="template-item" data-template="split"><span>Split</span></div>
+                <div class="template-item" data-template="minimal"><span>Minimal</span></div>
+                <div class="template-item" data-template="vibrant"><span>Vibrant</span></div>
+            </div>
+            <div class="section-title">AI Generation</div>
+            <div class="ai-prompt-box">
+                <h4>🤖 Generate with AI</h4>
+                <textarea id="aiPrompt" placeholder="Describe your thumbnail..."></textarea>
+                <button class="ai-generate-btn" onclick="generateWithAI()">✨ Generate</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="canvas-size-selector">
+                    <button class="size-btn active" data-size="youtube">YouTube</button>
+                    <button class="size-btn" data-size="youtube-short">Short</button>
+                    <button class="size-btn" data-size="instagram">IG</button>
+                    <button class="size-btn" data-size="tiktok">TikTok</button>
+                </div>
+                <div class="top-actions">
+                    <button class="btn btn-secondary" onclick="clearCanvas()">🗑️ Clear</button>
+                    <button class="btn btn-primary" onclick="downloadThumbnail()">⬇️ Download</button>
+                </div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="thumbnail-canvas" width="1280" height="720"></canvas>
+            </div>
+        </main>
+        <aside class="right-panel">
+            <div class="panel-section">
+                <h3 class="panel-title">📝 Text</h3>
+                <div class="tool-group"><label class="tool-label">Headline</label><input type="text" id="headlineText" value="AMAZING RESULTS"></div>
+                <div class="tool-group"><label class="tool-label">Subheadline</label><input type="text" id="subheadlineText" value="You Won't Believe #3"></div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-title">🎨 Colors</h3>
+                <label class="tool-label">Background</label>
+                <div class="color-picker-wrapper" id="bgColors">
+                    <div class="color-option active" style="background: linear-gradient(135deg, #6366f1, #ec4899)" data-color="gradient1"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #f59e0b, #ef4444)" data-color="gradient2"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #10b981, #3b82f6)" data-color="gradient3"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #8b5cf6, #ec4899)" data-color="gradient4"></div>
+                </div>
+                <label class="tool-label" style="margin-top: 16px;">Text Color</label>
+                <div class="color-picker-wrapper" id="textColors">
+                    <div class="color-option active" style="background: #ffffff" data-color="#ffffff"></div>
+                    <div class="color-option" style="background: #fbbf24" data-color="#fbbf24"></div>
+                    <div class="color-option" style="background: #000000" data-color="#000000"></div>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-title">🔤 Fonts</h3>
+                <div class="font-selector" id="fontSelector">
+                    <div class="font-option active" style="font-family: 'Oswald'" data-font="Oswald">Oswald</div>
+                    <div class="font-option" style="font-family: 'Bebas Neue'" data-font="Bebas Neue">Bebas</div>
+                    <div class="font-option" style="font-family: 'Inter'" data-font="Inter">Inter</div>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-title">🖼️ Images</h3>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <button class="btn btn-secondary" style="width: 100%;" onclick="document.getElementById('imageUpload').click()">📤 Upload Image</button>
+            </div>
+        </aside>
+    </div>
+    <script>
+        const canvas = document.getElementById('thumbnail-canvas'), ctx = canvas.getContext('2d');
+        let currentTemplate = 'blank', currentSize = 'youtube', currentBgColor = 'gradient1', currentTextColor = '#ffffff', currentFont = 'Oswald', layers = [];
+        const sizes = { youtube: {w:1280,h:720}, 'youtube-short': {w:1080,h:1920}, instagram: {w:1080,h:1080}, tiktok: {w:1080,h:1920} };
+        const templates = {
+            blank: { background: 'gradient1', elements: [] },
+            gradient: { background: 'gradient1', elements: [{type:'text',text:'YOUR TITLE',x:640,y:300,fontSize:80,font:'Oswald',color:'#fff',align:'center'}] },
+            'bold-text': { background: '#0f172a', elements: [{type:'text',text:'WOW!',x:640,y:360,fontSize:120,font:'Bebas Neue',color:'#fbbf24',align:'center'}] },
+            split: { background: 'gradient3', elements: [{type:'rect',x:0,y:0,w:640,h:720,color:'rgba(0,0,0,0.3)'},{type:'text',text:'VS',x:640,y:360,fontSize:100,font:'Oswald',color:'#fff',align:'center'}] },
+            minimal: { background: '#fff', elements: [{type:'text',text:'Clean',x:640,y:360,fontSize:70,font:'Inter',color:'#0f172a',align:'center'}] },
+            vibrant: { background: 'gradient4', elements: [{type:'circle',x:640,y:360,r:200,color:'rgba(255,255,255,0.2)'},{type:'text',text:'POP!',x:640,y:380,fontSize:100,font:'Bebas Neue',color:'#fff',align:'center'}] }
+        };
+        function init() { loadTemplate('blank'); setupEvents(); updateCanvas(); }
+        function setupEvents() {
+            document.querySelectorAll('.template-item').forEach(item => item.addEventListener('click', () => { document.querySelectorAll('.template-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); loadTemplate(item.dataset.template); }));
+            document.querySelectorAll('.size-btn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); changeSize(btn.dataset.size); }));
+            document.querySelectorAll('#bgColors .color-option').forEach(opt => opt.addEventListener('click', () => { document.querySelectorAll('#bgColors .color-option').forEach(o => o.classList.remove('active')); opt.classList.add('active'); currentBgColor = opt.dataset.color; updateCanvas(); }));
+            document.querySelectorAll('#textColors .color-option').forEach(opt => opt.addEventListener('click', () => { document.querySelectorAll('#textColors .color-option').forEach(o => o.classList.remove('active')); opt.classList.add('active'); currentTextColor = opt.dataset.color; updateCanvas(); }));
+            document.querySelectorAll('#fontSelector .font-option').forEach(opt => opt.addEventListener('click', () => { document.querySelectorAll('#fontSelector .font-option').forEach(o => o.classList.remove('active')); opt.classList.add('active'); currentFont = opt.dataset.font; updateCanvas(); }));
+            document.getElementById('headlineText').addEventListener('input', updateCanvas);
+            document.getElementById('subheadlineText').addEventListener('input', updateCanvas);
+            document.getElementById('imageUpload').addEventListener('change', handleImageUpload);
+        }
+        function loadTemplate(name) { currentTemplate = name; const t = templates[name]; if(t.background) { currentBgColor = t.background; document.querySelectorAll('#bgColors .color-option').forEach(o => o.classList.toggle('active', o.dataset.color === t.background)); } layers = t.elements ? [...t.elements] : []; updateCanvas(); }
+        function changeSize(name) { currentSize = name; const s = sizes[name]; canvas.width = s.w; canvas.height = s.h; updateCanvas(); }
+        function updateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const grads = { gradient1: ['#6366f1','#ec4899'], gradient2: ['#f59e0b','#ef4444'], gradient3: ['#10b981','#3b82f6'], gradient4: ['#8b5cf6','#ec4899'] };
+            if(grads[currentBgColor]) { const g = ctx.createLinearGradient(0,0,canvas.width,canvas.height); g.addColorStop(0,grads[currentBgColor][0]); g.addColorStop(1,grads[currentBgColor][1]); ctx.fillStyle = g; }
+            else ctx.fillStyle = currentBgColor;
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            layers.forEach(layer => {
+                if(layer.type === 'text') { ctx.font = 'bold ' + layer.fontSize + 'px "' + layer.font + '"'; ctx.fillStyle = layer.color; ctx.textAlign = layer.align || 'left'; ctx.textBaseline = 'middle'; ctx.shadowColor = 'rgba(0,0,0,0.3)'; ctx.shadowBlur = 10; ctx.fillText(layer.text, layer.x, layer.y); ctx.shadowColor = 'transparent'; }
+                else if(layer.type === 'rect') { ctx.fillStyle = layer.color; ctx.fillRect(layer.x, layer.y, layer.w, layer.h); }
+                else if(layer.type === 'circle') { ctx.beginPath(); ctx.arc(layer.x, layer.y, layer.r, 0, Math.PI * 2); ctx.fillStyle = layer.color; ctx.fill(); }
+                else if(layer.type === 'image' && layer.img) ctx.drawImage(layer.img, layer.x, layer.y, layer.w || layer.img.width, layer.h || layer.img.height);
+            });
+            if(currentTemplate === 'blank') {
+                const h = document.getElementById('headlineText').value, s = document.getElementById('subheadlineText').value;
+                if(h) { ctx.font = 'bold 80px "' + currentFont + '"'; ctx.fillStyle = currentTextColor; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 20; ctx.fillText(h, canvas.width/2, canvas.height/2 - 50); ctx.shadowColor = 'transparent'; }
+                if(s) { ctx.font = '500 40px "Inter"'; ctx.fillStyle = currentTextColor; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.shadowColor = 'rgba(0,0,0,0.3)'; ctx.shadowBlur = 10; ctx.fillText(s, canvas.width/2, canvas.height/2 + 50); ctx.shadowColor = 'transparent'; }
+            }
+        }
+        function handleImageUpload(e) {
+            const f = e.target.files[0]; if(f) { const r = new FileReader(); r.onload = (ev) => { const img = new Image(); img.onload = () => { const scale = Math.min(canvas.width/img.width, canvas.height/img.height, 1); layers.push({type:'image',img:img,x:(canvas.width-img.width*scale)/2,y:(canvas.height-img.height*scale)/2,w:img.width*scale,h:img.height*scale}); updateCanvas(); }; img.src = ev.target.result; }; r.readAsDataURL(f); }
+        }
+        function clearCanvas() { if(confirm('Clear all?')) { layers = []; updateCanvas(); } }
+        function generateWithAI() {
+            const p = document.getElementById('aiPrompt').value; if(!p) return alert('Enter a description');
+            const lp = p.toLowerCase(); layers = [];
+            if(lp.includes('blue')) currentBgColor = 'gradient3'; else if(lp.includes('purple') || lp.includes('pink')) currentBgColor = 'gradient4'; else if(lp.includes('orange')) currentBgColor = 'gradient2'; else currentBgColor = 'gradient1';
+            document.querySelectorAll('#bgColors .color-option').forEach(o => o.classList.toggle('active', o.dataset.color === currentBgColor));
+            let title = 'NEW VIDEO'; const m = p.match(/(?:with|about)\s+(.+?)(?:\s+background|$)/i); if(m) title = m[1].toUpperCase();
+            layers.push({type:'text',text:title,x:canvas.width/2,y:canvas.height/2,fontSize:90,font:'Oswald',color:'#fff',align:'center'});
+            updateCanvas();
+        }
+        function downloadThumbnail() { const link = document.createElement('a'); link.download = 'thumbnail-' + Date.now() + '.png'; link.href = canvas.toDataURL('image/png'); link.click(); }
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

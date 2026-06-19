@@ -1,102 +1,56 @@
-# joes.ai Skill Installer v1.0.4
+# 🎨 Michelle's AI Thumbnail Creator
 
-**Official skill installer with certification levels for OpenClaw**
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/manner60/michellearibeiro&root-directory=thumbnail-creator)
 
-## Installation
+A powerful, AI-enhanced thumbnail creation tool built for Michelle.
 
-### Method 1: Extract to Workspace (Recommended)
+## ✨ Features
 
-1. Extract this zip to your OpenClaw workspace directory
-2. The `/joes` command will automatically find `bin/slash-joes.js`
+- **🎨 Visual Editor** - Drag-and-drop canvas with real-time preview
+- **🤖 AI Generation** - Smart template generation based on text prompts
+- **📐 Multiple Formats** - YouTube, YouTube Shorts, Instagram, TikTok
+- **🎯 Templates** - Pre-built templates for quick starts
+- **🖼️ Image Upload** - Add your own images
+- **🔤 Custom Fonts** - Oswald, Bebas Neue, Inter, Roboto Condensed
+- **🎨 Color Gradients** - Beautiful pre-made gradients + solid colors
 
-```bash
-# Example: Extract to workspace
-cd ~/.openclaw/workspace
-unzip BOOTSTRAP-JOE-SKILL-LOADER-v1.0.4.zip
-```
+## 🚀 Quick Deploy
 
-### Method 2: Global Install (Optional)
+Click the button above to instantly deploy to Vercel!
 
-```bash
-npm install -g joes-ai-skill
-```
-
-## Usage
-
-### Via Telegram `/joes` Command
+## 📁 Project Structure
 
 ```
-/joes install <skill-slug> [--level <cert-level>]
-/joes doctor
-/joes inspect <skill-slug>
+thumbnail-creator/
+├── index.html          # Main application
+├── app.js              # Application logic
+├── README.md           # Documentation
+├── SETUP.md            # Setup guide
+├── start.sh            # Launch script
+├── templates/
+│   └── templates.js    # Extended template library
+└── backend/
+    ├── ai_server.py    # Python AI backend
+    └── requirements.txt
 ```
 
-### Via CLI
+## 🎯 How to Use
 
-```bash
-node bin/joes-skill-install.js <skill-slug> [options]
-```
+1. **Choose a Size** - Click YouTube, Instagram, TikTok, etc.
+2. **Pick a Template** - Select from the sidebar or start blank
+3. **Add Text** - Type in the headline/subheadline fields
+4. **Customize Colors** - Click color swatches to change
+5. **Change Font** - Select from the font options
+6. **Add Elements** - Upload images or add shapes
+7. **Download** - Click the Download button
 
-### Via Zip (Telegram DM)
+## 💡 Pro Tips
 
-Send a skill zip file via Telegram DM with command:
-```
-/joes install <skill-slug> --zip <attachment>
-```
-
-## Certification Levels
-
-- `install-verified` (default) → 🛡️ Basic verification
-- `security-reviewed` → 🕵️ Security audit completed
-- `joes-ai-certified` → 🏛️ Full joes.ai certification
-
-## Examples
-
-```bash
-# Install weather skill with default certification
-/joes install weather
-
-# Install with specific certification level
-/joes install summarize --level joes-ai-certified
-
-# Check installation status
-/joes doctor
-
-# Inspect installed skill
-/joes inspect weather
-```
-
-## What's New in v1.0.4
-
-✅ **Fixed:** Command parsing bug (no longer treats "install" as skill slug)  
-✅ **Added:** `--zip` flag for local zip file installations  
-✅ **Added:** `/joes doctor` command with detailed diagnostics  
-✅ **Added:** `/joes inspect <skill>` command to show metadata  
-✅ **Improved:** Telegram-native flow (auto-detects zip attachments)
-
-## Requirements
-
-- Node.js 18+
-- OpenClaw installed
-- `clawhub` CLI (optional, for clawhub installs)
-- `unzip` command (required for --zip installs)
-
-## Files
-
-```
-bin/
-  joes-ai-skill.js        # CLI wrapper
-  joes-skill-install.js   # Core installer
-  slash-joes.js           # Telegram command handler
-  _meta.json              # Version metadata
-package.json              # Package manifest
-```
-
-## Support
-
-- Homepage: https://joes.ai
-- Issues: Report via Telegram to @JoeTheGoatfarmer
+- **Contrast is Key**: Use dark text on light backgrounds (or vice versa)
+- **Keep it Simple**: 2-3 elements max for clarity
+- **Big Text**: Make sure it's readable at small sizes
+- **Test at 200px**: That's how big it appears on YouTube
 
 ---
 
-Built by Joe Heiser | joes.ai
+Made with ❤️ for Michelle

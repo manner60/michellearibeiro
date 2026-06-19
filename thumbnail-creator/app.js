@@ -1,9 +1,4 @@
-/**
- * Michelle's AI Thumbnail Creator
- * A powerful, AI-enhanced thumbnail creation tool
- */
-
-// Canvas and context
+// Michelle's AI Thumbnail Creator - Main Application
 const canvas = document.getElementById('thumbnail-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -14,70 +9,62 @@ let currentBgColor = 'gradient1';
 let currentTextColor = '#ffffff';
 let currentFont = 'Oswald';
 let layers = [];
-let selectedLayer = null;
-let isDragging = false;
-let dragStart = { x: 0, y: 0 };
 
-// Canvas sizes
+// Configuration
 const sizes = {
-    youtube: { width: 1280, height: 720 },
-    'youtube-short': { width: 1080, height: 1920 },
-    instagram: { width: 1080, height: 1080 },
-    tiktok: { width: 1080, height: 1920 }
+    youtube: { w: 1280, h: 720 },
+    'youtube-short': { w: 1080, h: 1920 },
+    instagram: { w: 1080, h: 1080 },
+    tiktok: { w: 1080, h: 1920 }
 };
 
-// Templates
 const templates = {
-    blank: {
-        background: 'gradient1',
-        elements: []
-    },
-    gradient: {
-        background: 'gradient1',
+    blank: { background: 'gradient1', elements: [] },
+    gradient: { 
+        background: 'gradient1', 
         elements: [
-            { type: 'text', text: 'YOUR TITLE', x: 640, y: 300, fontSize: 80, font: 'Oswald', color: '#ffffff', align: 'center' },
-            { type: 'text', text: 'Subtitle here', x: 640, y: 400, fontSize: 40, font: 'Inter', color: '#ffffff', align: 'center' }
-        ]
+            { type: 'text', text: 'YOUR TITLE', x: 640, y: 300, fontSize: 80, font: 'Oswald', color: '#fff', align: 'center' }
+        ] 
     },
-    'bold-text': {
-        background: '#0f172a',
+    'bold-text': { 
+        background: '#0f172a', 
         elements: [
-            { type: 'text', text: 'WOW!', x: 640, y: 280, fontSize: 120, font: 'Bebas Neue', color: '#fbbf24', align: 'center' },
-            { type: 'text', text: 'This Changes Everything', x: 640, y: 420, fontSize: 50, font: 'Oswald', color: '#ffffff', align: 'center' }
-        ]
+            { type: 'text', text: 'WOW!', x: 640, y: 360, fontSize: 120, font: 'Bebas Neue', color: '#fbbf24', align: 'center' }
+        ] 
     },
-    split: {
-        background: 'gradient3',
+    split: { 
+        background: 'gradient3', 
         elements: [
-            { type: 'rect', x: 0, y: 0, width: 640, height: 720, color: 'rgba(0,0,0,0.3)' },
-            { type: 'text', text: 'BEFORE', x: 320, y: 360, fontSize: 60, font: 'Oswald', color: '#ffffff', align: 'center' },
-            { type: 'text', text: 'AFTER', x: 960, y: 360, fontSize: 60, font: 'Oswald', color: '#ffffff', align: 'center' }
-        ]
+            { type: 'rect', x: 0, y: 0, w: 640, h: 720, color: 'rgba(0,0,0,0.3)' },
+            { type: 'text', text: 'VS', x: 640, y: 360, fontSize: 100, font: 'Oswald', color: '#fff', align: 'center' }
+        ] 
     },
-    minimal: {
-        background: '#ffffff',
+    minimal: { 
+        background: '#fff', 
         elements: [
-            { type: 'text', text: 'Clean & Simple', x: 640, y: 360, fontSize: 70, font: 'Inter', color: '#0f172a', align: 'center' }
-        ]
+            { type: 'text', text: 'Clean', x: 640, y: 360, fontSize: 70, font: 'Inter', color: '#0f172a', align: 'center' }
+        ] 
     },
-    vibrant: {
-        background: 'gradient4',
+    vibrant: { 
+        background: 'gradient4', 
         elements: [
-            { type: 'circle', x: 640, y: 360, radius: 200, color: 'rgba(255,255,255,0.2)' },
-            { type: 'text', text: 'POP!', x: 640, y: 380, fontSize: 100, font: 'Bebas Neue', color: '#ffffff', align: 'center' }
-        ]
+            { type: 'circle', x: 640, y: 360, r: 200, color: 'rgba(255,255,255,0.2)' },
+            { type: 'text', text: 'POP!', x: 640, y: 380, fontSize: 100, font: 'Bebas Neue', color: '#fff', align: 'center' }
+        ] 
     }
 };
 
 // Initialize
 function init() {
+    console.log('Thumbnail Creator Initializing...');
     loadTemplate('blank');
-    setupEventListeners();
+    setupEvents();
     updateCanvas();
+    console.log('Thumbnail Creator Ready!');
 }
 
-// Setup event listeners
-function setupEventListeners() {
+// Event Listeners
+function setupEvents() {
     // Template selection
     document.querySelectorAll('.template-item').forEach(item => {
         item.addEventListener('click', () => {
@@ -97,31 +84,32 @@ function setupEventListeners() {
     });
 
     // Background colors
-    document.querySelectorAll('#bgColors .color-option').forEach(option => {
-        option.addEventListener('click', () => {
+    document.querySelectorAll('#bgColors .color-option').forEach(opt => {
+        opt.addEventListener('click', () => {
             document.querySelectorAll('#bgColors .color-option').forEach(o => o.classList.remove('active'));
-            option.classList.add('active');
-            currentBgColor = option.dataset.color;
+            opt.classList.add('active');
+            currentBgColor = opt.dataset.color;
             updateCanvas();
         });
     });
 
     // Text colors
-    document.querySelectorAll('#textColors .color-option').forEach(option => {
-        option.addEventListener('click', () => {
+    document.querySelectorAll('#textColors .color-option').forEach(opt => {
+        opt.addEventListener('click', () => {
             document.querySelectorAll('#textColors .color-option').forEach(o => o.classList.remove('active'));
-            option.classList.add('active');
-            currentTextColor = option.dataset.color;
+            opt.classList.add('active');
+            currentTextColor = opt.dataset.color;
             updateCanvas();
         });
     });
 
     // Font selection
-    document.querySelectorAll('#fontSelector .font-option').forEach(option => {
-        option.addEventListener('click', () => {
+    document.querySelectorAll('#fontSelector .font-option').forEach(opt => {
+        opt.addEventListener('click', () => {
             document.querySelectorAll('#fontSelector .font-option').forEach(o => o.classList.remove('active'));
-            option.classList.add('active');
-            currentFont = option.dataset.font;
+            opt.classList.add('active');
+            currentFont = opt.dataset.font;
+            updateCanvas();
         });
     });
 
@@ -131,548 +119,199 @@ function setupEventListeners() {
 
     // Image upload
     document.getElementById('imageUpload').addEventListener('change', handleImageUpload);
-
-    // Canvas interactions
-    canvas.addEventListener('mousedown', handleMouseDown);
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseup', handleMouseUp);
-    canvas.addEventListener('dblclick', handleDoubleClick);
-
-    // Quality slider
-    document.getElementById('qualitySlider').addEventListener('input', (e) => {
-        document.getElementById('qualityValue').textContent = Math.round(e.target.value * 100) + '%';
-    });
-
-    // Export options
-    document.querySelectorAll('.export-option').forEach(option => {
-        option.addEventListener('click', () => {
-            document.querySelectorAll('.export-option').forEach(o => o.classList.remove('selected'));
-            option.classList.add('selected');
-        });
-    });
 }
 
 // Load template
-function loadTemplate(templateName) {
-    currentTemplate = templateName;
-    const template = templates[templateName];
-    
-    if (template.background) {
-        currentBgColor = template.background;
+function loadTemplate(name) {
+    currentTemplate = name;
+    const t = templates[name];
+    if (t.background) {
+        currentBgColor = t.background;
         document.querySelectorAll('#bgColors .color-option').forEach(o => {
-            o.classList.toggle('active', o.dataset.color === template.background);
+            o.classList.toggle('active', o.dataset.color === t.background);
         });
     }
-
-    layers = template.elements ? [...template.elements] : [];
-    
-    // Add headline and subheadline from inputs
-    const headline = document.getElementById('headlineText').value;
-    const subheadline = document.getElementById('subheadlineText').value;
-    
-    if (headline && templateName === 'blank') {
-        layers.push({
-            type: 'text',
-            text: headline,
-            x: canvas.width / 2,
-            y: canvas.height / 2 - 50,
-            fontSize: 80,
-            font: currentFont,
-            color: currentTextColor,
-            align: 'center'
-        });
-    }
-    
-    if (subheadline && templateName === 'blank') {
-        layers.push({
-            type: 'text',
-            text: subheadline,
-            x: canvas.width / 2,
-            y: canvas.height / 2 + 50,
-            fontSize: 40,
-            font: 'Inter',
-            color: currentTextColor,
-            align: 'center'
-        });
-    }
-
-    updateLayersList();
+    layers = t.elements ? [...t.elements] : [];
     updateCanvas();
 }
 
 // Change canvas size
-function changeSize(sizeName) {
-    currentSize = sizeName;
-    const size = sizes[sizeName];
-    canvas.width = size.width;
-    canvas.height = size.height;
+function changeSize(name) {
+    currentSize = name;
+    const s = sizes[name];
+    canvas.width = s.w;
+    canvas.height = s.h;
     updateCanvas();
 }
 
 // Update canvas
 function updateCanvas() {
-    // Clear canvas
+    // Clear
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    
     // Draw background
-    drawBackground();
-
-    // Draw layers
-    layers.forEach(layer => {
-        drawLayer(layer);
-    });
-
-    // Draw headline and subheadline if blank template
-    if (currentTemplate === 'blank') {
-        drawTextFromInputs();
-    }
-}
-
-// Draw background
-function drawBackground() {
-    const gradients = {
+    const grads = {
         gradient1: ['#6366f1', '#ec4899'],
         gradient2: ['#f59e0b', '#ef4444'],
         gradient3: ['#10b981', '#3b82f6'],
         gradient4: ['#8b5cf6', '#ec4899']
     };
-
-    if (gradients[currentBgColor]) {
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, gradients[currentBgColor][0]);
-        gradient.addColorStop(1, gradients[currentBgColor][1]);
-        ctx.fillStyle = gradient;
+    
+    if (grads[currentBgColor]) {
+        const g = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        g.addColorStop(0, grads[currentBgColor][0]);
+        g.addColorStop(1, grads[currentBgColor][1]);
+        ctx.fillStyle = g;
     } else {
         ctx.fillStyle = currentBgColor;
     }
-    
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw layers
+    layers.forEach(layer => drawLayer(layer));
+
+    // Draw text inputs for blank template
+    if (currentTemplate === 'blank') {
+        drawTextInputs();
+    }
 }
 
-// Draw layer
+// Draw individual layer
 function drawLayer(layer) {
     if (layer.type === 'text') {
-        ctx.font = `bold ${layer.fontSize}px "${layer.font}"`;
+        ctx.font = 'bold ' + layer.fontSize + 'px "' + layer.font + '"';
         ctx.fillStyle = layer.color;
         ctx.textAlign = layer.align || 'left';
         ctx.textBaseline = 'middle';
-        
-        // Add text shadow for better visibility
         ctx.shadowColor = 'rgba(0,0,0,0.3)';
         ctx.shadowBlur = 10;
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 2;
-        
         ctx.fillText(layer.text, layer.x, layer.y);
-        
-        // Reset shadow
         ctx.shadowColor = 'transparent';
     } else if (layer.type === 'rect') {
         ctx.fillStyle = layer.color;
-        ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
+        ctx.fillRect(layer.x, layer.y, layer.w, layer.h);
     } else if (layer.type === 'circle') {
         ctx.beginPath();
-        ctx.arc(layer.x, layer.y, layer.radius, 0, Math.PI * 2);
+        ctx.arc(layer.x, layer.y, layer.r, 0, Math.PI * 2);
         ctx.fillStyle = layer.color;
         ctx.fill();
     } else if (layer.type === 'image' && layer.img) {
-        ctx.drawImage(layer.img, layer.x, layer.y, layer.width || layer.img.width, layer.height || layer.img.height);
+        ctx.drawImage(layer.img, layer.x, layer.y, layer.w || layer.img.width, layer.h || layer.img.height);
     }
 }
 
 // Draw text from inputs
-function drawTextFromInputs() {
-    const headline = document.getElementById('headlineText').value;
-    const subheadline = document.getElementById('subheadlineText').value;
+function drawTextInputs() {
+    const h = document.getElementById('headlineText').value;
+    const s = document.getElementById('subheadlineText').value;
 
-    if (headline) {
-        ctx.font = `bold 80px "${currentFont}"`;
+    if (h) {
+        ctx.font = 'bold 80px "' + currentFont + '"';
         ctx.fillStyle = currentTextColor;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        
         ctx.shadowColor = 'rgba(0,0,0,0.5)';
         ctx.shadowBlur = 20;
-        ctx.shadowOffsetX = 3;
-        ctx.shadowOffsetY = 3;
-        
-        ctx.fillText(headline, canvas.width / 2, canvas.height / 2 - 50);
+        ctx.fillText(h, canvas.width / 2, canvas.height / 2 - 50);
         ctx.shadowColor = 'transparent';
     }
 
-    if (subheadline) {
+    if (s) {
         ctx.font = '500 40px "Inter"';
         ctx.fillStyle = currentTextColor;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        
         ctx.shadowColor = 'rgba(0,0,0,0.3)';
         ctx.shadowBlur = 10;
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 2;
-        
-        ctx.fillText(subheadline, canvas.width / 2, canvas.height / 2 + 50);
+        ctx.fillText(s, canvas.width / 2, canvas.height / 2 + 50);
         ctx.shadowColor = 'transparent';
     }
 }
 
-// Add text layer
-function addTextLayer() {
-    const text = prompt('Enter text:');
-    if (text) {
-        layers.push({
-            type: 'text',
-            text: text,
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            fontSize: 60,
-            font: currentFont,
-            color: currentTextColor,
-            align: 'center'
-        });
-        updateLayersList();
-        updateCanvas();
-    }
-}
-
-// Add shape
-function addShape() {
-    const shapes = ['circle', 'rect'];
-    const shape = shapes[Math.floor(Math.random() * shapes.length)];
-    
-    if (shape === 'circle') {
-        layers.push({
-            type: 'circle',
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            radius: 100,
-            color: 'rgba(255,255,255,0.2)'
-        });
-    } else {
-        layers.push({
-            type: 'rect',
-            x: canvas.width / 2 - 100,
-            y: canvas.height / 2 - 100,
-            width: 200,
-            height: 200,
-            color: 'rgba(255,255,255,0.2)'
-        });
-    }
-    
-    updateLayersList();
-    updateCanvas();
-}
-
 // Handle image upload
 function handleImageUpload(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
+    const f = e.target.files[0];
+    if (f) {
+        const r = new FileReader();
+        r.onload = (ev) => {
             const img = new Image();
             img.onload = () => {
-                // Scale image to fit canvas
                 const scale = Math.min(canvas.width / img.width, canvas.height / img.height, 1);
                 layers.push({
                     type: 'image',
                     img: img,
                     x: (canvas.width - img.width * scale) / 2,
                     y: (canvas.height - img.height * scale) / 2,
-                    width: img.width * scale,
-                    height: img.height * scale
+                    w: img.width * scale,
+                    h: img.height * scale
                 });
-                updateLayersList();
                 updateCanvas();
             };
-            img.src = event.target.result;
+            img.src = ev.target.result;
         };
-        reader.readAsDataURL(file);
+        r.readAsDataURL(f);
     }
-}
-
-// Update layers list
-function updateLayersList() {
-    const list = document.getElementById('layersList');
-    list.innerHTML = '';
-    
-    layers.forEach((layer, index) => {
-        const item = document.createElement('div');
-        item.className = 'layer-item' + (selectedLayer === index ? ' active' : '');
-        item.innerHTML = `
-            <div class="layer-icon">${layer.type === 'text' ? '📝' : layer.type === 'image' ? '🖼️' : layer.type === 'circle' ? '⭕' : '⬜'}</div>
-            <span class="layer-name">${layer.type === 'text' ? layer.text.substring(0, 20) : layer.type}</span>
-            <span class="layer-visibility" onclick="toggleLayerVisibility(${index})">👁️</span>
-        `;
-        item.onclick = () => selectLayer(index);
-        list.appendChild(item);
-    });
-}
-
-// Select layer
-function selectLayer(index) {
-    selectedLayer = index;
-    updateLayersList();
-}
-
-// Toggle layer visibility
-function toggleLayerVisibility(index) {
-    event.stopPropagation();
-    // Implementation for visibility toggle
-}
-
-// Mouse handlers for dragging
-function handleMouseDown(e) {
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
-    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
-    
-    // Check if clicked on a layer
-    for (let i = layers.length - 1; i >= 0; i--) {
-        const layer = layers[i];
-        if (isPointInLayer(x, y, layer)) {
-            selectedLayer = i;
-            isDragging = true;
-            dragStart = { x: x - (layer.x || 0), y: y - (layer.y || 0) };
-            updateLayersList();
-            break;
-        }
-    }
-}
-
-function handleMouseMove(e) {
-    if (!isDragging || selectedLayer === null) return;
-    
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
-    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
-    
-    const layer = layers[selectedLayer];
-    layer.x = x - dragStart.x;
-    layer.y = y - dragStart.y;
-    
-    updateCanvas();
-}
-
-function handleMouseUp() {
-    isDragging = false;
-}
-
-function handleDoubleClick(e) {
-    if (selectedLayer !== null && layers[selectedLayer].type === 'text') {
-        const newText = prompt('Edit text:', layers[selectedLayer].text);
-        if (newText !== null) {
-            layers[selectedLayer].text = newText;
-            updateLayersList();
-            updateCanvas();
-        }
-    }
-}
-
-function isPointInLayer(x, y, layer) {
-    if (layer.type === 'text') {
-        ctx.font = `bold ${layer.fontSize}px "${layer.font}"`;
-        const metrics = ctx.measureText(layer.text);
-        const width = metrics.width;
-        const height = layer.fontSize;
-        return x >= layer.x - width/2 && x <= layer.x + width/2 &&
-               y >= layer.y - height/2 && y <= layer.y + height/2;
-    } else if (layer.type === 'rect') {
-        return x >= layer.x && x <= layer.x + layer.width &&
-               y >= layer.y && y <= layer.y + layer.height;
-    } else if (layer.type === 'circle') {
-        const dx = x - layer.x;
-        const dy = y - layer.y;
-        return dx * dx + dy * dy <= layer.radius * layer.radius;
-    } else if (layer.type === 'image') {
-        return x >= layer.x && x <= layer.x + layer.width &&
-               y >= layer.y && y <= layer.y + layer.height;
-    }
-    return false;
 }
 
 // Clear canvas
 function clearCanvas() {
-    if (confirm('Clear all layers?')) {
+    if (confirm('Clear all?')) {
         layers = [];
-        selectedLayer = null;
-        updateLayersList();
         updateCanvas();
     }
 }
 
 // AI Generation
-async function generateWithAI() {
-    const prompt = document.getElementById('aiPrompt').value;
-    if (!prompt) {
-        alert('Please enter a description for your thumbnail');
+function generateWithAI() {
+    const p = document.getElementById('aiPrompt').value;
+    if (!p) {
+        alert('Enter a description');
         return;
     }
 
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    loadingOverlay.classList.add('active');
+    const lp = p.toLowerCase();
+    layers = [];
 
-    try {
-        // For now, we'll create a smart template based on the prompt
-        // In the future, this could integrate with DALL-E or Midjourney API
-        
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate AI processing
-        
-        // Parse prompt and create appropriate thumbnail
-        const lowerPrompt = prompt.toLowerCase();
-        
-        // Clear existing layers
-        layers = [];
-        
-        // Set background based on prompt
-        if (lowerPrompt.includes('blue')) {
-            currentBgColor = 'gradient3';
-        } else if (lowerPrompt.includes('purple') || lowerPrompt.includes('pink')) {
-            currentBgColor = 'gradient4';
-        } else if (lowerPrompt.includes('orange') || lowerPrompt.includes('warm')) {
-            currentBgColor = 'gradient2';
-        } else {
-            currentBgColor = 'gradient1';
-        }
-        
-        // Update color picker
-        document.querySelectorAll('#bgColors .color-option').forEach(o => {
-            o.classList.toggle('active', o.dataset.color === currentBgColor);
-        });
-        
-        // Extract potential title from prompt
-        let title = 'NEW VIDEO';
-        const titleMatch = prompt.match(/(?:with|featuring|showing|about)\s+(.+?)(?:\s+background|$)/i);
-        if (titleMatch) {
-            title = titleMatch[1].toUpperCase();
-        }
-        
-        // Add main title
-        layers.push({
-            type: 'text',
-            text: title,
-            x: canvas.width / 2,
-            y: canvas.height / 2 - 40,
-            fontSize: 90,
-            font: 'Oswald',
-            color: '#ffffff',
-            align: 'center'
-        });
-        
-        // Add decorative elements based on prompt
-        if (lowerPrompt.includes('tech') || lowerPrompt.includes('digital')) {
-            layers.push({
-                type: 'circle',
-                x: canvas.width - 150,
-                y: 150,
-                radius: 80,
-                color: 'rgba(255,255,255,0.1)'
-            });
-        }
-        
-        if (lowerPrompt.includes('arrow') || lowerPrompt.includes('point')) {
-            // Could add arrow shape here
-        }
-        
-        updateLayersList();
-        updateCanvas();
-        
-        // Save to recent
-        saveToRecent(prompt);
-        
-    } catch (error) {
-        console.error('AI generation error:', error);
-        alert('Error generating thumbnail. Please try again.');
-    } finally {
-        loadingOverlay.classList.remove('active');
-    }
-}
+    // Set background based on prompt
+    if (lp.includes('blue')) currentBgColor = 'gradient3';
+    else if (lp.includes('purple') || lp.includes('pink')) currentBgColor = 'gradient4';
+    else if (lp.includes('orange')) currentBgColor = 'gradient2';
+    else currentBgColor = 'gradient1';
 
-// Save to recent
-function saveToRecent(prompt) {
-    const recent = JSON.parse(localStorage.getItem('recentThumbnails') || '[]');
-    recent.unshift({
-        prompt: prompt,
-        date: new Date().toISOString(),
-        template: currentTemplate
+    document.querySelectorAll('#bgColors .color-option').forEach(o => {
+        o.classList.toggle('active', o.dataset.color === currentBgColor);
     });
-    if (recent.length > 10) recent.pop();
-    localStorage.setItem('recentThumbnails', JSON.stringify(recent));
-    updateRecentList();
-}
 
-// Update recent list
-function updateRecentList() {
-    const recent = JSON.parse(localStorage.getItem('recentThumbnails') || '[]');
-    const list = document.getElementById('recentList');
-    
-    if (recent.length === 0) {
-        list.innerHTML = 'No recent thumbnails';
-        return;
-    }
-    
-    list.innerHTML = recent.map(item => `
-        <div style="padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 6px; cursor: pointer;"
-             onclick="loadRecent('${item.prompt}')">
-            <div style="font-size: 11px; color: var(--gray);">${new Date(item.date).toLocaleDateString()}</div>
-            <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.prompt}</div>
-        </div>
-    `).join('');
-}
+    // Extract title from prompt
+    let title = 'NEW VIDEO';
+    const m = p.match(/(?:with|about)\s+(.+?)(?:\s+background|$)/i);
+    if (m) title = m[1].toUpperCase();
 
-// Load recent
-function loadRecent(prompt) {
-    document.getElementById('aiPrompt').value = prompt;
-    generateWithAI();
-}
+    layers.push({
+        type: 'text',
+        text: title,
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        fontSize: 90,
+        font: 'Oswald',
+        color: '#fff',
+        align: 'center'
+    });
 
-// Export modal
-function showExportModal() {
-    document.getElementById('exportModal').classList.add('active');
-}
-
-function closeExportModal() {
-    document.getElementById('exportModal').classList.remove('active');
-}
-
-function confirmExport() {
-    downloadThumbnail();
-    closeExportModal();
+    updateCanvas();
 }
 
 // Download thumbnail
 function downloadThumbnail() {
-    const format = document.querySelector('.export-option.selected')?.dataset.format || 'png';
-    const quality = parseFloat(document.getElementById('qualitySlider').value);
-    
-    let mimeType = 'image/png';
-    if (format === 'jpg' || format === 'jpeg') mimeType = 'image/jpeg';
-    if (format === 'webp') mimeType = 'image/webp';
-    
     const link = document.createElement('a');
-    link.download = `thumbnail-${Date.now()}.${format}`;
-    link.href = canvas.toDataURL(mimeType, quality);
+    link.download = 'thumbnail-' + Date.now() + '.png';
+    link.href = canvas.toDataURL('image/png');
     link.click();
 }
 
-// Initialize on load
-window.addEventListener('DOMContentLoaded', init);
-
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey) {
-        if (e.key === 's') {
-            e.preventDefault();
-            downloadThumbnail();
-        }
-        if (e.key === 'z') {
-            e.preventDefault();
-            // Undo functionality could be added here
-        }
-    }
-    if (e.key === 'Delete' && selectedLayer !== null) {
-        layers.splice(selectedLayer, 1);
-        selectedLayer = null;
-        updateLayersList();
-        updateCanvas();
-    }
-});
+// Start when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
